@@ -15,16 +15,20 @@
     "@sanity/desk-tool",
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
-    "dashboard-widget-netlify"
+    "dashboard-widget-netlify",
+    "asset-source-unsplash",
+    "media"
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./variableOverrides.css"
+    },
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"

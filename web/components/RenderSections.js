@@ -11,7 +11,7 @@ function resolveSections(section) {
     return Section
   }
 
-  console.error('Cant find section', section) // eslint-disable-line no-console
+  console.log('Cant find section', section) // eslint-disable-line no-console
   return null
 }
 
@@ -25,25 +25,19 @@ function RenderSections(props) {
 
   return (
     <Fragment>
-      {sections.map((section) => {
+      {sections.map((section, i) => {
         const SectionComponent = resolveSections(section)
         if (!SectionComponent) {
-          return <div>Missing section {section._type}</div>
+          return null
         }
-        return <SectionComponent {...section} key={section._key} />
+        return <SectionComponent {...section} firstComponent={i === 0} key={section._key} />
       })}
     </Fragment>
   )
 }
 
 RenderSections.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      _type: PropTypes.string,
-      _key: PropTypes.string,
-      section: PropTypes.instanceOf(PropTypes.object),
-    })
-  ),
+  sections: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default RenderSections

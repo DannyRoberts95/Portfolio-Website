@@ -1,39 +1,100 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import {Typography} from '@mui/material'
+import {Box} from '@mui/system'
 import imageUrlBuilder from '@sanity/image-url'
-import styles from './Figure.module.css'
+import Image from 'next/image'
+import PropTypes from 'prop-types'
+import {useState} from 'react'
 import client from '../client'
+import LightBox from './LightBox'
 
 const builder = imageUrlBuilder(client)
 
-function Figure({node}) {
-  const {alt, caption, asset} = node
+function Figure(props) {
+  const {value, lightBox = false} = props
+
+  const [lightBoxOpen, setLightBoxOpen] = useState(false)
+
+  const handleOpen = () => {
+    setLightBoxOpen(true)
+  }
+  const handleClose = () => {
+    setLightBoxOpen(false)
+  }
+
+  let dimensiosns = null
+
+  if (!value) return null
+
+  const {aspectRatio, alt, caption, asset} = value
+
   if (!asset) {
     return undefined
   }
+
+  switch (aspectRatio) {
+    case '3/4':
+      dimensiosns = {width: 960, height: 1280}
+      break
+    case '4:3':
+      dimensiosns = {width: 1280, height: 960}
+      break
+    case '1/1':
+      dimensiosns = {width: 1080, height: 1080}
+      break
+    default:
+      dimensiosns = {width: 1920, height: 1080}
+      break
+  }
+
   return (
-    <figure className={styles.content}>
-      <img
-        src={builder.image(asset).auto('format').width(2000).url()}
-        className={styles.image}
-        alt={alt}
-      />
+    <Box sx={{my: 2, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Box
+        component={'figure'}
+        sx={[
+          {
+            cursor: lightBox ? 'zoom-in' : 'auto',
+            position: 'relative',
+            width: '100%',
+            overflow: 'hidden',
+            m: 0,
+          },
+        ]}
+      >
+        <Image
+          objectFit="contain"
+          layout={!dimensiosns ? 'fill' : 'responsive'}
+          width={dimensiosns?.width || null}
+          height={dimensiosns?.height || null}
+          loading="lazy"
+          blurDataURL={builder.image(asset)}
+          placeholder="blur"
+          src={builder.image(asset).url()}
+          alt={alt}
+          onClick={handleOpen}
+        />
+      </Box>
+
       {caption && (
-        <figcaption>
-          <div className={styles.caption}>
-            <div className={styles.captionBox}>
-              <p>{caption}</p>
-            </div>
-          </div>
-        </figcaption>
+        <Typography variant="caption" align="center" sx={{mt: 1}}>
+          {caption}
+        </Typography>
       )}
-    </figure>
+
+      <LightBox
+        open={lightBoxOpen && lightBox}
+        handleClose={handleClose}
+        src={builder.image(asset).url()}
+        alt={alt}
+        caption={caption}
+      />
+    </Box>
   )
 }
 
 Figure.propTypes = {
   node: PropTypes.shape({
     alt: PropTypes.string,
+    aspectRatio: PropTypes.string,
     caption: PropTypes.string,
     asset: PropTypes.shape({
       _ref: PropTypes.string,

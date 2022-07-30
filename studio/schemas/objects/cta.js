@@ -20,18 +20,27 @@ export default {
       type: 'string',
     },
     {
+      title: 'Primary',
+      description: 'display this CTA more prominently.',
+      name: 'isPrimary',
+      type: 'boolean',
+    },
+    {
       title: 'Internal link',
-      description: 'Use this to link between pages on the website',
+      description: 'Use this to link between internal pages on the website',
       name: 'route',
       type: 'reference',
       to: [{ type: 'route' }],
       fieldset: 'link',
+      hidden: ({ parent, value }) => !value && parent?.link
     },
     {
       title: 'External link',
+      description: 'Use this to link to external pages on other sites. Make sure the url is not broken.',
       name: 'link',
       type: 'url',
       fieldset: 'link',
+      hidden: ({ parent, value }) => !value && parent?.route
     },
   ],
   preview: {

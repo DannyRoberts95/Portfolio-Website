@@ -1,106 +1,173 @@
-import React, {Component} from 'react'
+import {useTheme} from '@emotion/react'
+import {Clear, Menu} from '@mui/icons-material'
+import {
+  AppBar,
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Stack,
+  SwipeableDrawer,
+  Toolbar,
+  useScrollTrigger,
+} from '@mui/material'
+import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
-import {withRouter} from 'next/router'
-import SVG from 'react-inlinesvg'
-import styles from './Header.module.css'
-import HamburgerIcon from './icons/Hamburger'
-import {getPathFromSlug, slugParamToPath} from '../utils/urls'
+import {useEffect, useState} from 'react'
+import Cta from './Cta'
+import Logo from './Logo'
+import NavItem from './NavItem'
 
-class Header extends Component {
-  state = {showNav: false}
+const AppHeader = (props) => {
+  const theme = useTheme()
+  const router = useRouter()
 
-  static propTypes = {
-    router: PropTypes.shape({
-      pathname: PropTypes.string,
-      query: PropTypes.shape({
-        slug: PropTypes.string,
-      }),
-      events: PropTypes.any,
-    }),
-    title: PropTypes.string,
-    navItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        slug: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
-    logo: PropTypes.shape({
-      asset: PropTypes.shape({
-        url: PropTypes.string,
-      }),
-      logo: PropTypes.string,
-    }),
+  const {title, logos, ctas, navItems = [], transparent} = props
+
+  const scrollTrigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  })
+
+  //trigger the menu color change on scroll OR just color it from the get go if the page has no hero banner
+  const trigger = !transparent || scrollTrigger
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const headerColor = trigger ? theme.palette.background.paper : 'transparent'
+  const textColor = trigger ? theme.palette.text.secondary : '#fff'
+
+  const handleOpenMenu = () => {
+    setMobileMenuOpen(true)
+  }
+  const handleCloseMenu = () => {
+    setMobileMenuOpen(false)
   }
 
-  componentDidMount() {
-    const {router} = this.props
-    router.events.on('routeChangeComplete', this.hideMenu)
-  }
-
-  componentWillUnmount() {
-    const {router} = this.props
-    router.events.off('routeChangeComplete', this.hideMenu)
-  }
-
-  hideMenu = () => {
-    this.setState({showNav: false})
-  }
-
-  handleMenuToggle = () => {
-    const {showNav} = this.state
-    this.setState({
-      showNav: !showNav,
-    })
-  }
-
-  renderLogo = (logo) => {
-    if (!logo || !logo.asset) {
-      return null
+  useEffect(() => {
+    router.events.on('routeChangeStart', handleCloseMenu)
+    return () => {
+      router.events.off('routeChangeStart', handleCloseMenu)
     }
+  }, [])
 
-    if (logo.asset.extension === 'svg') {
-      return <SVG src={logo.asset.url} className={styles.logo} />
-    }
+  const navbar = (
+    <>
+      <AppBar
+        position="fixed"
+        sx={{
+          transition: 'all 0.25s',
+          color: textColor,
+          backgroundColor: headerColor,
+          minHeight: theme.shape.headerHeight,
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        elevation={trigger ? 4 : 0}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Logo logo={logos[trigger ? 'primary' : 'contrast']} alt={title} />
 
-    return <img src={logo.asset.url} alt={logo.title} className={styles.logo} />
-  }
+              <Box sx={{display: {xs: 'none', md: 'flex'}, gap: 2.5, my: 1, alignItems: 'center'}}>
+                {navItems.map((item) => (
+                  <NavItem key={item._key} navItem={item} darkText={trigger} />
+                ))}
+                {ctas && ctas.map((cta) => <Cta {...cta} key={cta._key} />)}
+              </Box>
 
-  render() {
-    const {title = 'Missing title', navItems, router, logo} = this.props
-    const {showNav} = this.state
+              {/* MOBILE */}
+              <Box
+                sx={{display: {xs: 'flex', md: 'none'}, flexGrow: 1, justifyContent: 'flex-end'}}
+              >
+                <IconButton
+                  sx={{p: 0}}
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenMenu}
+                  color="inherit"
+                  aria-details="the_menu_button_to_open_the_mobile_site_naviagtion"
+                >
+                  <Menu />
+                </IconButton>
+              </Box>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {!transparent && <Toolbar />}
+    </>
+  )
 
-    return (
-      <div className={styles.root} data-show-nav={showNav}>
-        <h1 className={styles.branding}>
-          <Link href={'/'}>
-            <a title={title}>{this.renderLogo(logo)}</a>
-          </Link>
-        </h1>
-        <nav className={styles.nav}>
-          <ul className={styles.navItems}>
-            {navItems &&
-              navItems.map((item) => {
-                const {slug, title, _id} = item
-                const isActive = slugParamToPath(router.query.slug) === slug.current
-                return (
-                  <li key={_id} className={styles.navItem}>
-                    <Link href={getPathFromSlug(slug.current)}>
-                      <a data-is-active={isActive ? 'true' : 'false'} aria-current={isActive}>
-                        {title}
-                      </a>
-                    </Link>
-                  </li>
-                )
-              })}
-          </ul>
-          <button className={styles.showNavButton} onClick={this.handleMenuToggle}>
-            <HamburgerIcon className={styles.hamburgerIcon} />
-          </button>
-        </nav>
-      </div>
-    )
-  }
+  const drawer = (
+    <SwipeableDrawer
+      anchor={'left'}
+      variant="temporary"
+      open={mobileMenuOpen}
+      onBackdropClick={handleCloseMenu}
+      onClose={handleCloseMenu}
+      onOpen={handleCloseMenu}
+      sx={{display: {md: 'none'}}}
+      PaperProps={{sx: {width: '100vw'}}}
+    >
+      <Container sx={{height: '100vh', p: 2}}>
+        <Box sx={{positon: 'relative', display: 'flex', gap: 1.5, flexDirection: 'column'}}>
+          <Stack direction={'row'} justifyContent="space-between" alignItems={'flex-start'}>
+            <Logo logo={logos['primary']} width={125} />
+            <IconButton size="small" onClick={handleCloseMenu}>
+              <Clear />
+            </IconButton>
+          </Stack>
+
+          <Divider />
+
+          <Stack gap={2}>
+            {navItems.map((item) => (
+              <NavItem
+                key={item._key}
+                navItem={item}
+                darkText
+                sx={{fontSize: '1.65rem !important'}}
+              />
+            ))}
+          </Stack>
+
+          <Divider />
+
+          <Box sx={{justifySelf: 'flex-end'}}>
+            {ctas &&
+              ctas.map((cta) => (
+                <Cta {...cta} key={cta._key} sx={{mr: 1}} variant="outlined" fullWidth />
+              ))}
+          </Box>
+        </Box>
+      </Container>
+    </SwipeableDrawer>
+  )
+
+  return (
+    <>
+      {navbar}
+      {drawer}
+    </>
+  )
 }
 
-export default withRouter(Header)
+AppHeader.propTypes = {
+  title: PropTypes.string,
+  navItems: PropTypes.array,
+  logos: PropTypes.object,
+}
+
+export default AppHeader

@@ -1,11 +1,13 @@
 import imageUrlBuilder from '@sanity/image-url'
 import groq from 'groq'
 import {NextSeo} from 'next-seo'
+import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {useEffect} from 'react'
 
 import client from '../client'
-import Layout from '../components/Layout'
+import Layout from '../components/layouts/Layout'
 import RenderSections from '../components/RenderSections'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
@@ -20,7 +22,11 @@ content[] {
   ctas[] {
     ...,
     route->
-  }
+  },
+  plans[]->{
+    ...,
+    benifits,
+    "backgroundImage" :planImage{asset->{extension, url}}}
 }`
 
 /**
@@ -63,7 +69,7 @@ export const getServerSideProps = async ({params}) => {
       .then((res) => (res?.page ? {...res.page, slug} : undefined))
   }
 
-  if (!data?._type === 'page') {
+  if (!data || !data?._type === 'page') {
     return {
       notFound: true,
     }
@@ -78,14 +84,24 @@ const builder = imageUrlBuilder(client)
 
 const LandingPage = (props) => {
   const {
-    title = 'Missing title',
+    title = '',
     description,
     disallowRobots,
     openGraphImage,
     content = [],
     config = {},
+    navigation,
     slug,
   } = props
+
+  const firstSection = content[0]
+  // useEffect(() => {
+  //   if (!firstSection && router.asPath !== '/404') {
+  //     router.push('/_404')
+  //   }
+  // }, [])
+
+  const transparentHeader = firstSection?._type === 'hero'
 
   const openGraphImages = openGraphImage
     ? [
@@ -113,7 +129,7 @@ const LandingPage = (props) => {
     : []
 
   return (
-    <Layout config={config}>
+    <Layout navigation={navigation} config={{transparentHeader, ...config}}>
       <NextSeo
         title={title}
         titleTemplate={`%s | ${config.title}`}
