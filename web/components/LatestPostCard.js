@@ -44,7 +44,7 @@ const LatestPostCard = (props) => {
   const {image, alt} = illustration
 
   return (
-    <Card elevation={8} sx={{width: '100%', minHeight: 400}}>
+    <Card variant="outlined" sx={{width: '100%', minHeight: 400, border: '1px solid black'}}>
       <CardActionArea
         LinkComponent={Link}
         href={`/posts/${slug.current}`}

@@ -1,7 +1,7 @@
 import {useTheme} from '@emotion/react'
 import {Container, Fade, Stack, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
-import NavItem from 'components/NavItem'
+import NavItem from '../components/NavItem'
 import {NextSeo} from 'next-seo'
 import Image from 'next/image'
 import Cta from '../components/Cta'

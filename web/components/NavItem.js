@@ -46,6 +46,7 @@ const InternalLink = ({navItem, darkText, sx, ...others}) => {
         isActiveSlug(slug.current) && {
           color: darkText ? theme.palette.primary.main : '#fff',
           fontStyle: 'italic',
+          fontWeight: (theme) => theme.typography.fontWeightBold,
         },
         Boolean(sx) && {...sx},
       ]}
@@ -96,7 +97,7 @@ const PathLink = ({navItem, darkText, sx, ...others}) => {
 
   const isActiveSlug = (slug) => {
     if (isServer) return false
-    return slugParamToPath(router?.query?.slug) === slug
+    return slugParamToPath(router?.pathname).includes(slug)
   }
 
   const {path, title} = navItem
@@ -116,6 +117,7 @@ const PathLink = ({navItem, darkText, sx, ...others}) => {
         isActiveSlug(path.toLowerCase()) && {
           color: darkText ? theme.palette.primary.main : '#fff',
           fontStyle: 'italic',
+          fontWeight: (theme) => theme.typography.fontWeightBold,
         },
         Boolean(sx) && {...sx},
       ]}

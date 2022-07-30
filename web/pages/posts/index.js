@@ -91,8 +91,8 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionContainer maxWidth="lg" sectionGap={'sm'}>
-        <Grid item container sx={{mt: 2, mb: 4}}>
+      <SectionContainer maxWidth="lg">
+        <Grid item container sx={{mt: 2, mb: 2}}>
           <Grid item container sx={{display: 'block'}}>
             <Typography variant="overline" color="primary">
               {router.query?.category || ''}
@@ -109,16 +109,18 @@ const Posts = (props) => {
               handleSelection={handleChipClick}
             />
           </Grid>
+        </Grid>
+      </SectionContainer>
 
-          <Grid item container>
-            <Divider flexItem sx={{width: '100%', my: 2}} />
-          </Grid>
-
-          <Fade in={Boolean(latestPost)}>
-            <Grid item container sx={[{minHeight: 400}, isSm && {minHeight: 420}]}>
-              <LatestPostCard post={latestPost} />
-            </Grid>
-          </Fade>
+      <SectionContainer maxWidth="lg">
+        <Grid item container sx={{mt: 2, mb: 4}}>
+          {latestPost && (
+            <Fade in={Boolean(latestPost)}>
+              <Grid item container sx={[{minHeight: 400}, isSm && {minHeight: 420}]}>
+                <LatestPostCard post={latestPost} />
+              </Grid>
+            </Fade>
+          )}
         </Grid>
 
         <Grid container spacing={2}>

@@ -132,14 +132,7 @@ export default function MailchimpInput(props) {
           fullWidth
           InputProps={{
             sx: [
-              {
-                height: inputHeight,
-                borderRadius: inputHeight / 2,
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-              },
               isSm && {
-                borderRadius: inputHeight / 2,
                 px: 2,
               },
             ],

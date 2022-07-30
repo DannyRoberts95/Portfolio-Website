@@ -42,7 +42,7 @@ const PostCard = (props) => {
   const {image, alt} = illustration
 
   return (
-    <Card elevation={0} variant="outlined" {...others}>
+    <Card elevation={0} sx={{border: '1px solid balck'}} {...others}>
       <CardActionArea LinkComponent={Link} href={href}>
         <Box
           sx={{
@@ -85,15 +85,6 @@ const PostCard = (props) => {
 
           <Stack direction={'row'} justifyContent="space-between" sx={{mt: 1}}>
             <Stack direction="row" alignItems="center">
-              {!minimal && (
-                <Box mr={1}>
-                  <Avatar
-                    variant="square"
-                    src={urlFor(author.image).format('webp').url()}
-                    sx={{width: 32, height: 32}}
-                  />
-                </Box>
-              )}
               <Stack>
                 {!minimal && <Typography variant="body2">{author.name}</Typography>}
                 <Typography variant="caption">

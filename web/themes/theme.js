@@ -1,28 +1,18 @@
 import {responsiveFontSizes} from '@mui/material'
-import {cyan, grey, red, teal} from '@mui/material/colors'
+import {grey, red} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 const primaryColor = '#000'
-// const secondaryColor = teal.A200 //#00bfa5
-const secondaryColor = teal[400] //#00bfa5
 const errorColor = red[700]
 
 let theme = createTheme({
   spacing: 12,
   palette: {
     common: {
-      primary: primaryColor, //#0097a7
-      secondary: secondaryColor, //#00bfa5
+      primary: primaryColor,
     },
     primary: {
-      main: `${primaryColor}`, //#0097a7
-    },
-    secondary: {
-      main: secondaryColor, //#00bfa5
-    },
-
-    success: {
-      main: secondaryColor,
+      main: primaryColor,
     },
     grey: {...grey, 0: '#fff'},
     error: {
@@ -30,13 +20,11 @@ let theme = createTheme({
     },
     background: {
       paper: '#fff',
-      dark: grey[200], //#eeeeee
       default: '#fafafa',
-      light: grey[50], //#fafafa
     },
   }, // END OF PALETTE
   shape: {
-    borderRadius: 12,
+    borderRadius: 0,
   },
   typography: {
     fontFamily: 'lexia-mono, sans-serif',
@@ -102,6 +90,7 @@ theme.components = {
     styleOverrides: {
       root: {
         backgroundColor: '#fff',
+        borderRadius: 0,
       },
     },
   },
@@ -116,27 +105,20 @@ theme.components = {
           transform: 'scale(1.025)',
         },
       },
-      containedPrimary: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        background: `linear-gradient(45deg, ${theme.palette.primary.main} 40%, ${theme.palette.primary.light} 80%)`,
-        '&:hover': {
-          background: `linear-gradient(45deg, ${theme.palette.primary.light} 80%, ${theme.palette.primary.main} 100%)`,
-        },
-        '&:disabled': {
-          opacity: 0.33,
-        },
+    },
+  },
+  MuiAvatar: {
+    styleOverrides: {
+      root: {
+        borderRadius: 0,
       },
-      containedSecondary: {
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.primary.contrastText,
-        background: `linear-gradient(45deg, ${theme.palette.secondary.main} 40%, ${theme.palette.secondary.light} 80%)`,
-        '&:hover': {
-          background: `linear-gradient(45deg, ${theme.palette.secondary.main} 80%, ${theme.palette.secondary.light} 100%)`,
-        },
-        '&:disabled': {
-          opacity: 0.33,
-        },
+    },
+  },
+  MuiChip: {
+    styleOverrides: {
+      root: {
+        textTransform: 'uppercase',
+        borderRadius: 0,
       },
     },
   },
