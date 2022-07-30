@@ -9,7 +9,7 @@ function TextSection(props) {
   const {sectionTitle, text} = props
 
   return (
-    <SectionContainer sectionGap="sm">
+    <SectionContainer sectionGap="sm" maxWidth="lg">
       {sectionTitle && <SectionTitle block={sectionTitle} />}
       {text && <StyledBlockContent blocks={text} />}
     </SectionContainer>

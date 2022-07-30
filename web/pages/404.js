@@ -20,7 +20,7 @@ export default function _404(props) {
 
   return (
     <>
-      <NextSeo title={'Aikido | Page not found'} noindex />
+      <NextSeo title={`${config.title} | Page not found`} noindex />
 
       <Header
         transparent={false}

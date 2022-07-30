@@ -19,7 +19,7 @@ export default function _Error(props) {
 
   return (
     <>
-      <NextSeo title={'Aikido encountered a problem'} noindex />
+      <NextSeo title={'there was a problem'} noindex />
 
       <Header
         transparent={false}

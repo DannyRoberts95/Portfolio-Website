@@ -39,7 +39,7 @@ let theme = createTheme({
     borderRadius: 12,
   },
   typography: {
-    fontFamily: 'Red Hat Text, sans-serif',
+    fontFamily: 'lexia-mono, sans-serif',
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -48,36 +48,36 @@ let theme = createTheme({
     fontDisplay: 'swap',
 
     h1: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
       fontWeight: 700,
     },
     h2: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
       fontWeight: 700,
     },
     h3: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
       fontWeight: 700,
     },
     h4: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
     },
     h5: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
     },
     h6: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
     },
     subtitle1: {
       fontWeight: 700,
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
     },
     subtitle2: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
       fontWeight: 500,
     },
     button: {
-      fontFamily: 'Red Hat Display, sans-serif',
+      fontFamily: 'lexia-mono, sans-serif',
       textTransform: 'none',
     },
     body1: {

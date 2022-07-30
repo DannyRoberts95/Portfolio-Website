@@ -95,7 +95,7 @@ const Posts = (props) => {
         <Grid item container sx={{mt: 2, mb: 4}}>
           <Grid item container sx={{display: 'block'}}>
             <Typography variant="overline" color="primary">
-              {router.query?.category || 'Aikido'}
+              {router.query?.category || ''}
             </Typography>
             <Typography variant="h2" component="h1" gutterBottom>
               Posts
@@ -133,7 +133,7 @@ const Posts = (props) => {
             ))}
 
             {/* show the posts */}
-            {othersPosts.length == 0 && (
+            {othersPosts.length == 0 && !Boolean(latestPost) && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
                 No Posts to Display
               </Typography>

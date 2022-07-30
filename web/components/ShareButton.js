@@ -37,7 +37,7 @@ export default function ShareButton(props) {
 
   const handleClick = () => setOpen(!open)
 
-  const hashtags = ['aikido', ...tags]
+  const hashtags = [...tags]
 
   useEffect(() => {
     setShareUrl(window.location)
