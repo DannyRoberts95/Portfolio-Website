@@ -7,7 +7,7 @@ export default {
   icon: MdSettings,
   title: 'Site configuration',
   // https://www.sanity.io/docs/experimental/ui-affordances-for-actions
-  __experimental_actions: [/* "create", "delete", */ 'update', 'publish'],
+  // __experimental_actions: [/* "create", "delete", */ 'update', 'publish'],
   fieldsets: [
     { name: 'config', title: 'Configuration' },
     { name: 'embeds', title: 'Site Tracking and Embeds' }

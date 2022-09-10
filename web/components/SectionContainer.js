@@ -4,7 +4,7 @@ import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
 
 const SectionContainer = forwardRef(function (props, ref) {
-  const {children, contentMaxWidth = 'md', sectionGap = 'xs', sx = null, ...others} = props
+  const {children, contentMaxWidth = 'xl', sectionGap = 'xs', sx = null, ...others} = props
   const getPadding = () => {
     switch (sectionGap) {
       case false || null:

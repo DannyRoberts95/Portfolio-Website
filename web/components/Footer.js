@@ -8,6 +8,7 @@ import {useTheme} from '@emotion/react'
 import MailchimpInput from './MailchimpInput'
 import fireGtag from '../utils/fireGtag'
 import NavItem from './NavItem'
+import SectionContainer from './SectionContainer'
 
 function chunkArray(items, size) {
   if (!items) return null
@@ -53,7 +54,7 @@ function Footer(props) {
         py: 4,
       }}
     >
-      <Container maxWidth="lg">
+      <SectionContainer>
         <Stack
           sx={{
             width: '100%',
@@ -76,7 +77,7 @@ function Footer(props) {
         <Typography variant="caption" align="left">
           Copyright© {title} {new Date().getFullYear()}{' '}
         </Typography>
-      </Container>
+      </SectionContainer>
     </Box>
   )
 }

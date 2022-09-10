@@ -3,8 +3,8 @@ import {Container, Fade, Stack, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
 import NavItem from 'components/NavItem'
 import {NextSeo} from 'next-seo'
-import Cta from '../components/Cta'
-import Header from '../components/Header'
+import Cta from 'components/Cta'
+import Header from 'components/Header'
 
 export default function _Error(props) {
   const theme = useTheme()

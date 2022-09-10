@@ -9,6 +9,7 @@ import navigation from './documents/navigation'
 import page from './documents/page'
 import route from './documents/route'
 import siteConfig from './documents/siteConfig'
+import cv from './documents/cv'
 
 // Object types
 import cta from './objects/cta'
@@ -92,8 +93,8 @@ export default createSchema({
     category,
     person,
     post,
+    cv,
     collection,
-    //Learn
     term
   ])
 })

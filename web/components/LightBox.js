@@ -22,6 +22,7 @@ const LightBox = (props) => {
       open={open}
       onClose={handleClick}
       closeAfterTransition
+      sx={{backgroundColor: `rgba(0, 0, 0, 0.33)`}}
       disableScrollLock
       aria-labelledby={`lightbox-modal-picture-alt-${alt}`}
     >
@@ -31,7 +32,7 @@ const LightBox = (props) => {
             p: isSm ? 2 : 4,
 
             cursor: 'zoom-out',
-
+            backgroundColor: `rgba(0, 0, 0, 0.75)`,
             position: 'relative',
             height: '100vh',
             width: '100%',

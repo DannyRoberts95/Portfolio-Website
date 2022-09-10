@@ -91,7 +91,7 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionContainer maxWidth="lg">
+      <SectionContainer>
         <Grid item container sx={{mt: 2, mb: 2}}>
           <Grid item container sx={{display: 'block'}}>
             <Typography variant="overline" color="primary">
@@ -112,7 +112,7 @@ const Posts = (props) => {
         </Grid>
       </SectionContainer>
 
-      <SectionContainer maxWidth="lg">
+      <SectionContainer>
         <Grid item container sx={{mt: 2, mb: 4}}>
           {latestPost && (
             <Fade in={Boolean(latestPost)}>
