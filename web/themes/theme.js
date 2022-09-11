@@ -88,19 +88,46 @@ theme.components = {
       },
     },
   },
+
+  //BUTTON THEMEING
   MuiButton: {
     styleOverrides: {
       root: {
-        backgroundColor: secondaryColor,
+        transition: 'all 0.2s',
         color: primaryColor,
+        backgroundColor: secondaryColor,
         border: `2px solid ${primaryColor}`,
-        boxShadow: `5px 5px 0px 0px ${primaryColor}`,
+
         whiteSpace: 'nowrap',
         borderRadius: 0,
-        // '&:hover': {
-        //   transition: 'all 0.2s',
-        //   transform: 'scale(1.025)',
-        // },
+        '&:hover': {
+          color: secondaryColor,
+          backgroundColor: primaryColor,
+          transform: 'scale(1.015)',
+        },
+      },
+
+      text: {
+        color: primaryColor,
+        backgroundColor: secondaryColor,
+        border: `none`,
+        boxShadow: `none`,
+        '&:hover': {
+          color: secondaryColor,
+          backgroundColor: primaryColor,
+        },
+      },
+
+      outlined: {
+        '&:hover': {
+          color: secondaryColor,
+          border: `2px solid ${primaryColor}`,
+          boxShadow: `none`,
+        },
+      },
+
+      outlinedPrimary: {
+        boxShadow: `5px 5px 0px 0px ${primaryColor}`,
       },
     },
   },

@@ -11,9 +11,6 @@ import EmbedVideo from './EmbedVideo'
 import Figure from './Figure'
 
 import dynamic from 'next/dynamic'
-const EmbedEquation = dynamic(() => import('./EmbedEquation'), {
-  ssr: false,
-})
 
 //https://github.com/portabletext/react-portabletext
 
@@ -180,7 +177,6 @@ function PostBlockContent(props) {
           embedHTML: EmbedHTML,
           embedVideo: EmbedVideo,
           figure: (props) => <Figure {...props} lightBox />,
-          embedEquation: EmbedEquation,
           embedCodeSnippet: EmbedCodeSnippet,
         },
       }}
