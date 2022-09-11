@@ -1,4 +1,4 @@
-import {ThemeProvider} from '@emotion/react'
+import {ThemeProvider} from '@mui/material/styles'
 import BaseApp from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'

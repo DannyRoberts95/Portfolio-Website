@@ -3,7 +3,7 @@ import {grey, red} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 const primaryColor = '#000'
-const secondaryColor = '#fff'
+const backgroundColor = '#fff'
 const errorColor = red[700]
 
 const headerFont = 'lexia-mono, sans-serif'
@@ -22,7 +22,7 @@ let theme = createTheme({
       main: errorColor,
     },
     background: {
-      paper: '#fff',
+      paper: backgroundColor,
       default: '#fafafa',
     },
   }, // END OF PALETTE
@@ -72,80 +72,116 @@ let theme = createTheme({
       fontWeight: 500,
     },
   },
+
+  // Handle Component style overrides
+  components: {
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          backgroundColor: backgroundColor,
+          borderRadius: 0,
+        },
+      },
+    },
+
+    //Button
+    MuiButton: {
+      defaultProps: {
+        root: {
+          variant: 'outlined',
+          disableRipple: true,
+        },
+      },
+    },
+    //Avatar
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+      },
+    },
+    //Chip
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          textTransform: 'uppercase',
+          borderRadius: 0,
+        },
+      },
+    },
+  },
+  components: {
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          textTransform: 'uppercase',
+          borderRadius: 0,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          transition: 'all 0.2s',
+          color: primaryColor,
+          backgroundColor: backgroundColor,
+          border: `2px solid ${primaryColor}`,
+
+          whiteSpace: 'nowrap',
+          borderRadius: 0,
+          '&:hover': {
+            color: backgroundColor,
+            backgroundColor: primaryColor,
+            transform: 'scale(1.015)',
+          },
+        },
+
+        text: {
+          border: `none`,
+          boxShadow: `none`,
+          border: `2px solid ${backgroundColor}`,
+          '&:hover': {
+            color: primaryColor,
+            backgroundColor: backgroundColor,
+            border: `2px solid ${primaryColor}`,
+          },
+        },
+
+        outlined: {
+          '&:hover': {
+            color: backgroundColor,
+            border: `2px solid ${primaryColor}`,
+            boxShadow: `none`,
+          },
+        },
+
+        outlinedPrimary: {
+          boxShadow: `5px 5px 0px 0px ${primaryColor}`,
+          '&:hover': {
+            boxShadow: `0px 0px 0px 5px ${primaryColor}`,
+          },
+        },
+      },
+      defaultProps: {
+        variant: 'outlined',
+        color: 'primary',
+        disableRipple: true,
+      },
+    },
+  },
 })
 
 theme.shape = {
   ...theme.shape,
   headerHeight: 70,
-}
-// Handle Component style overrides
-theme.components = {
-  MuiInputBase: {
-    styleOverrides: {
-      root: {
-        backgroundColor: '#fff',
-        borderRadius: 0,
-      },
-    },
-  },
-
-  //BUTTON THEMEING
-  MuiButton: {
-    styleOverrides: {
-      root: {
-        transition: 'all 0.2s',
-        color: primaryColor,
-        backgroundColor: secondaryColor,
-        border: `2px solid ${primaryColor}`,
-
-        whiteSpace: 'nowrap',
-        borderRadius: 0,
-        '&:hover': {
-          color: secondaryColor,
-          backgroundColor: primaryColor,
-          transform: 'scale(1.015)',
-        },
-      },
-
-      text: {
-        color: primaryColor,
-        backgroundColor: secondaryColor,
-        border: `none`,
-        boxShadow: `none`,
-        '&:hover': {
-          color: secondaryColor,
-          backgroundColor: primaryColor,
-        },
-      },
-
-      outlined: {
-        '&:hover': {
-          color: secondaryColor,
-          border: `2px solid ${primaryColor}`,
-          boxShadow: `none`,
-        },
-      },
-
-      outlinedPrimary: {
-        boxShadow: `5px 5px 0px 0px ${primaryColor}`,
-      },
-    },
-  },
-  MuiAvatar: {
-    styleOverrides: {
-      root: {
-        borderRadius: 0,
-      },
-    },
-  },
-  MuiChip: {
-    styleOverrides: {
-      root: {
-        textTransform: 'uppercase',
-        borderRadius: 0,
-      },
-    },
-  },
 }
 
 export default responsiveFontSizes(theme)

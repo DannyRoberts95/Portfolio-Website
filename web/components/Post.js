@@ -116,81 +116,12 @@ const Post = (props) => {
           <Box display="flex" justifyContent={'center'} width="100%">
             <Button
               sx={{m: 4}}
-              variant="text"
-              size="large"
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-            >
-              text
-            </Button>
-
-            <Button
-              sx={{m: 4}}
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-              size="large"
-              color="secondary"
-              variant="outlined"
-            >
-              secondary
-            </Button>
-
-            <Button
-              sx={{m: 4}}
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-              size="large"
-              variant="outlined"
-              color="primary"
-            >
-              Default (Primary)
-            </Button>
-
-            {/* <Button
-              sx={{m: 4}}
               variant="outlined"
               size="large"
               onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
             >
               Back to top
-            </Button> */}
-          </Box>
-
-          <Box display="flex" justifyContent={'center'} width="100%">
-            <Button
-              sx={{m: 4}}
-              variant="text"
-              size="large"
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-            >
-              text
             </Button>
-
-            <Button
-              sx={{m: 4}}
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-              size="large"
-              color="secondary"
-              variant="outlined"
-            >
-              secondary
-            </Button>
-
-            <Button
-              sx={{m: 4}}
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-              size="large"
-              variant="outlined"
-              color="primary"
-            >
-              Default (Primary)
-            </Button>
-
-            {/* <Button
-              sx={{m: 4}}
-              variant="outlined"
-              size="large"
-              onClick={() => scrollTo({top: 0, behavior: 'smooth'})}
-            >
-              Back to top
-            </Button> */}
           </Box>
         </Grid>
       </Container>
