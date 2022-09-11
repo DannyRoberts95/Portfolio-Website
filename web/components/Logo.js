@@ -3,7 +3,6 @@ import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
 import {Box} from '@mui/material'
 import Link from './CustomLink'
-import SVG from 'react-inlinesvg'
 import Image from 'next/image'
 
 const Logo = forwardRef((props, ref) => {
