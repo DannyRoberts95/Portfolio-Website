@@ -130,6 +130,7 @@ function Hero(props) {
       <Fade in timeout={1000}>
         <Container maxWidth="lg" sx={{zIndex: 10}}>
           <Typography
+            align="center"
             gutterBottom
             variant={firstComponent ? 'h1' : 'h2'}
             sx={[

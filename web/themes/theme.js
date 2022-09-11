@@ -3,7 +3,10 @@ import {grey, red} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 const primaryColor = '#000'
+const secondaryColor = '#fff'
 const errorColor = red[700]
+
+const headerFont = 'lexia-mono, sans-serif'
 
 let theme = createTheme({
   spacing: 12,
@@ -27,7 +30,7 @@ let theme = createTheme({
     borderRadius: 0,
   },
   typography: {
-    fontFamily: 'lexia-mono, sans-serif',
+    fontFamily: headerFont,
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -36,37 +39,28 @@ let theme = createTheme({
     fontDisplay: 'swap',
 
     h1: {
-      fontFamily: 'lexia-mono, sans-serif',
+      fontFamily: headerFont,
       fontWeight: 700,
     },
     h2: {
-      fontFamily: 'lexia-mono, sans-serif',
+      fontFamily: headerFont,
       fontWeight: 700,
     },
     h3: {
-      fontFamily: 'lexia-mono, sans-serif',
+      fontFamily: headerFont,
       fontWeight: 700,
     },
     h4: {
-      fontFamily: 'lexia-mono, sans-serif',
+      fontFamily: headerFont,
     },
     h5: {
-      fontFamily: 'lexia-mono, sans-serif',
+      fontFamily: headerFont,
     },
     h6: {
-      fontFamily: 'lexia-mono, sans-serif',
-    },
-    subtitle1: {
-      fontWeight: 700,
-      fontFamily: 'lexia-mono, sans-serif',
-    },
-    subtitle2: {
-      fontFamily: 'lexia-mono, sans-serif',
-      fontWeight: 500,
+      fontFamily: headerFont,
     },
     button: {
-      fontFamily: 'lexia-mono, sans-serif',
-      textTransform: 'none',
+      fontFamily: headerFont,
     },
     body1: {
       fontWeight: 500,
@@ -97,13 +91,16 @@ theme.components = {
   MuiButton: {
     styleOverrides: {
       root: {
-        textTransform: 'capitalize',
+        backgroundColor: secondaryColor,
+        color: primaryColor,
+        border: `2px solid ${primaryColor}`,
+        boxShadow: `5px 5px 0px 0px ${primaryColor}`,
         whiteSpace: 'nowrap',
-        borderRadius: theme.shape.borderRadius * 2,
-        '&:hover': {
-          transition: 'all 0.2s',
-          transform: 'scale(1.025)',
-        },
+        borderRadius: 0,
+        // '&:hover': {
+        //   transition: 'all 0.2s',
+        //   transform: 'scale(1.025)',
+        // },
       },
     },
   },
