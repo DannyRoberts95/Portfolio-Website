@@ -34,6 +34,7 @@ import imageSection from './objects/imageSection'
 import mailchimpSection from './objects/mailchimpSection'
 import reviewSection from './objects/reviewSection'
 import textSection from './objects/textSection'
+import sketchSection from './objects/sketchSection'
 
 //post
 import illustration from './objects/illustration'
@@ -95,6 +96,7 @@ export default createSchema({
     post,
     cv,
     collection,
-    term
+    term,
+    sketchSection
   ])
 })

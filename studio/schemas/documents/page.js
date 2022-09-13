@@ -37,7 +37,8 @@ export default {
         { type: 'mailchimpSection' },
         { type: 'textSection' },
         { type: 'reviewSection' },
-        { type: 'logSection' }
+        { type: 'logSection' },
+        { type: 'sketchSection' }
       ]
     },
     {
