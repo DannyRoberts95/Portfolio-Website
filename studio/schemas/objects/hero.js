@@ -14,6 +14,11 @@ export default {
       title: 'Tagline'
     },
     {
+      name: 'dark',
+      type: 'boolean',
+      title: 'Dark'
+    },
+    {
       name: 'backgroundImage',
       type: 'image',
       title: 'Background image',

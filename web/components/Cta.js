@@ -16,11 +16,8 @@ function Cta(props) {
       return (
         <Button
           LinkComponent={Link}
-          sx={{boxShadow: (theme) => theme.shadows[3]}}
           href={`/${route.slug.current}`}
-          variant="contained"
-          color={color || 'secondary'}
-          size="large"
+          color="secondary"
           onClick={handleClick}
           {...others}
         >
@@ -31,11 +28,8 @@ function Cta(props) {
     return (
       <Button
         LinkComponent={Link}
-        // sx={{boxShadow: (theme) => theme.shadows[3]}}
         href={`/${route.slug.current}`}
-        variant="outlined"
-        color={color || 'inherit'}
-        size="large"
+        color="primary"
         onClick={handleClick}
         {...others}
       >
@@ -50,11 +44,8 @@ function Cta(props) {
       return (
         <Button
           LinkComponent={Link}
-          sx={{boxShadow: (theme) => theme.shadows[3]}}
           href={link}
-          variant="contained"
-          color={color || 'secondary'}
-          size="large"
+          color="secondary"
           target="_blank"
           rel="noOpener"
           onClick={handleClick}
@@ -70,8 +61,7 @@ function Cta(props) {
         sx={{transition: 'all 0s'}}
         href={link}
         variant="outlined"
-        size="large"
-        color={color || 'inherit'}
+        color={'primary'}
         target="_blank"
         rel="noOpener"
         onClick={handleClick}

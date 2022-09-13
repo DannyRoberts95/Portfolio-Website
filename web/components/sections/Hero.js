@@ -2,10 +2,9 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../client'
-import StyledBlockContent from '../StyledBlockContent'
 import Cta from '../Cta'
 import {useTheme} from '@emotion/react'
-import {Container, Fade, Typography, useMediaQuery} from '@mui/material'
+import {Container, Divider, Fade, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
 import ReactPlayer from 'react-player'
 import Image from 'next/image'
@@ -25,16 +24,22 @@ function Hero(props) {
   const [loadedVideo, setloadedVideo] = useState(false)
   const handleVideoLoaded = () => setloadedVideo(true)
 
-  const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas} = props
+  const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas, dark} = props
 
   return (
     <Box
       sx={[
         {
           position: 'relative',
-          color: '#fff',
-          pb: isSm ? 10 : 10,
+          color: dark ? theme.palette.secondary.main : theme.palette.primary.main,
+          backgroundColor: dark ? theme.palette.primary.main : theme.secondary.primary.main,
+
           overflow: 'hidden',
+
+          borderTop: `1px solid ${theme.palette.primary.main}`,
+          borderBottom: `1px solid ${theme.palette.primary.main}`,
+
+          py: 4,
 
           '&::before': {
             content: "''",
@@ -43,7 +48,7 @@ function Hero(props) {
             left: 0,
 
             backgroundImage:
-              'linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50% ,  rgba(0,0,0,0.5) 100%)',
+              'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 15% ,rgba(0,0,0,0.3) 50% ,rgba(0,0,0,0.2) 85% ,  rgba(0,0,0,0) 100%)',
             width: '100%',
             height: '100%',
             zIndex: -1,
@@ -132,32 +137,45 @@ function Hero(props) {
           <Typography
             align="center"
             gutterBottom
-            variant={firstComponent ? 'h1' : 'h2'}
+            variant={'h3'}
             sx={[
               {
                 position: 'relative',
-                fontSize: '4.5em',
                 fontWeight: 600,
                 lineHeight: 1,
                 textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
                 margin: 0,
                 padding: 0,
-                pt: '12.5rem',
               },
               isMd && {
-                fontSize: 42,
                 lineHeight: 1.25,
-                pt: 12,
+                pt: 8,
               },
             ]}
           >
             {heading}
           </Typography>
 
-          <Box sx={{mt: 2, zIndex: 10}}>{tagline && <StyledBlockContent blocks={tagline} />}</Box>
+          <Divider
+            variant="middle"
+            light
+            sx={{border: '1px solid white', maxWidth: '66%', margin: 'auto', my: 1}}
+          />
+
+          <Typography align="center" gutterBottom variant={'h6'}>
+            {tagline}
+          </Typography>
 
           {ctas && (
-            <Box sx={{mt: '3rem', display: 'flex', '> *:not(:first-of-type)': {ml: 2}}}>
+            <Box
+              sx={{
+                mt: 2,
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                '> *:not(:first-of-type)': {ml: 1},
+              }}
+            >
               {ctas.map((cta) => (
                 <Cta {...cta} key={cta._key} />
               ))}
