@@ -9,7 +9,7 @@ export default {
       title: 'Type'
     },
     {
-      type: 'string',
+      type: 'text',
       name: 'script',
       title: 'Script'
     }
