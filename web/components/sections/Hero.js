@@ -36,8 +36,12 @@ function Hero(props) {
 
           overflow: 'hidden',
 
-          borderTop: `1px solid ${theme.palette.primary.main}`,
-          borderBottom: `1px solid ${theme.palette.primary.main}`,
+          borderTop: `1px solid ${
+            dark ? theme.palette.secondary.main : theme.palette.primary.main
+          }`,
+          borderBottom: `1px solid ${
+            dark ? theme.palette.secondary.main : theme.palette.primary.main
+          }`,
 
           py: 4,
 
