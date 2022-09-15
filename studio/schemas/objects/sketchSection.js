@@ -16,7 +16,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'summary'
+      type: 'type'
     },
     prepare({ type }) {
       return {

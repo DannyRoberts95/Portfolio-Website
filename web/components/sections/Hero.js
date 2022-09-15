@@ -32,7 +32,7 @@ function Hero(props) {
         {
           position: 'relative',
           color: dark ? theme.palette.secondary.main : theme.palette.primary.main,
-          backgroundColor: dark ? theme.palette.primary.main : theme.secondary.primary.main,
+          backgroundColor: dark ? theme.palette.primary.main : theme.palette.secondary.main,
 
           overflow: 'hidden',
 
@@ -190,7 +190,7 @@ function Hero(props) {
 Hero.propTypes = {
   heading: PropTypes.string,
   backgroundImage: PropTypes.object,
-  tagline: PropTypes.array,
+  tagline: PropTypes.string,
   ctas: PropTypes.arrayOf(PropTypes.object),
 }
 
