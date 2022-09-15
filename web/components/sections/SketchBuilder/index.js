@@ -30,8 +30,8 @@ const SketchRenderer = (props) => {
   const sketchContainerRef = useRef(null)
   const onScreen = useOnScreen(sketchContainerRef)
 
-  const [sw, setSw] = useState(0)
-  const [sh, setSh] = useState(0)
+  const [sw, setSw] = useState(sketchContainerRef.current?.offsetWidth || 0)
+  const [sh, setSh] = useState(sketchContainerRef.current?.offsetHeight || 0)
 
   useEffect(() => {
     setSw(sketchContainerRef.current?.offsetWidth)
@@ -48,7 +48,6 @@ const SketchRenderer = (props) => {
   if (Sketch) {
     return (
       // apply the desired css width and height to the conatiner
-
       <Box component={'div'} ref={sketchContainerRef} sx={{width, height, overflow: 'hidden'}}>
         {/* if the component is in the view port, mount the sketch and pass it the numeric width and height values */}
         {onScreen ? <Sketch width={sw} height={sh} /> : <Box width={sh} height={sw} />}

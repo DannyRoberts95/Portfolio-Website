@@ -10,7 +10,7 @@ import Link from './CustomLink'
 import DropdownMenu from './DropdownMenu'
 
 const TypographyLink = (props) => {
-  return <Typography component={Link} underline="none" {...props} />
+  return <Typography component={Link} underline="none" variant="caption" {...props} />
 }
 
 // Component to handle internal routing
@@ -187,7 +187,7 @@ const NavDropdownMenuMobile = ({navItem, darkText, ...others}) => {
   return (
     <Box component={'span'}>
       <NavItem navItem={baseLink} darkText {...others} />
-      <Stack p={1} gap={2}>
+      <Stack p={1} gap={1}>
         {childLinks.map((navItem) => (
           <NavItem key={navItem._key} navItem={navItem} darkText sx={{color: 'text.disabled'}} />
         ))}

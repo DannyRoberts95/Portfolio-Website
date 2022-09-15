@@ -9,7 +9,7 @@ const errorColor = red[700]
 const headerFont = 'lexia-mono, sans-serif'
 
 let theme = createTheme({
-  spacing: 24,
+  spacing: 12,
   palette: {
     common: {
       primary: primaryColor,

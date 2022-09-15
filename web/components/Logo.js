@@ -6,7 +6,7 @@ import Link from './CustomLink'
 import Image from 'next/image'
 
 const Logo = forwardRef((props, ref) => {
-  const {logo, alt = 'site logo', href = '/', width = 50, ...others} = props
+  const {logo, alt = 'site logo', href = '/', width = 40, ...others} = props
 
   if (!logo || !logo.asset) {
     return null

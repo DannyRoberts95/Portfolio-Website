@@ -59,7 +59,6 @@ const AppHeader = (props) => {
           transition: 'all 0.25s',
           color: textColor,
           backgroundColor: headerColor,
-          minHeight: theme.shape.headerHeight,
           display: 'flex',
           justifyContent: 'center',
         }}

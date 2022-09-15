@@ -17,10 +17,10 @@ export default (props) => {
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(width || 0, height || 0).parent(canvasParentRef)
+    p5.background(0)
   }
 
   const draw = (p5) => {
-    p5.background(0)
     if (paused) return null
 
     px = p5.lerp(px, p5.mouseX, 0.1)
@@ -33,14 +33,9 @@ export default (props) => {
   }
 
   const windowResized = (p5, e) => {
-    p5.resizeCanvas(width, height)
+    p5.resizeCanvas(width, height, true)
+    p5.setup()
   }
 
-  return (
-    <Fade in timeout={1000}>
-      <div>
-        <Sketch setup={setup} draw={draw} windowResized={windowResized} />
-      </div>
-    </Fade>
-  )
+  return <Sketch setup={setup} draw={draw} windowResized={windowResized} />
 }
