@@ -61,6 +61,7 @@ const AppHeader = (props) => {
           backgroundColor: headerColor,
           display: 'flex',
           justifyContent: 'center',
+          height: theme.shape.headerheight,
         }}
         elevation={trigger ? 4 : 0}
       >

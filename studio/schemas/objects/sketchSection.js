@@ -6,12 +6,18 @@ export default {
     {
       type: 'string',
       name: 'type',
-      title: 'Type'
+      title: 'Type',
+      initalValue: 'testSketch',
+      options: {
+        isHighlighted: true,
+        list: ['testSketch']
+      },
+      validation: Rule => Rule.required()
     },
     {
-      type: 'text',
-      name: 'script',
-      title: 'Script'
+      type: 'pagePortableText',
+      name: 'body',
+      title: 'Body'
     }
   ],
   preview: {

@@ -4,11 +4,12 @@ import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
 
 const SectionContainer = forwardRef(function (props, ref) {
-  const {children, contentMaxWidth = 'xl', sectionGap = 'xs', sx = null, ...others} = props
+  const {children, contentMaxWidth = 'xl', sectionGap = null, sx = null, ...others} = props
+
   const getPadding = () => {
     switch (sectionGap) {
       case false || null:
-        return 0
+        return 'none'
       case 'xs':
         return 3
       case 'sm':
@@ -29,7 +30,7 @@ const SectionContainer = forwardRef(function (props, ref) {
       disableGutters
       sx={{py: getPadding(), backgroundColor: 'background.paper', borderBottom: '1px solid black'}}
     >
-      <Container maxWidth={contentMaxWidth} {...others}>
+      <Container disableGutters maxWidth={contentMaxWidth} {...others}>
         {children}
       </Container>
     </Container>

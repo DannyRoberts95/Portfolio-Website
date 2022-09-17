@@ -3,7 +3,7 @@ import {grey, red} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 const primaryColor = '#000'
-const backgroundColor = '#fff'
+const secondaryColor = '#fff'
 const errorColor = red[700]
 
 const headerFont = 'lexia-mono, sans-serif'
@@ -15,7 +15,7 @@ let theme = createTheme({
       primary: primaryColor,
     },
     secondary: {
-      main: backgroundColor,
+      main: secondaryColor,
     },
     primary: {
       main: primaryColor,
@@ -25,13 +25,11 @@ let theme = createTheme({
       main: errorColor,
     },
     background: {
-      paper: backgroundColor,
+      paper: secondaryColor,
       default: '#fafafa',
     },
   }, // END OF PALETTE
-  shape: {
-    borderRadius: 0,
-  },
+
   typography: {
     fontFamily: headerFont,
     fontSize: 16,
@@ -65,6 +63,7 @@ let theme = createTheme({
       fontSize: '2rem',
     },
     h6: {
+      fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '1.25rem',
     },
@@ -99,7 +98,7 @@ let theme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           borderRadius: 0,
         },
       },
@@ -153,45 +152,108 @@ let theme = createTheme({
         root: {
           transition: 'all 0.2s',
           color: primaryColor,
-          backgroundColor: backgroundColor,
-          border: `2px solid ${primaryColor}`,
+          backgroundColor: secondaryColor,
 
           whiteSpace: 'nowrap',
           borderRadius: 0,
           '&:hover': {
-            color: backgroundColor,
+            color: secondaryColor,
             backgroundColor: primaryColor,
-            transform: 'scale(1.015)',
+            transform: 'scale(1.075)',
           },
         },
 
+        //Text
         text: {
-          border: `none`,
           boxShadow: `none`,
-          border: `2px solid ${backgroundColor}`,
+          border: `2px solid rgba(0,0,0,0)`,
           '&:hover': {
             color: primaryColor,
-            backgroundColor: backgroundColor,
-            border: `2px solid ${primaryColor}`,
+            backgroundColor: secondaryColor,
           },
         },
-
-        outlined: {
+        textPrimary: {
           '&:hover': {
-            color: backgroundColor,
+            backgroundColor: secondaryColor,
+            border: `2px solid  ${primaryColor}`,
+            color: primaryColor,
+          },
+        },
+        textSecondary: {
+          backgroundColor: primaryColor,
+          color: secondaryColor,
+          '&:hover': {
+            border: `2px solid  ${secondaryColor}`,
+            color: secondaryColor,
+            backgroundColor: 'transparent',
+          },
+        },
+        //Outlined
+        outlined: {
+          border: `2px solid ${primaryColor}`,
+          '&:hover': {
+            color: secondaryColor,
             border: `2px solid ${primaryColor}`,
             boxShadow: `none`,
+            '&:hover': {
+              border: `2px solid ${secondaryColor}`,
+            },
+          },
+        },
+        outlinedPrimary: {
+          border: `2px solid ${primaryColor}`,
+          '&:hover': {
+            border: `2px solid ${primaryColor}`,
+            backgroundColor: primaryColor,
+            '&:hover': {
+              border: `2px solid ${primaryColor}`,
+            },
+          },
+        },
+        outlinedSecondary: {
+          border: `2px solid ${secondaryColor}`,
+          color: secondaryColor,
+          backgroundColor: 'transparent',
+          '&:hover': {
+            '&:hover': {
+              backgroundColor: secondaryColor,
+              color: primaryColor,
+              border: `2px solid ${primaryColor}`,
+            },
+          },
+        },
+        //Contained
+        contained: {
+          border: `2px solid ${primaryColor}`,
+          '&:hover': {
+            color: secondaryColor,
+            border: `2px solid ${primaryColor}`,
+            // boxShadow: `none`,
           },
         },
 
-        outlinedSecondary: {
+        containedPrimary: {
           boxShadow: `5px 5px 0px 0px ${primaryColor}`,
           '&:hover': {
-            border: `2px solid ${backgroundColor}`,
+            border: `2px solid ${secondaryColor}`,
             boxShadow: `0px 0px 0px 5px ${primaryColor}`,
           },
         },
+
+        containedSecondary: {
+          backgroundColor: primaryColor,
+          color: secondaryColor,
+          border: `2px solid ${secondaryColor}`,
+          boxShadow: `5px 5px 0px 0px ${secondaryColor}`,
+          '&:hover': {
+            color: primaryColor,
+            backgroundColor: secondaryColor,
+            border: `2px solid ${primaryColor}`,
+            boxShadow: `0px 0px 0px 5px ${secondaryColor}`,
+          },
+        },
       },
+
       defaultProps: {
         variant: 'outlined',
         color: 'primary',
@@ -203,6 +265,7 @@ let theme = createTheme({
 
 theme.shape = {
   ...theme.shape,
+  borderRadius: 0,
   headerHeight: 70,
 }
 

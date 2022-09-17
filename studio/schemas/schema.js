@@ -18,6 +18,7 @@ import internalLink from './objects/internalLink'
 import link from './objects/link'
 import navigationLink from './objects/navLink'
 import portableText from './objects/portableText'
+import pagePortableText from './objects/pagePortableText'
 import simplePortableText from './objects/simplePortableText'
 //Learn Components
 import category from './documents/category'
@@ -87,6 +88,7 @@ export default createSchema({
     mailChimpTag,
     page,
     portableText,
+    pagePortableText,
     route,
     simplePortableText,
     siteConfig,

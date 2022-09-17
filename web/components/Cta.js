@@ -17,6 +17,7 @@ function Cta(props) {
         <Button
           LinkComponent={Link}
           href={`/${route.slug.current}`}
+          variant="contained"
           color="secondary"
           onClick={handleClick}
           {...others}
@@ -45,6 +46,7 @@ function Cta(props) {
         <Button
           LinkComponent={Link}
           href={link}
+          variant="outlined"
           color="secondary"
           target="_blank"
           rel="noOpener"

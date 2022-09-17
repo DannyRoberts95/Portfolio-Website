@@ -35,30 +35,41 @@ export default function _404(props) {
           maxWidth={'lg'}
           sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'}}
         >
-          <Box flex>
-            <Button variant="text" color="primary">
-              text primary
-            </Button>
-            <Button variant="text" color="secondary">
-              text secondary
-            </Button>
-          </Box>
-          <Box flex>
-            <Button variant="outlined" colored="primary">
-              outlined primary
-            </Button>
-            <Button variant="outlined" colored="primary">
-              outlined primary
-            </Button>
-          </Box>
-          <Box flex>
-            <Button variant="outlined" colored="primary">
-              outlined Secondary
-            </Button>
-            <Button variant="outlined" colored="secondary">
-              outlined Secondary
-            </Button>
-          </Box>
+          <Stack gap={1}>
+            <Box flex>
+              <Button variant="text" color="primary">
+                text primary
+              </Button>
+              <Box p={2} bgcolor="black">
+                <Button variant="text" color="secondary">
+                  text secondary
+                </Button>
+              </Box>
+            </Box>
+
+            <Box flex>
+              <Button variant="outlined" color="primary">
+                outlined primary
+              </Button>
+
+              <Box p={2} bgcolor="black">
+                <Button variant="outlined" color="secondary">
+                  outlined secondary
+                </Button>
+              </Box>
+            </Box>
+
+            <Box flex>
+              <Button variant="contained" color="primary" sx={{mb: 2}}>
+                Contained Primary
+              </Button>
+              <Box p={2} bgcolor="black">
+                <Button variant="contained" color="secondary">
+                  Contained Secondary
+                </Button>
+              </Box>
+            </Box>
+          </Stack>
         </Container>
       </Fade>
     </>

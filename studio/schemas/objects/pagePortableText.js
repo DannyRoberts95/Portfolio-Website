@@ -1,6 +1,6 @@
 export default {
-  title: 'Portable Text',
-  name: 'portableText',
+  title: 'Page Portable Text',
+  name: 'pagePortableText',
   type: 'array',
   of: [
     {
@@ -12,7 +12,6 @@ export default {
         { title: 'H5', value: 'h5' },
         { title: 'H4', value: 'h4' },
         { title: 'H3', value: 'h3' },
-        { title: 'H2', value: 'h2' },
         { title: 'caption', value: 'caption' },
         { title: 'Quote', value: 'blockquote' }
       ],
