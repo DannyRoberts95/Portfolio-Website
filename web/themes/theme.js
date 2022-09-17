@@ -6,7 +6,7 @@ const primaryColor = '#000'
 const secondaryColor = '#fff'
 const errorColor = red[700]
 
-const headerFont = 'lexia-mono, sans-serif'
+const headerFont = 'lexia-mono, monospace, sans-serif'
 
 let theme = createTheme({
   spacing: 12,
@@ -46,7 +46,7 @@ let theme = createTheme({
     },
     h2: {
       fontFamily: headerFont,
-      fontWeight: 700,
+      // fontWeight: 700,
       fontSize: '4rem',
     },
     h3: {
@@ -71,16 +71,12 @@ let theme = createTheme({
       fontFamily: headerFont,
       fontSize: '1rem',
     },
-    body1: {
-      fontWeight: 500,
-    },
+    body1: {},
     body2: {
       fontSize: '0.875rem',
-      fontWeight: 500,
     },
     overline: {
       fontSize: '0.75rem',
-      fontWeight: 500,
     },
   },
 
@@ -218,7 +214,7 @@ let theme = createTheme({
             '&:hover': {
               backgroundColor: secondaryColor,
               color: primaryColor,
-              border: `2px solid ${primaryColor}`,
+              border: `2px solid ${secondaryColor}`,
             },
           },
         },

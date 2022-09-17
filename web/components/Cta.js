@@ -30,7 +30,8 @@ function Cta(props) {
       <Button
         LinkComponent={Link}
         href={`/${route.slug.current}`}
-        color="primary"
+        color="secondary"
+        variant="outlined"
         onClick={handleClick}
         {...others}
       >
@@ -46,7 +47,7 @@ function Cta(props) {
         <Button
           LinkComponent={Link}
           href={link}
-          variant="outlined"
+          variant="contained"
           color="secondary"
           target="_blank"
           rel="noOpener"
@@ -60,8 +61,8 @@ function Cta(props) {
     return (
       <Button
         LinkComponent={Link}
-        sx={{transition: 'all 0s'}}
         href={link}
+        color="secondary"
         variant="outlined"
         color={'primary'}
         target="_blank"

@@ -26,6 +26,8 @@ function Hero(props) {
 
   const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas, dark} = props
 
+  console.log(props)
+
   return (
     <Box
       sx={[
@@ -41,20 +43,20 @@ function Hero(props) {
             borderBottom: `1px solid ${theme.palette.primary.main}`,
           }),
 
-          py: 4,
+          py: 10,
 
-          '&::before': {
-            content: "''",
-            position: 'absolute',
-            top: '0%',
-            left: 0,
+          // '&::before': {
+          //   content: "''",
+          //   position: 'absolute',
+          //   top: '0%',
+          //   left: 0,
 
-            backgroundImage:
-              'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 15% ,rgba(0,0,0,0.3) 50% ,rgba(0,0,0,0.2) 85% ,  rgba(0,0,0,0) 100%)',
-            width: '100%',
-            height: '100%',
-            zIndex: -1,
-          },
+          //   backgroundImage:
+          //     'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 15% ,rgba(0,0,0,0.3) 50% ,rgba(0,0,0,0.2) 85% ,  rgba(0,0,0,0) 100%)',
+          //   width: '100%',
+          //   height: '100%',
+          //   zIndex: -1,
+          // },
           'p>a': {
             color: 'inherit',
           },
@@ -66,7 +68,7 @@ function Hero(props) {
           <Box
             id="heroImageContainer"
             sx={{
-              zIndex: -4,
+              zIndex: 0,
               overflow: 'hidden',
               position: 'absolute',
               backgroundColor: theme.palette.primary.main,
@@ -143,15 +145,12 @@ function Hero(props) {
             sx={[
               {
                 position: 'relative',
-                fontWeight: 600,
                 lineHeight: 1,
                 textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
                 margin: 0,
-                padding: 0,
               },
               isMd && {
                 lineHeight: 1.25,
-                pt: 8,
               },
             ]}
           >
@@ -164,7 +163,7 @@ function Hero(props) {
             sx={{border: '1px solid white', maxWidth: '66%', margin: 'auto', my: 1}}
           />
 
-          <Typography align="center" gutterBottom variant={'h6'}>
+          <Typography align="center" gutterBottom variant={'body1'}>
             {tagline}
           </Typography>
 
@@ -175,7 +174,7 @@ function Hero(props) {
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'center',
-                '> *:not(:first-of-type)': {ml: 1},
+                '> *:not(:first-of-type)': {ml: 2},
               }}
             >
               {ctas.map((cta) => (

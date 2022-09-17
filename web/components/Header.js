@@ -6,6 +6,7 @@ import {
   Container,
   Divider,
   IconButton,
+  Slide,
   Stack,
   SwipeableDrawer,
   Toolbar,
@@ -25,8 +26,8 @@ const AppHeader = (props) => {
   const {title, logos, ctas, navItems = [], transparent} = props
 
   const scrollTrigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 100,
+    // disableHysteresis: true,
+    threshold: 0,
   })
 
   //trigger the menu color change on scroll OR just color it from the get go if the page has no hero banner
@@ -51,19 +52,26 @@ const AppHeader = (props) => {
     }
   }, [])
 
+  const HideOnScroll = ({children}) => (
+    <Slide in={!scrollTrigger} appear timeout={{enter: 0, exit: 500}}>
+      <Box>{children}</Box>
+    </Slide>
+  )
+
   const navbar = (
     <>
       <AppBar
         position="fixed"
+        elevation={0}
         sx={{
           transition: 'all 0.25s',
           color: textColor,
           backgroundColor: headerColor,
+          borderBottom: `2px solid ${theme.palette.primary.main}`,
           display: 'flex',
           justifyContent: 'center',
           height: theme.shape.headerheight,
         }}
-        elevation={trigger ? 4 : 0}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
