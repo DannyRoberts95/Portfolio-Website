@@ -1,12 +1,12 @@
-import React, {useEffect, useState, useRef} from 'react'
-import PropTypes from 'prop-types'
-import StyledBlockContent from '../StyledBlockContent'
-import {Container, useMediaQuery, Typography, Grid, Grow, Box} from '@mui/material'
 import {useTheme} from '@emotion/react'
+import {Box, Grid, Typography, useMediaQuery} from '@mui/material'
+import PropTypes from 'prop-types'
+import {useEffect, useRef, useState} from 'react'
 import useOnScreen from '../../hooks/useOnScreen'
+import StyledBlockContent from '../StyledBlockContent'
 
-import SectionTitle from '../SectionTitle'
 import SectionContainer from '../SectionContainer'
+import SectionTitle from '../SectionTitle'
 function GridSection(props) {
   const theme = useTheme()
   const ref = useRef()
@@ -67,13 +67,25 @@ function GridSection(props) {
   }
 
   return (
-    <SectionContainer ref={ref}>
-      <SectionTitle block={sectionTitle} />
+    <SectionContainer ref={ref} maxWidth={false}>
+      {sectionTitle && <SectionTitle block={sectionTitle} />}
+
       {tiles && (
         <Grid
           container
           spacing={getTileSpacing()}
           justifyContent={centered ? 'center' : 'flex-start'}
+          sx={{
+            '>*': {
+              border: (theme) => `1px solid ${theme.palette.primary.main}`,
+            },
+            '>:last-of-type': {
+              borderRight: 'none',
+            },
+            '>:first-of-type': {
+              borderLeft: 'none',
+            },
+          }}
         >
           {tiles.map((tile, i) => {
             const tileContent = (
@@ -81,7 +93,10 @@ function GridSection(props) {
                 item
                 xs={getTileSize()}
                 key={tile._key}
-                sx={{border: (theme) => `1px solid ${theme.palette.primary.main}`}}
+                sx={{
+                  // border: (theme) => `1px solid ${theme.palette.primary.main}`,
+                  p: 0,
+                }}
               >
                 <Box sx={{p: 2}}>
                   <Typography variant="h4" gutterBottom>
@@ -92,19 +107,10 @@ function GridSection(props) {
               </Grid>
             )
 
-            if (disableTransition) {
-              return tileContent
-            }
-
-            return (
-              <Grow in={enter} timeout={Math.min(2500, 500 + i * 500)} key={tile._key}>
-                {tileContent}
-              </Grow>
-            )
+            return tileContent
           })}
         </Grid>
       )}
-      {/* </Container> */}
     </SectionContainer>
   )
 }

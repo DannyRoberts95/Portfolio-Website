@@ -7,9 +7,6 @@ function Cta(props) {
   const buildLinkSrc = (navLink) => {
     if (!navLink) return '#'
 
-    // console.log(navLink)
-    // return "#"
-
     const {linkType} = navLink
     switch (linkType) {
       case 'external':
@@ -26,7 +23,6 @@ function Cta(props) {
   const {title, route, navLink, isPrimary, color = null, ...others} = props
 
   if (!navLink) {
-    console.log(`${title}: Remove old CTA structure`)
     return null
   }
 
@@ -54,7 +50,6 @@ function Cta(props) {
 }
 
 Cta.propTypes = {
-  title: PropTypes.string.isRequired,
   route: PropTypes.shape({
     slug: PropTypes.shape({
       current: PropTypes.string,

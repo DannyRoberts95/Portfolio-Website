@@ -1,20 +1,18 @@
-import React, {useRef} from 'react'
-import {Box, Container, Grid, Typography, useMediaQuery} from '@mui/material'
-import SketchBuilder from '../SketchBuilder'
 import {useTheme} from '@emotion/react'
+import {Box, Container, Grid, Typography, useMediaQuery} from '@mui/material'
 import SectionContainer from 'components/SectionContainer'
 import StyledBlockContent from 'components/StyledBlockContent'
+import SketchBuilder from '../SketchBuilder'
 
-import techText from '../../../utils/helpers/techText'
 import Cta from 'components/Cta'
 import SectionTitle from 'components/SectionTitle'
+import techText from '../../../utils/helpers/techText'
 
 export default function SketchSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
   //accept a css value for the width and height of the sketch container
   const {type, sectionTitle, body, ctas, reversed} = props
-  console.log(props)
 
   const mediaHeight = isSm ? '50vh' : '100vh'
 
@@ -40,7 +38,7 @@ export default function SketchSection(props) {
             },
           ]}
         >
-          <SectionTitle block={sectionTitle} />
+          {sectionTitle && <SectionTitle block={sectionTitle} />}
           <Container sx={{py: 2}}>
             <StyledBlockContent blocks={body} />
 

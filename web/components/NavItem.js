@@ -14,13 +14,15 @@ const TypographyLink = (props) => {
 }
 
 // Component to handle internal routing
-const InternalLink = ({navItem, darkText, sx, ...others}) => {
+const InternalLink = (props) => {
+  const {navItem, darkText, sx, ...others} = props
+  console.log('Internal Link props:', props)
   const router = useRouter()
   const theme = useTheme()
 
   const {slug, page} = navItem
 
-  if (!slug || !page) {
+  if (!slug) {
     return null
   }
 
@@ -28,8 +30,7 @@ const InternalLink = ({navItem, darkText, sx, ...others}) => {
     if (isServer) return false
     return slugParamToPath(router?.query?.slug) === slug
   }
-  const textColor = darkText ? theme.palette.text.secondary : '#fff'
-
+  const textColor = theme.palette.text.secondary
   const href = slug.current === '/' ? slug.current : `/${slug.current}`
 
   return (
@@ -52,13 +53,14 @@ const InternalLink = ({navItem, darkText, sx, ...others}) => {
       ]}
       {...others}
     >
-      {page}
+      {slug.current}
     </TypographyLink>
   )
 }
 
 // Component to handle external routing
-const ExternalLink = ({navItem, darkText, sx, ...others}) => {
+const ExternalLink = (props) => {
+  const {navItem, darkText, sx, ...others} = props
   const theme = useTheme()
   if (!navItem) return null
   const textColor = darkText ? theme.palette.text.secondary : '#fff'
@@ -89,7 +91,8 @@ const ExternalLink = ({navItem, darkText, sx, ...others}) => {
 }
 
 // Component to handle external routing
-const PathLink = ({navItem, darkText, sx, ...others}) => {
+const PathLink = (props) => {
+  const {navItem, darkText, sx, ...others} = props
   const router = useRouter()
   const theme = useTheme()
   if (!navItem) return null
@@ -200,7 +203,10 @@ export default function NavItem(props) {
   const {navItem} = props
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down('md'))
-  if (!navItem) return null
+
+  if (!navItem) {
+    return null
+  }
 
   // check the tpye of nav item and render the correct component
   switch (navItem.itemType) {

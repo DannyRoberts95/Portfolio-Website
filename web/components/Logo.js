@@ -6,16 +6,16 @@ import Link from './CustomLink'
 import Image from 'next/image'
 
 const Logo = forwardRef((props, ref) => {
-  const {logo, alt = 'site logo', href = '/', width = 40, ...others} = props
+  const {logo, alt = 'site logo', href = '/', size = 50, ...others} = props
 
   if (!logo || !logo.asset) {
     return null
   }
 
   return (
-    <Box position="relative" {...others}>
+    <Box width={size} height={size} position="relative" {...others}>
       <Link ref={ref} href={href}>
-        <Image layout="intrinsic" src={logo.asset.url} alt={alt} width={width} height={width} />
+        <Image layout="intrinsic" src={logo.asset.url} alt={alt} width={size} height={size} />
       </Link>
     </Box>
   )

@@ -6,6 +6,8 @@ const primaryColor = '#000'
 const secondaryColor = '#fff'
 const errorColor = red[700]
 
+const headerHeight = 85
+
 const headerFont = 'elevon, monospace, sans-serif'
 const bodyFont = 'lexia mono, monospace, sans-serif'
 
@@ -263,7 +265,7 @@ let theme = createTheme({
 theme.shape = {
   ...theme.shape,
   borderRadius: 0,
-  headerHeight: 70,
+  headerHeight,
 }
 
 export default responsiveFontSizes(theme)

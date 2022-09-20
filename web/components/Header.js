@@ -26,17 +26,20 @@ const AppHeader = (props) => {
   const {title, logos, ctas, navItems = [], transparent} = props
 
   const scrollTrigger = useScrollTrigger({
-    // disableHysteresis: true,
+    disableHysteresis: true,
     threshold: 0,
   })
+
+  console.log('Header Props', props)
+  console.log('NavLinks:', navItems)
 
   //trigger the menu color change on scroll OR just color it from the get go if the page has no hero banner
   const trigger = !transparent || scrollTrigger
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const headerColor = trigger ? theme.palette.background.paper : 'transparent'
-  const textColor = trigger ? theme.palette.text.secondary : '#fff'
+  const headerColor = theme.palette.background.paper
+  const textColor = theme.palette.text.secondary
 
   const handleOpenMenu = () => {
     setMobileMenuOpen(true)
@@ -52,12 +55,6 @@ const AppHeader = (props) => {
     }
   }, [])
 
-  const HideOnScroll = ({children}) => (
-    <Slide in={!scrollTrigger} appear timeout={{enter: 0, exit: 500}}>
-      <Box>{children}</Box>
-    </Slide>
-  )
-
   const navbar = (
     <>
       <AppBar
@@ -70,10 +67,10 @@ const AppHeader = (props) => {
           borderBottom: `2px solid ${theme.palette.primary.main}`,
           display: 'flex',
           justifyContent: 'center',
-          height: theme.shape.headerheight,
+          minHeight: theme.shape.headerheight,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth={false}>
           <Toolbar disableGutters>
             <Box
               sx={{
@@ -84,11 +81,17 @@ const AppHeader = (props) => {
                 justifyContent: 'space-between',
               }}
             >
-              <Logo logo={logos[trigger ? 'primary' : 'contrast']} alt={title} />
+              <Logo
+                logo={logos['primary']}
+                alt={title}
+                size={trigger ? 50 : 75}
+                my={1}
+                sx={{transition: 'all, 0.5s'}}
+              />
 
               <Box sx={{display: {xs: 'none', md: 'flex'}, gap: 2.5, my: 1, alignItems: 'center'}}>
                 {navItems.map((item) => (
-                  <NavItem key={item._key} navItem={item} darkText={trigger} />
+                  <NavItem key={item._key} navItem={item} darkText />
                 ))}
                 {ctas && ctas.map((cta) => <Cta {...cta} key={cta._key} />)}
               </Box>
@@ -114,7 +117,7 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      {!transparent && <Toolbar />}
+      <Toolbar />
     </>
   )
 
