@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 import StyledBlockContent from '../StyledBlockContent'
-import {Container, useMediaQuery, Typography, Grid, Grow} from '@mui/material'
+import {Container, useMediaQuery, Typography, Grid, Grow, Box} from '@mui/material'
 import {useTheme} from '@emotion/react'
 import useOnScreen from '../../hooks/useOnScreen'
 
@@ -77,11 +77,18 @@ function GridSection(props) {
         >
           {tiles.map((tile, i) => {
             const tileContent = (
-              <Grid item xs={getTileSize()} key={tile._key}>
-                <Typography variant="h4" gutterBottom>
-                  {tile.heading}
-                </Typography>
-                {tile.tileContent && <StyledBlockContent blocks={tile.tileContent} />}
+              <Grid
+                item
+                xs={getTileSize()}
+                key={tile._key}
+                sx={{border: (theme) => `1px solid ${theme.palette.primary.main}`}}
+              >
+                <Box sx={{p: 2}}>
+                  <Typography variant="h4" gutterBottom>
+                    {tile.heading}
+                  </Typography>
+                  {tile.tileContent && <StyledBlockContent blocks={tile.tileContent} />}
+                </Box>
               </Grid>
             )
 
@@ -97,6 +104,7 @@ function GridSection(props) {
           })}
         </Grid>
       )}
+      {/* </Container> */}
     </SectionContainer>
   )
 }

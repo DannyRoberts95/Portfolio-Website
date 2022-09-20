@@ -6,7 +6,8 @@ const primaryColor = '#000'
 const secondaryColor = '#fff'
 const errorColor = red[700]
 
-const headerFont = 'lexia-mono, monospace, sans-serif'
+const headerFont = 'elevon, monospace, sans-serif'
+const bodyFont = 'lexia mono, monospace, sans-serif'
 
 let theme = createTheme({
   spacing: 12,
@@ -33,9 +34,8 @@ let theme = createTheme({
   typography: {
     fontFamily: headerFont,
     fontSize: 16,
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightMedium: 500,
+    fontWeightRegular: 300,
+    fontWeightMedium: 400,
     fontWeightBold: 700,
     fontDisplay: 'swap',
 
@@ -71,8 +71,9 @@ let theme = createTheme({
       fontFamily: headerFont,
       fontSize: '1rem',
     },
-    body1: {},
+    body1: {fontFamily: bodyFont},
     body2: {
+      fontFamily: bodyFont,
       fontSize: '0.875rem',
     },
     overline: {

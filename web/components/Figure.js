@@ -47,7 +47,7 @@ function Figure(props) {
   }
 
   return (
-    <Box sx={{my: 2, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <Box sx={{my: 2, display: 'flex', flexDirection: 'column'}}>
       <Box
         component={'figure'}
         sx={[
@@ -75,8 +75,8 @@ function Figure(props) {
       </Box>
 
       {caption && (
-        <Typography variant="caption" align="center" sx={{mt: 1}}>
-          {caption}
+        <Typography variant="caption" color="textSecondary" sx={{mt: 1}}>
+          //:{caption}
         </Typography>
       )}
 

@@ -4,34 +4,42 @@ import PropTypes from 'prop-types'
 import fireGtag from '../utils/fireGtag'
 import Link from './CustomLink.js'
 function Cta(props) {
-  const {title, route, link, isPrimary, color = null, ...others} = props
+  const buildLinkSrc = (navLink) => {
+    if (!navLink) return '#'
+
+    const {linkType} = navLink
+    switch (linkType) {
+      case 'external':
+        return navLink.url
+      case 'path':
+        return navLink.path
+      default:
+        return '#'
+        break
+    }
+  }
+
+  const {title, route, link, navLink, isPrimary, color = null, ...others} = props
   const {asPath} = useRouter()
+
+  if (!navLink) {
+    console.log(`${title}: Remove old CTA structure`)
+    return null
+  }
+  console.log(title, props)
+  console.log(buildLinkSrc(navLink))
 
   const handleClick = () => {
     fireGtag('cta_click', {label: `${title}`, category: `page_${asPath}`})
   }
 
-  if (route && route.slug && route.slug.current) {
-    if (isPrimary) {
-      return (
-        <Button
-          LinkComponent={Link}
-          href={`/${route.slug.current}`}
-          variant="contained"
-          color="secondary"
-          onClick={handleClick}
-          {...others}
-        >
-          {title}
-        </Button>
-      )
-    }
+  if (navLink) {
     return (
       <Button
         LinkComponent={Link}
-        href={`/${route.slug.current}`}
-        color="secondary"
-        variant="outlined"
+        href={buildLinkSrc(navLink)}
+        variant={isPrimary ? 'contained' : 'outlined'}
+        color={isPrimary ? 'secondary' : 'primary'}
         onClick={handleClick}
         {...others}
       >
@@ -40,39 +48,6 @@ function Cta(props) {
     )
   }
 
-  // For External Links
-  if (link) {
-    if (isPrimary) {
-      return (
-        <Button
-          LinkComponent={Link}
-          href={link}
-          variant="contained"
-          color="secondary"
-          target="_blank"
-          rel="noOpener"
-          onClick={handleClick}
-          {...others}
-        >
-          {title}
-        </Button>
-      )
-    }
-    return (
-      <Button
-        LinkComponent={Link}
-        href={link}
-        variant="outlined"
-        color={'primary'}
-        target="_blank"
-        rel="noOpener"
-        onClick={handleClick}
-        {...others}
-      >
-        {title}
-      </Button>
-    )
-  }
   return null
 }
 

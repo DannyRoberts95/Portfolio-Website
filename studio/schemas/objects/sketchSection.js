@@ -41,7 +41,7 @@ export default {
           type: 'cta'
         }
       ],
-      validation: Rule => Rule.max(2)
+      validation: Rule => Rule.max(3)
     }
   ],
   preview: {

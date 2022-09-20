@@ -6,28 +6,23 @@ export default {
     {
       name: 'label',
       type: 'string',
-      title: 'Label',
+      title: 'Label'
     },
     {
       name: 'heading',
       type: 'string',
-      title: 'Heading',
-    },
-    {
-      name: 'centered',
-      type: 'boolean',
-      title: 'Center Header',
-    },
+      title: 'Heading'
+    }
   ],
   preview: {
     select: {
-      heading: 'heading',
+      heading: 'heading'
     },
     prepare({ heading }) {
       return {
         title: `${heading}`,
-        subtitle: 'Text section',
-      };
-    },
-  },
-};
+        subtitle: 'Text section'
+      }
+    }
+  }
+}

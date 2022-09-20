@@ -17,11 +17,13 @@ export default {
       hidden: ({ parent }) => parent?.linkType !== 'external'
     },
     {
+      title: 'Internal',
       name: 'internal',
       description: 'This type of link points to a page inside of the application.',
       hidden: ({ parent }) => parent?.linkType !== 'internal'
     },
     {
+      title: 'Path',
       name: 'path',
       description:
         'This type of link points directy to a page path from the root of the website. This is for specific internal pages that cannot be linked via routes.',

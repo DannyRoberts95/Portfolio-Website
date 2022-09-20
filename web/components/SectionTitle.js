@@ -9,7 +9,7 @@ function SectionTitle(props) {
 
   const {block} = props
   if (!block) return null
-  const {heading, label, centered = false} = block
+  const {heading, label} = block
   if (!heading && !label) return null
 
   return (
@@ -24,9 +24,9 @@ function SectionTitle(props) {
         zIndex: 2,
       }}
     >
-      <Container>
+      <Container maxWidth={false}>
         <Typography variant="overline">{label}</Typography>
-        <Typography variant="h3" component={'h2'} letterSpacing={-5}>
+        <Typography variant="h3" component={'h2'} letterSpacing={-1}>
           {techText(heading)}
         </Typography>
       </Container>
