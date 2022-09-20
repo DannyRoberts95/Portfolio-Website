@@ -32,6 +32,8 @@ function Cta(props) {
   }
 
   if (navLink) {
+    const externalProps = {rel: 'noOpener', target: '_blank'}
+
     return (
       <Button
         LinkComponent={Link}
@@ -39,6 +41,7 @@ function Cta(props) {
         variant={isPrimary ? 'contained' : 'outlined'}
         color={isPrimary ? 'secondary' : 'primary'}
         onClick={handleClick}
+        {...(navLink.linkType === 'external' && externalProps)}
         {...others}
       >
         {title || navLink.title}

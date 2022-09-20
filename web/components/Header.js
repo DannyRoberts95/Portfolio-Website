@@ -25,16 +25,13 @@ const AppHeader = (props) => {
 
   const {title, logos, ctas, navItems = [], transparent} = props
 
-  const scrollTrigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  })
-
-  console.log('Header Props', props)
-  console.log('NavLinks:', navItems)
+  // const scrollTrigger = useScrollTrigger({
+  //   disableHysteresis: true,
+  //   threshold: 0,
+  // })
 
   //trigger the menu color change on scroll OR just color it from the get go if the page has no hero banner
-  const trigger = !transparent || scrollTrigger
+  // const trigger = !transparent || scrollTrigger
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 

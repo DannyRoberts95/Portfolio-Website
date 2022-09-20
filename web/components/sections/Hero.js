@@ -26,6 +26,8 @@ function Hero(props) {
 
   const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas, dark} = props
 
+  console.log('HERO', props)
+
   return (
     <Box
       sx={[
@@ -36,9 +38,13 @@ function Hero(props) {
 
           overflow: 'hidden',
 
-          ...(dark && {
+          ...(!dark && {
             borderTop: `1px solid ${theme.palette.primary.main}`,
             borderBottom: `1px solid ${theme.palette.primary.main}`,
+          }),
+          ...(dark && {
+            borderTop: `1px solid ${theme.palette.secondary.main}`,
+            borderBottom: `1px solid ${theme.palette.secondary.main}`,
           }),
 
           py: 10,

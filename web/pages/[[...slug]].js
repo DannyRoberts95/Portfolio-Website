@@ -20,8 +20,9 @@ content[] {
   },
   ctas[] {
     ...,
-    "navLink":navLink->{
-      "HELLO":"abc",
+
+
+    "navLink":navLink{
       ${linkSnippet}
     },
   },

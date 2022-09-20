@@ -4,6 +4,8 @@ import {createTheme} from '@mui/material/styles'
 
 const primaryColor = '#000'
 const secondaryColor = '#fff'
+const bgColor = '#fff'
+
 const errorColor = red[700]
 
 const headerHeight = 85
@@ -28,7 +30,7 @@ let theme = createTheme({
       main: errorColor,
     },
     background: {
-      paper: secondaryColor,
+      paper: bgColor,
       default: '#fafafa',
     },
   }, // END OF PALETTE

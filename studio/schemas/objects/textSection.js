@@ -6,24 +6,49 @@ export default {
     {
       name: 'sectionTitle',
       type: 'sectionTitle',
-      title: 'Section Title',
+      title: 'Section Title'
     },
 
     {
-      name: 'text',
-      type: 'portableText',
-      title: 'Text Section',
-    },
+      name: 'sections',
+      title: 'Sections',
+      type: 'array',
+      of: [
+        {
+          name: 'textSection',
+          title: 'textSection',
+          type: 'object',
+          fields: [
+            {
+              name: 'sectionTitle',
+              title: 'Section title',
+              type: 'string'
+            },
+            {
+              name: 'sectionText',
+              type: 'portableText',
+              title: 'Section Text '
+            },
+            {
+              type: 'boolean',
+              name: 'reversed',
+              title: 'Reverse Layout',
+              initalValue: false
+            }
+          ]
+        }
+      ]
+    }
   ],
   preview: {
     select: {
-      heading: 'sectionTitle.heading',
+      heading: 'sectionTitle.heading'
     },
     prepare({ heading }) {
       return {
         title: `${heading}`,
-        subtitle: 'Text section',
-      };
-    },
-  },
-};
+        subtitle: 'Text section'
+      }
+    }
+  }
+}
