@@ -4,6 +4,7 @@ import {Box, Stack, Typography, useMediaQuery} from '@mui/material'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import {useRef, useState} from 'react'
+import techtext from 'utils/helpers/techText'
 import isServer from '../utils/isServer'
 import {slugParamToPath} from '../utils/urls'
 import Link from './CustomLink'
@@ -16,11 +17,10 @@ const TypographyLink = (props) => {
 // Component to handle internal routing
 const InternalLink = (props) => {
   const {navItem, darkText, sx, ...others} = props
-  console.log('Internal Link props:', props)
   const router = useRouter()
   const theme = useTheme()
 
-  const {slug, page} = navItem
+  const {slug} = navItem
 
   if (!slug) {
     return null
@@ -40,7 +40,7 @@ const InternalLink = (props) => {
         {
           color: textColor,
           display: 'block',
-          textTransform: 'capitalize',
+          textTransform: 'uppercase',
           opacity: 0.8,
           '&:hover': {opacity: 1},
         },
@@ -74,7 +74,7 @@ const ExternalLink = (props) => {
         {
           color: textColor,
           display: 'block',
-          textTransform: 'capitalize',
+          textTransform: 'uppercase',
           opacity: 0.8,
           '&:hover': {opacity: 1},
         },
@@ -112,7 +112,7 @@ const PathLink = (props) => {
         {
           color: textColor,
           display: 'block',
-          textTransform: 'capitalize',
+          textTransform: 'uppercase',
           opacity: 0.8,
           '&:hover': {opacity: 1},
           ...sx,

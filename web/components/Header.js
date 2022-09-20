@@ -81,13 +81,7 @@ const AppHeader = (props) => {
                 justifyContent: 'space-between',
               }}
             >
-              <Logo
-                logo={logos['primary']}
-                alt={title}
-                size={trigger ? 50 : 75}
-                my={1}
-                sx={{transition: 'all, 0.5s'}}
-              />
+              <Logo logo={logos['primary']} alt={title} my={1} />
 
               <Box sx={{display: {xs: 'none', md: 'flex'}, gap: 2.5, my: 1, alignItems: 'center'}}>
                 {navItems.map((item) => (
