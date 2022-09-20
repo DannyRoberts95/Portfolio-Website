@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {CircularProgress, Divider, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
+import {CircularProgress, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
 import CategoryList from 'components/CategoryList'
 import LatestPostCard from 'components/LatestPostCard'
 import Layout from 'components/layouts/Layout'
@@ -38,7 +38,7 @@ const Posts = (props) => {
     }
   }
 
-  //Fetch the first batch of categorised posts
+  // Fetch the first batch of categorised posts
   const getPostByCategory = async (cat) => {
     const categoricalPosts = await client.fetch(
       `*[${postFiltering} ${cat ? ` && "${cat}" in categories[]->title` : ''}][0...${batchNumber}]{
@@ -51,7 +51,7 @@ const Posts = (props) => {
     setPostList(categoricalPosts)
   }
 
-  //Fetch the next 5 posts and add them to the list
+  // Fetch the next 5 posts and add them to the list
   const loadAdditionalPosts = async () => {
     const startIndex = postList.length
     const endIndex = startIndex + batchNumber
@@ -135,7 +135,7 @@ const Posts = (props) => {
             ))}
 
             {/* show the posts */}
-            {othersPosts.length == 0 && !Boolean(latestPost) && (
+            {othersPosts.length === 0 && !latestPost && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
                 No Posts to Display
               </Typography>

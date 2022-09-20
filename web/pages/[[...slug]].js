@@ -1,10 +1,8 @@
 import imageUrlBuilder from '@sanity/image-url'
 import groq from 'groq'
 import {NextSeo} from 'next-seo'
-import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
 import React from 'react'
-import {useEffect} from 'react'
 
 import client from '../client'
 import Layout from 'components/layouts/Layout'

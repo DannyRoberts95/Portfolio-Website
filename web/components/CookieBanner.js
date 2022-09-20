@@ -1,16 +1,13 @@
-import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import React from 'react'
 import {useEffect} from 'react'
-import {Close} from '@mui/icons-material'
 
-import {getCookie, setCookie} from '../utils/cookieHelpers'
-import {useState} from 'react'
-import {IconButton, Stack, useMediaQuery} from '@mui/material'
 import {useTheme} from '@emotion/react'
+import {Stack, useMediaQuery} from '@mui/material'
+import {useState} from 'react'
+import {getCookie, setCookie} from '../utils/cookieHelpers'
 
 const ACCEPTED_COOKIES_NAME = 'acceptedCookies'
 

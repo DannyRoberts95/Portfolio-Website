@@ -48,7 +48,7 @@ export default function ExitIntentModal(props) {
     const hasShowRecently = getCookie(EXIT_COOKIE_NAME) === '1'
     if (exitIntent && !hasShowRecently && !isSubscribed && !open) {
       setOpen(true)
-      //wait an hour before displaying this modal again
+      // wait an hour before displaying this modal again
       let cookieExpiry = new Date()
       cookieExpiry = cookieExpiry.setHours(cookieExpiry.getHours() + 24 * 7)
       setCookie(EXIT_COOKIE_NAME, '1', cookieExpiry)

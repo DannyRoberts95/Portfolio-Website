@@ -2,8 +2,6 @@ import {useTheme} from '@emotion/react'
 import {Box, Chip} from '@mui/material'
 
 const CategoryList = (props) => {
-  const theme = useTheme()
-
   const {categories, selectedCategory, scrollable = true, handleSelection = () => {}} = props
 
   const gradient = (

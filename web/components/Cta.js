@@ -62,7 +62,6 @@ function Cta(props) {
       <Button
         LinkComponent={Link}
         href={link}
-        color="secondary"
         variant="outlined"
         color={'primary'}
         target="_blank"

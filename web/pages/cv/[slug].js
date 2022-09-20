@@ -3,16 +3,15 @@
 import groq from 'groq'
 import client from '../../client'
 
+import {Chip, Grid, Stack, Typography} from '@mui/material'
+import {Box} from '@mui/system'
 import Layout from 'components/layouts/Layout'
+import PostBlockContent from 'components/PostBlockContent'
+import SectionContainer from 'components/SectionContainer'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import HeroImage from '../../components/HeroImage'
-import Post from '../../components/Post'
-import SectionContainer from 'components/SectionContainer'
-import {Chip, Divider, Grid, Stack, Typography} from '@mui/material'
-import {Box} from '@mui/system'
-import PostBlockContent from 'components/PostBlockContent'
 
 const PostPage = (props) => {
   const router = useRouter()
@@ -68,7 +67,7 @@ const PostPage = (props) => {
                 </Typography>
                 <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
                   {cv.experienced.map((item) => (
-                    <Chip label={item} variant="outlined" />
+                    <Chip key={item} label={item} variant="outlined" />
                   ))}
                 </Stack>
                 <Typography variant="subtitle1" gutterBottom>
@@ -76,7 +75,7 @@ const PostPage = (props) => {
                 </Typography>
                 <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
                   {cv.familiar.map((item) => (
-                    <Chip label={item} variant="outlined" />
+                    <Chip key={item} label={item} variant="outlined" />
                   ))}
                 </Stack>
               </Stack>

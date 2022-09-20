@@ -32,7 +32,7 @@ const Collections = (props) => {
     }
   }
 
-  //Fetch the first batch of categorised collections
+  // Fetch the first batch of categorised collections
   const getCollectionByCategory = async (cat) => {
     const categoricalCollections = await client.fetch(
       `*[ ${filtering} ${cat ? ` && "${cat}" in categories[]->title` : ''}][0...${batchNumber}]{
@@ -45,7 +45,7 @@ const Collections = (props) => {
     setCollectionList(categoricalCollections)
   }
 
-  //Fetch the next 5 collections and add them to the list
+  // Fetch the next 5 collections and add them to the list
   const loadAdditionalCollections = async () => {
     const startIndex = collectionList.length
     const endIndex = startIndex + batchNumber
@@ -120,7 +120,7 @@ const Collections = (props) => {
             ))}
 
             {/* show the collections */}
-            {collectionList.length == 0 && (
+            {collectionList.length === 0 && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
                 No Collections to Display
               </Typography>

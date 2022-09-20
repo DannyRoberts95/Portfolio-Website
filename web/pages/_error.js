@@ -8,7 +8,6 @@ import Header from 'components/Header'
 
 export default function _Error(props) {
   const theme = useTheme()
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
   const {config, navigation} = props
 
