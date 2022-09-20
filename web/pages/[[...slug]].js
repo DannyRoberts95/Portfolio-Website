@@ -7,9 +7,10 @@ import React from 'react'
 import client from '../client'
 import Layout from 'components/layouts/Layout'
 import RenderSections from 'components/RenderSections'
+import {linkSnippet} from 'utils/consts/groq/navigationQuery'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
-const pageFragment = groq`
+const pageFragment = `
 ...,
 content[] {
   ...,
@@ -19,7 +20,10 @@ content[] {
   },
   ctas[] {
     ...,
-    route->
+    "navLink":navLink->{
+      "HELLO":"abc",
+      ${linkSnippet}
+    },
   },
   plans[]->{
     ...,
@@ -92,12 +96,9 @@ const LandingPage = (props) => {
     slug,
   } = props
 
+  console.log('page:', props.navigation.navigationCTAs)
+
   const firstSection = content[0]
-  // useEffect(() => {
-  //   if (!firstSection && router.asPath !== '/404') {
-  //     router.push('/_404')
-  //   }
-  // }, [])
 
   const transparentHeader = firstSection?._type === 'hero'
 

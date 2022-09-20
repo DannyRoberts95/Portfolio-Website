@@ -7,30 +7,32 @@ function Cta(props) {
   const buildLinkSrc = (navLink) => {
     if (!navLink) return '#'
 
+    // console.log(navLink)
+    // return "#"
+
     const {linkType} = navLink
     switch (linkType) {
       case 'external':
         return navLink.url
       case 'path':
         return navLink.path
+      case 'internal':
+        return navLink?.slug?.current
       default:
         return '#'
-        break
     }
   }
 
-  const {title, route, link, navLink, isPrimary, color = null, ...others} = props
-  const {asPath} = useRouter()
+  const {title, route, navLink, isPrimary, color = null, ...others} = props
 
   if (!navLink) {
     console.log(`${title}: Remove old CTA structure`)
     return null
   }
-  console.log(title, props)
-  console.log(buildLinkSrc(navLink))
 
   const handleClick = () => {
-    fireGtag('cta_click', {label: `${title}`, category: `page_${asPath}`})
+    // fireGtag('cta_click', {label: `${title}`, category: `page_${asPath}`})
+    console.log('add gtag event in CTA')
   }
 
   if (navLink) {
@@ -43,7 +45,7 @@ function Cta(props) {
         onClick={handleClick}
         {...others}
       >
-        {title}
+        {title || navLink.title}
       </Button>
     )
   }

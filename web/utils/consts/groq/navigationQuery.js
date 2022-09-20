@@ -1,4 +1,4 @@
-const linkSnippet = `
+export const linkSnippet = `
 linkType == "external" => {
 ...,
  "itemType":linkType,
@@ -6,8 +6,8 @@ linkType == "external" => {
 
 linkType == "internal" => {
   ...,
+  "title":internal->page->title,
   "itemType":linkType,
-  "page":internal->page->title,
   "slug":internal->slug,
 
 },
@@ -17,7 +17,7 @@ linkType == "path" => {
 },
 `
 
-export default `
+export const navigationQuery = `
 *[_id == "site-navigation" ] {
 
   "mainNavigation":mainNavigation[]{
@@ -37,7 +37,11 @@ export default `
   "footerNavigation":footerNavigation[]{
       ${linkSnippet}
     },
-    navigationCTAs,
+    "navigationCTAs":navigationCTAs[]{
+      "navLink":navLink{
+        ${linkSnippet}
+      },
+    },
     footerText
  }[0]
   `

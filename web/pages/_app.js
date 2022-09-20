@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import client from '../client'
 import theme from '../themes/theme'
-import navigationQuery from '../utils/consts/groq/navigationQuery.js'
+import {navigationQuery} from '../utils/consts/groq/navigationQuery.js'
 import siteConfigQuery from '../utils/consts/groq/siteConfigQuery.js'
 
 class App extends BaseApp {

@@ -26,8 +26,6 @@ function Hero(props) {
 
   const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas, dark} = props
 
-  console.log(props)
-
   return (
     <Box
       sx={[
