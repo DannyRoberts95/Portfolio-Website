@@ -61,7 +61,7 @@ function Hero(props) {
           <Box
             id="heroImageContainer"
             sx={{
-              zIndex: 0,
+              zIndex: -1,
               overflow: 'hidden',
               position: 'absolute',
               backgroundColor: theme.palette.primary.main,
@@ -90,6 +90,7 @@ function Hero(props) {
         <Box
           id="heroVideoContainer"
           sx={{
+            zIndex: -1,
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -126,17 +127,15 @@ function Hero(props) {
         </Box>
       )}
 
-      <Container maxWidth={'md'} sx={{mixBlendMode: 'luminosity'}}>
+      <Container maxWidth={'md'}>
         <Typography
           align="center"
           gutterBottom
-          variant={'h3'}
+          variant={'h2'}
           sx={[
             {
-              position: 'relative',
-              lineHeight: 1,
-              textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
               mb: 2,
+              ...((backgroundImage || backgroundVideo) && {mixBlendMode: 'exclusion'}),
             },
             isMd && {
               lineHeight: 1.25,
@@ -146,7 +145,12 @@ function Hero(props) {
           {heading}
         </Typography>
 
-        <Typography align="center" gutterBottom variant={'body1'}>
+        <Typography
+          align="center"
+          gutterBottom
+          variant={'h6'}
+          sx={{...((backgroundImage || backgroundVideo) && {mixBlendMode: 'exclusion'})}}
+        >
           {tagline}
         </Typography>
 

@@ -10,7 +10,7 @@ const errorColor = red[700]
 
 const headerHeight = 85
 
-const headerFont = 'elevon, monospace, sans-serif'
+const headerFont = 'lexia mono, monospace, sans-serif'
 const bodyFont = 'lexia mono, monospace, sans-serif'
 
 let theme = createTheme({
@@ -50,7 +50,7 @@ let theme = createTheme({
     },
     h2: {
       fontFamily: headerFont,
-      // fontWeight: 700,
+      fontWeight: 700,
       fontSize: '4rem',
     },
     h3: {
