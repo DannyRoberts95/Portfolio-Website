@@ -7,12 +7,14 @@ import StyledBlockContent from 'components/StyledBlockContent'
 
 import techText from '../../../utils/helpers/techText'
 import Cta from 'components/Cta'
+import SectionTitle from 'components/SectionTitle'
 
 export default function SketchSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
   //accept a css value for the width and height of the sketch container
-  const {type, header, body, ctas, reversed} = props
+  const {type, sectionTitle, body, ctas, reversed} = props
+  console.log(props)
 
   const mediaHeight = isSm ? '50vh' : '100vh'
 
@@ -38,23 +40,7 @@ export default function SketchSection(props) {
             },
           ]}
         >
-          <Box
-            width="100%"
-            sx={{
-              position: 'sticky',
-              top: theme.shape.headerHeight - 6,
-              py: 1,
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.primary.contrastText,
-              zIndex: 2,
-            }}
-          >
-            <Container>
-              <Typography variant="h2" letterSpacing={-5}>
-                {techText(header)}
-              </Typography>
-            </Container>
-          </Box>
+          <SectionTitle block={sectionTitle} />
           <Container sx={{py: 2}}>
             <StyledBlockContent blocks={body} />
 

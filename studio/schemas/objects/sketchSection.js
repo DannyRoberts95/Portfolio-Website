@@ -4,17 +4,17 @@ export default {
   title: 'Sketch',
   fields: [
     {
+      name: 'sectionTitle',
+      type: 'sectionTitle',
+      title: 'Section Title'
+    },
+    {
       type: 'boolean',
       name: 'reversed',
       title: 'Reverse Layout',
       initalValue: false
     },
-    {
-      type: 'string',
-      name: 'header',
-      title: 'Section Header',
-      validation: Rule => Rule.max(50)
-    },
+
     {
       type: 'string',
       name: 'type',
