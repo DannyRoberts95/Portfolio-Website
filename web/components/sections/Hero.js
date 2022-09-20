@@ -24,51 +24,40 @@ function Hero(props) {
   const [loadedVideo, setloadedVideo] = useState(false)
   const handleVideoLoaded = () => setloadedVideo(true)
 
-  const {heading, backgroundImage, backgroundVideo, firstComponent, tagline, ctas, dark} = props
+  const {heading, backgroundImage, backgroundVideo, tagline, ctas, dark} = props
 
-  console.log('HERO', props)
+  const bgColor = () => {
+    if (backgroundImage || backgroundVideo) return null
+    return {
+      backgroundColor: !dark ? theme.palette.secondary.main : theme.palette.primary.main,
+    }
+  }
 
   return (
     <Box
       sx={[
         {
           position: 'relative',
-          color: dark ? theme.palette.secondary.main : theme.palette.primary.main,
-          backgroundColor: dark ? theme.palette.primary.main : theme.palette.secondary.main,
-
           overflow: 'hidden',
 
-          ...(!dark && {
-            borderTop: `1px solid ${theme.palette.primary.main}`,
-            borderBottom: `1px solid ${theme.palette.primary.main}`,
-          }),
-          ...(dark && {
-            borderTop: `1px solid ${theme.palette.secondary.main}`,
-            borderBottom: `1px solid ${theme.palette.secondary.main}`,
-          }),
+          color: dark ? theme.palette.secondary.main : theme.palette.primary.main,
+          ...bgColor(),
+          ...(!dark
+            ? {
+                borderTop: `1px solid ${theme.palette.primary.main}`,
+                borderBottom: `1px solid ${theme.palette.primary.main}`,
+              }
+            : {
+                borderTop: `1px solid ${theme.palette.secondary.main}`,
+                borderBottom: `1px solid ${theme.palette.secondary.main}`,
+              }),
 
-          py: 10,
-
-          // '&::before': {
-          //   content: "''",
-          //   position: 'absolute',
-          //   top: '0%',
-          //   left: 0,
-
-          //   backgroundImage:
-          //     'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 15% ,rgba(0,0,0,0.3) 50% ,rgba(0,0,0,0.2) 85% ,  rgba(0,0,0,0) 100%)',
-          //   width: '100%',
-          //   height: '100%',
-          //   zIndex: -1,
-          // },
-          'p>a': {
-            color: 'inherit',
-          },
+          py: 16,
         },
       ]}
     >
       {backgroundImage && (
-        <Fade in={(backgroundImage && loadedImage) || firstComponent}>
+        <Fade in={backgroundImage && loadedImage}>
           <Box
             id="heroImageContainer"
             sx={{
@@ -85,10 +74,8 @@ function Hero(props) {
               id="heroImage"
               layout="fill"
               onLoad={handleImageLoaded}
-              loading={firstComponent ? 'eager' : 'lazy'}
               objectFit="cover"
               quality={85}
-              priority={firstComponent}
               alt="hero_banner_illustartion"
               blurDataURL={urlFor(backgroundImage).width(480).url().toString()}
               src={urlFor(backgroundImage).auto('format').url()}
@@ -103,8 +90,6 @@ function Hero(props) {
         <Box
           id="heroVideoContainer"
           sx={{
-            zIndex: -4,
-            backgroundColor: theme.palette.primary.main,
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -140,54 +125,47 @@ function Hero(props) {
           </Fade>
         </Box>
       )}
-      <Fade in timeout={1000}>
-        <Container maxWidth="lg" sx={{zIndex: 10}}>
-          <Typography
-            align="center"
-            gutterBottom
-            variant={'h3'}
-            sx={[
-              {
-                position: 'relative',
-                lineHeight: 1,
-                textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
-                margin: 0,
-              },
-              isMd && {
-                lineHeight: 1.25,
-              },
-            ]}
+
+      <Container maxWidth={'md'} sx={{mixBlendMode: 'luminosity'}}>
+        <Typography
+          align="center"
+          gutterBottom
+          variant={'h3'}
+          sx={[
+            {
+              position: 'relative',
+              lineHeight: 1,
+              textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
+              mb: 2,
+            },
+            isMd && {
+              lineHeight: 1.25,
+            },
+          ]}
+        >
+          {heading}
+        </Typography>
+
+        <Typography align="center" gutterBottom variant={'body1'}>
+          {tagline}
+        </Typography>
+
+        {ctas && (
+          <Box
+            sx={{
+              mt: 2,
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'center',
+              '> *:not(:first-of-type)': {ml: 2},
+            }}
           >
-            {heading}
-          </Typography>
-
-          <Divider
-            variant="middle"
-            light
-            sx={{border: '1px solid white', maxWidth: '66%', margin: 'auto', my: 1}}
-          />
-
-          <Typography align="center" gutterBottom variant={'body1'}>
-            {tagline}
-          </Typography>
-
-          {ctas && (
-            <Box
-              sx={{
-                mt: 2,
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                '> *:not(:first-of-type)': {ml: 2},
-              }}
-            >
-              {ctas.map((cta) => (
-                <Cta {...cta} key={cta._key} />
-              ))}
-            </Box>
-          )}
-        </Container>
-      </Fade>
+            {ctas.map((cta) => (
+              <Cta {...cta} key={cta._key} color={dark ? 'secondary' : 'primary'} />
+            ))}
+          </Box>
+        )}
+      </Container>
     </Box>
   )
 }

@@ -23,7 +23,7 @@ export default {
       type: 'image',
       title: 'Background image',
       options: {
-        // hotspot: true,
+        hotspot: true
       }
       // hidden: ({ parent, value }) => !value && parent?.backgroundVideo,
     },
