@@ -45,7 +45,7 @@ function TextSection(props) {
             md={6}
             sx={{
               p: 2,
-              borderTop: `2px solid ${theme.palette.primary.contrastText}`,
+              // border: `2px solid ${theme.palette.primary.contrastText}`,
               backgroundColor: theme.palette.primary.main,
               color: theme.palette.primary.contrastText,
             }}

@@ -6,10 +6,11 @@ import StyledBlockContent from '../StyledBlockContent'
 import Cta from '../Cta'
 import Image from 'next/image'
 import {Box} from '@mui/system'
-import {Stack, Container, useMediaQuery, Grow} from '@mui/material'
+import {Stack, Container, useMediaQuery, Grow, Grid, Typography} from '@mui/material'
 import {useTheme} from '@emotion/react'
 import SectionTitle from '../SectionTitle'
 import SectionContainer from '../SectionContainer'
+import techtext from 'utils/helpers/techText'
 
 const builder = imageUrlBuilder(client)
 
@@ -17,8 +18,10 @@ function ImageSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const {sectionTitle, reversed, elevateImage, text, image, cta} = props
+  const {sectionTitle, reversed, body, image, ctas} = props
   const {aspectRatio} = image
+
+  const mediaHeight = isSm ? '50vh' : `calc(100vh-${theme.shape.headerHeight})`
 
   let dimensiosns = null
   switch (aspectRatio) {
@@ -37,39 +40,82 @@ function ImageSection(props) {
   }
 
   return (
-    <SectionContainer maxWidth="lg" sectionGap="sm">
-      <Stack
-        sx={[
-          {width: '100%', flexDirection: 'row', alignItems: 'center'},
-          reversed && {flexDirection: 'row-reverse'},
-          isSm && {flexDirection: 'column-reverse'},
-        ]}
-      >
-        <Box sx={[{flexBasis: '50%'}, isSm && {flexBasis: '100%', borderRadius: 2}]}>
+    <SectionContainer maxWidth={false}>
+      <Grid container spacing={0} direction={reversed ? 'row-reverse' : 'row'}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={[
+            {
+              borderRight: (theme) => `1px solid ${theme.palette.primary.main}`,
+            },
+            reversed && {
+              borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderRight: 'none',
+            },
+            isSm && {
+              border: 'none',
+              borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
+            },
+          ]}
+        >
           {sectionTitle && <SectionTitle block={sectionTitle} />}
+          <Container sx={{py: 2}}>
+            <StyledBlockContent blocks={body} />
 
-          {text && <StyledBlockContent blocks={text} />}
-
-          <Box sx={{my: 3}}>{cta && <Cta {...cta} color={cta.isPrimary ? null : 'primary'} />}</Box>
-        </Box>
-
-        <Grow in timeout={1500}>
-          <Box
-            component="figure"
-            sx={[
-              {
-                flexBasis: '50%',
-                width: '100%',
-                m: 4,
-                position: 'relative',
-              },
-              isSm && {flexBasis: '100%', borderRadius: 2, height: 100, m: 2},
-              elevateImage && {overflow: 'hidden', boxShadow: theme.shadows[4]},
-            ]}
+            {ctas && (
+              <Box
+                sx={{
+                  mt: 2,
+                  display: 'flex',
+                  width: '100%',
+                  '> *:not(:first-of-type)': {ml: 2},
+                }}
+              >
+                {ctas.map((cta) => (
+                  <Cta {...cta} key={cta._key} />
+                ))}
+              </Box>
+            )}
+          </Container>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={[
+            {
+              maxHeight: mediaHeight,
+              borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
+            },
+            reversed && {
+              borderRight: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderLeft: 'none',
+            },
+            isSm && {
+              border: 'none',
+              borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
+            },
+          ]}
+        >
+          <Typography
+            sx={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: '-1',
+            }}
           >
-            {image && (
+            {techtext('LOADING...')}
+          </Typography>
+          {image && (
+            <Box sx={{position: 'sticky', top: theme.shape.headerHeight}}>
               <Image
-                objectFit="contain"
+                objectFit="cover"
                 layout="responsive"
                 placeholder="blur"
                 width={dimensiosns?.width || null}
@@ -78,19 +124,68 @@ function ImageSection(props) {
                 quality={50}
                 blurDataURL={builder.image(image).url()}
                 src={builder.image(image).url()}
-                // styles={{
-                //   display: 'block',
-                //   maxInlineSize: ' 100%',
-                //   blockSize: 'auto',
-                //   aspectRatio: aspectRatio,
-                // }}
                 alt={image.alt}
               />
-            )}
-          </Box>
-        </Grow>
-      </Stack>
+            </Box>
+          )}
+        </Grid>
+      </Grid>
     </SectionContainer>
+
+    // <SectionContainer maxWidth="lg" sectionGap="sm">
+    //   <Stack
+    //     sx={[
+    //       {width: '100%', flexDirection: 'row', alignItems: 'center'},
+    //       reversed && {flexDirection: 'row-reverse'},
+    //       isSm && {flexDirection: 'column-reverse'},
+    //     ]}
+    //   >
+    //     <Box sx={[{flexBasis: '50%'}, isSm && {flexBasis: '100%', borderRadius: 2}]}>
+    //       {sectionTitle && <SectionTitle block={sectionTitle} />}
+
+    //       {text && <StyledBlockContent blocks={text} />}
+
+    //       <Box sx={{my: 3}}>{cta && <Cta {...cta} color={cta.isPrimary ? null : 'primary'} />}</Box>
+    //     </Box>
+
+    //     <Grow in timeout={1500}>
+    //       <Box
+    //         component="figure"
+    //         sx={[
+    //           {
+    //             flexBasis: '50%',
+    //             width: '100%',
+    //             m: 4,
+    //             position: 'relative',
+    //           },
+    //           isSm && {flexBasis: '100%', borderRadius: 2, height: 100, m: 2},
+    //           elevateImage && {overflow: 'hidden', boxShadow: theme.shadows[4]},
+    //         ]}
+    //       >
+    //         {image && (
+    //           <Image
+    //             objectFit="contain"
+    //             layout="responsive"
+    //             placeholder="blur"
+    //             width={dimensiosns?.width || null}
+    //             height={dimensiosns?.height || null}
+    //             loading="lazy"
+    //             quality={50}
+    //             blurDataURL={builder.image(image).url()}
+    //             src={builder.image(image).url()}
+    //             // styles={{
+    //             //   display: 'block',
+    //             //   maxInlineSize: ' 100%',
+    //             //   blockSize: 'auto',
+    //             //   aspectRatio: aspectRatio,
+    //             // }}
+    //             alt={image.alt}
+    //           />
+    //         )}
+    //       </Box>
+    //     </Grow>
+    //   </Stack>
+    // </SectionContainer>
   )
 }
 

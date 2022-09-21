@@ -35,9 +35,12 @@ export const navigationQuery = `
   },
 
   "footerNavigation":footerNavigation[]{
-      ${linkSnippet}
+    ...,
+    "links":links[]{${linkSnippet}}
+
     },
     "navigationCTAs":navigationCTAs[]{
+      ...,
       "navLink":navLink{
         ${linkSnippet}
       },

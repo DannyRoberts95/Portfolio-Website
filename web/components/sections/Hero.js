@@ -42,15 +42,10 @@ function Hero(props) {
 
           color: dark ? theme.palette.secondary.main : theme.palette.primary.main,
           ...bgColor(),
-          ...(!dark
-            ? {
-                borderTop: `1px solid ${theme.palette.primary.main}`,
-                borderBottom: `1px solid ${theme.palette.primary.main}`,
-              }
-            : {
-                borderTop: `1px solid ${theme.palette.secondary.main}`,
-                borderBottom: `1px solid ${theme.palette.secondary.main}`,
-              }),
+          ...(!dark && {
+            borderTop: `1px solid ${theme.palette.secondary.main}`,
+            borderBottom: `1px solid ${theme.palette.secondary.main}`,
+          }),
 
           py: 16,
         },

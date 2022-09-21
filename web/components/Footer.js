@@ -25,19 +25,20 @@ function Footer(props) {
 
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const {navItems = [], title, text, logos} = props
-
-  const linkColumns = chunkArray(navItems, 5)
+  const {footerNavigation = [], title, text, logos} = props
 
   const handleSumbitComplete = () => {
     fireGtag('sign_up', {label: 'footer'})
   }
 
-  const columns = linkColumns?.map((columnLinks, i) => (
-    <Grid item xs={6} md={3} key={`column_${i}`}>
+  const cols = footerNavigation.map((col, i) => (
+    <Grid item xs={6} md={3} key={col.columnTitle}>
+      <Typography variant="subtitle1" gutterBottom>
+        {col.columnTitle}
+      </Typography>
       <Box component="nav">
         <Stack direction="column" gap={1}>
-          {columnLinks.map((navItem) => (
+          {col.links.map((navItem) => (
             <NavItem key={navItem._key} navItem={navItem} darkText />
           ))}
         </Stack>
@@ -46,15 +47,8 @@ function Footer(props) {
   ))
 
   return (
-    <Box
-      component="footer"
-      sx={{
-        width: '100%',
-        borderTop: `2px solid ${theme.palette.primary.main}`,
-        py: 4,
-      }}
-    >
-      <SectionContainer>
+    <Box component="footer">
+      <SectionContainer sx={{p: 2}}>
         <Stack
           sx={{
             width: '100%',
@@ -64,12 +58,12 @@ function Footer(props) {
             alignContent: 'center',
           }}
         >
-          <Logo logo={logos['primary']} alt={title} sx={{my: 2}} width="150px" />
-          <MailchimpInput handleSumbitComplete={handleSumbitComplete} />
+          <Logo logo={logos['primary']} alt={title} sx={{my: 2}} size="75px" />
+          {/* <MailchimpInput handleSumbitComplete={handleSumbitComplete} /> */}
         </Stack>
 
         <Grid container spacing={2} sx={{my: 4}}>
-          {columns}
+          {cols}
         </Grid>
 
         <StyledBlockContent blocks={text} />

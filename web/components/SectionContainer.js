@@ -28,9 +28,13 @@ const SectionContainer = forwardRef(function (props, ref) {
       component="section"
       maxWidth={false}
       disableGutters
-      sx={{py: getPadding(), backgroundColor: 'background.paper', borderBottom: '2px solid black'}}
+      sx={{
+        py: getPadding(),
+        backgroundColor: 'background.paper',
+        borderBottom: (theme) => `2px solid ${theme.palette.primary.main}`,
+      }}
     >
-      <Container disableGutters maxWidth={contentMaxWidth} {...others}>
+      <Container disableGutters maxWidth={contentMaxWidth} {...others} sx={{...sx}}>
         {children}
       </Container>
     </Container>

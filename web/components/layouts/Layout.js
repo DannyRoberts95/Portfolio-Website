@@ -39,7 +39,7 @@ function Layout(props) {
 
         <Box className="content">{children}</Box>
 
-        <Footer logos={logos} title={title} navItems={footerNavigation} text={footerText} />
+        <Footer logos={logos} title={title} footerNavigation={footerNavigation} text={footerText} />
 
         {!disableCookieBanner && <CookieBanner />}
         {logoUrl && url && <LogoJsonLd url={url} logo={logoUrl} />}

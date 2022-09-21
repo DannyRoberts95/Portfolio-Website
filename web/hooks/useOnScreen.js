@@ -8,7 +8,7 @@ export default function useOnScreen(ref) {
   if (isServer || !Boolean(ref)) return false
 
   let options = {
-    threshold: 0.1,
+    threshold: 0,
   }
 
   const observer = new IntersectionObserver(

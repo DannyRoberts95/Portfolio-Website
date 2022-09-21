@@ -46,7 +46,29 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'navLink'
+          type: 'object',
+          name: 'column',
+          fields: [
+            { type: 'string', name: 'columnTitle', title: 'Column Header' },
+            {
+              type: 'array',
+              name: 'links',
+              of: [
+                {
+                  type: 'navLink'
+                }
+              ]
+            }
+          ],
+          preview: {
+            select: { columnTitle: 'columnTitle' },
+            prepare({ columnTitle }) {
+              return {
+                title: 'Footer Column',
+                subTitle: columnTitle
+              }
+            }
+          }
         }
       ]
     },

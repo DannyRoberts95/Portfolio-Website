@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
-import React, {useState} from 'react'
-import {Box} from '@mui/system'
-import {Button, Container, Fade, TextField, Typography, useMediaQuery} from '@mui/material'
 import {useTheme} from '@emotion/react'
+import {Button, Fade, TextField, Typography, useMediaQuery} from '@mui/material'
+import {Box} from '@mui/system'
+import PropTypes from 'prop-types'
+import {useState} from 'react'
 import {setCookie} from '../utils/cookieHelpers'
 const inputHeight = 60
 const COOKIE_NAME = 'subscribedToNewsLetter'
@@ -111,10 +111,10 @@ export default function MailchimpInput(props) {
             display: 'flex',
             alignItems: 'flex-start',
             mt: 4,
+            gap: 1,
           },
           isSm && {
             flexDirection: 'column',
-            gap: 1,
           },
         ]}
       >
