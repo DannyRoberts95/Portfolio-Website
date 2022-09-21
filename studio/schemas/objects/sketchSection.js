@@ -20,10 +20,7 @@ export default {
       name: 'type',
       title: 'Type',
       initalValue: 'testSketch',
-      options: {
-        isHighlighted: true,
-        list: ['testSketch', 'interactiveRectangle']
-      },
+
       validation: Rule => Rule.required()
     },
     {

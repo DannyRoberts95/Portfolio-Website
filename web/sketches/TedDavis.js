@@ -34,7 +34,7 @@ export default (props) => {
     lay.reset()
     lay.clear()
 
-    lay.stroke(255)
+    lay.stroke(0, 255, 55)
     lay.noFill()
     lay.rotateY(p5.radians(p5.frameCount / 2))
     // lay.rotateX(p5.radians(px / 2))

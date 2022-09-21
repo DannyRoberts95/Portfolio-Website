@@ -13,14 +13,12 @@ export default (props) => {
 
   let lay,
     px = 0,
-    py = 0,
-    fb
+    py = 0
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(width || 0, height || 0).parent(canvasParentRef)
     // p5.frameRate(30)
     lay = p5.createGraphics(p5.width, p5.height, p5.WEBGL)
-    fb = p5.createImage(p5.width / 4, p5.height / 4)
     p5.imageMode(p5.CENTER)
     p5.background(0)
   }
@@ -34,24 +32,20 @@ export default (props) => {
     lay.reset()
     lay.clear()
 
-    lay.stroke(255)
     lay.noFill()
-    lay.rotateY(p5.radians(p5.frameCount / 2))
+
+    // lay.rotate(p5.radians(p5.frameCount / 2))
     // lay.rotateX(p5.radians(px / 2))
     // lay.rotateY(p5.radians(py / 2))
 
-    // lay.rotate(p5.radians(px))
-    lay.box(py + 100, px + 100)
+    lay.rotate(p5.radians(px))
+    lay.strokeWeight(2)
+    lay.stroke(255)
+    lay.box(py * 2)
 
-    p5.background(0, 15)
+    p5.background(0, 10)
     p5.translate(p5.width / 2, p5.height / 2)
     p5.image(lay, 0, 0)
-
-    // fb = p5.get(0, 0, p5.width, p5.height)
-    // const fbScl = 1.01
-    // const scl = 0.3
-    // fb.resize(p5.width * scl, p5.height * scl)
-    // p5.image(fb, 0, 0, p5.width * fbScl, p5.height * fbScl)
   }
 
   const windowResized = (p5, e) => {

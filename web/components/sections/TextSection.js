@@ -27,7 +27,8 @@ function TextSection(props) {
           sx={{
             flexDirection: item.reversed && !isSm ? 'row-reverse' : 'row',
             '>*': {
-              border: `1px solid ${theme.palette.primary.main}`,
+              borderLeft: `1px solid ${theme.palette.primary.main}`,
+              borderRight: `1px solid ${theme.palette.primary.main}`,
             },
             '>:last-of-type': {
               borderRight: 'none',
@@ -44,6 +45,7 @@ function TextSection(props) {
             md={6}
             sx={{
               p: 2,
+              borderTop: `2px solid ${theme.palette.primary.contrastText}`,
               backgroundColor: theme.palette.primary.main,
               color: theme.palette.primary.contrastText,
             }}
