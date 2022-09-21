@@ -17,7 +17,7 @@ function SectionTitle(props) {
       width="100%"
       sx={{
         position: 'sticky',
-        top: theme.shape.headerHeight - 18,
+        top: theme.shape.headerHeight,
         py: 1,
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,

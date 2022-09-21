@@ -68,7 +68,7 @@ const AppHeader = (props) => {
         }}
       >
         <Container maxWidth={false}>
-          <Toolbar disableGutters>
+          <Toolbar disableGutters sx={{minHeight: theme.shape.headerHeight}}>
             <Box
               sx={{
                 width: '100%',
@@ -108,7 +108,7 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar />
+      <Toolbar sx={{minHeight: theme.shape.headerHeight}} />
     </>
   )
 

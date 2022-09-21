@@ -8,7 +8,7 @@ const bgColor = '#fff'
 
 const errorColor = red[700]
 
-const headerHeight = 85
+const headerHeight = 75
 
 const headerFont = 'lexia mono, monospace, sans-serif'
 const bodyFont = 'lexia mono, monospace, sans-serif'
