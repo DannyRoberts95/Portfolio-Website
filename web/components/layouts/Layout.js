@@ -1,18 +1,63 @@
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 
-import {Box} from '@mui/material'
+import {Box, Fade, Grow} from '@mui/material'
 import {LogoJsonLd} from 'next-seo'
 import CookieBanner from '../CookieBanner'
 import Footer from '../Footer'
 import Header from '../Header'
+import {useRouter} from 'next/router'
+import {useEffect, useState} from 'react'
 
 function Layout(props) {
+  const router = useRouter()
   const {
     config,
     navigation: {mainNavigation, footerNavigation, footerText, navigationCTAs = []},
     children,
   } = props
+
+  const [transitioning, setTransitioning] = useState(false)
+
+  const fuckWithDocumentTitle = () => {
+    let fucks = 0
+    if (typeof document === undefined) return null
+    const chars = ['@', '!', '3', '&', '•', '*', '#', 'D', 'H', 'R', '{', '}']
+    const correctTitle = document.title
+
+    const fuckTitle = () => {
+      fucks++
+      console.log(fucks)
+      if (fucks < 10) {
+        document.title = [...document.title]
+          .map((char) => chars[Math.floor(Math.random() * chars.length)])
+          .join('')
+        setTimeout(() => fuckTitle(), Math.random() * fucks * 250)
+      } else {
+        document.title = correctTitle
+      }
+    }
+
+    fuckTitle()
+  }
+
+  const handleRouteChangeStart = () => {
+    setTransitioning(true)
+    fuckWithDocumentTitle()
+  }
+  const handleRouteChangeComplete = (url, {shallow}) => {
+    console.log(`App is routed`)
+    setTransitioning(false)
+  }
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [])
 
   if (!config) {
     console.error('Missing config')
@@ -37,7 +82,9 @@ function Layout(props) {
           logos={logos}
         />
 
-        <Box className="content">{children}</Box>
+        <Fade in={!transitioning} timeout={500}>
+          <Box className="content">{children}</Box>
+        </Fade>
 
         <Footer logos={logos} title={title} footerNavigation={footerNavigation} text={footerText} />
 

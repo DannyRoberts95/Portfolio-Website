@@ -2,13 +2,14 @@ import imageUrlBuilder from '@sanity/image-url'
 import groq from 'groq'
 import {NextSeo} from 'next-seo'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import client from '../client'
 import Layout from 'components/layouts/Layout'
 import RenderSections from 'components/RenderSections'
 import {linkSnippet} from 'utils/consts/groq/navigationQuery'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
+import {useRouter} from 'next/router'
 
 const pageFragment = `
 ...,
@@ -86,6 +87,8 @@ export const getServerSideProps = async ({params}) => {
 const builder = imageUrlBuilder(client)
 
 const LandingPage = (props) => {
+  const router = useRouter()
+
   const {
     title = '',
     description,
@@ -96,8 +99,6 @@ const LandingPage = (props) => {
     navigation,
     slug,
   } = props
-
-  console.log('page:', props.navigation.navigationCTAs)
 
   const firstSection = content[0]
 

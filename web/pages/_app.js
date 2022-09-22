@@ -45,25 +45,14 @@ class App extends BaseApp {
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width shrink-to-fit=no"
           />
-
-          {/* Facebook Verification */}
-          <meta name="facebook-domain-verification" content="wg6q4qblbm2y8i6d2j5q1fnzytxis9" />
         </Head>
-        {/* Hubspot */}
-        <Script
-          type="text/javascript"
-          strategy="lazyOnload"
-          id="hs-script-loader"
-          src="//js-na1.hs-scripts.com/21931412.js"
-        />
 
-        {/* Google Tag Manager */}
-        {/* Why can I not use the optimised script or this tag? */}
         <script
           async
           id="ga-script-loader"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
         />
+
         <Script
           id="ga-script"
           strategy="lazyOnload"

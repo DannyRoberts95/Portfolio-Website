@@ -53,6 +53,7 @@ const PostCard = (props) => {
         {
           ...sx,
           transition: 'all 0.3s',
+          height: '100%',
         },
         hovered && {
           backgroundColor: (theme) => theme.palette.primary.main,
@@ -63,7 +64,7 @@ const PostCard = (props) => {
       onMouseLeave={mouseOut}
       {...others}
     >
-      <CardActionArea LinkComponent={Link} href={href}>
+      <CardActionArea LinkComponent={Link} href={href} sx={{height: '100%'}}>
         <Box
           sx={{
             position: 'relative',
