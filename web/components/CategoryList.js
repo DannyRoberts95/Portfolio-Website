@@ -20,9 +20,6 @@ const CategoryList = (props) => {
 
   return (
     <Box sx={{position: 'relative', width: '100%'}}>
-      <Typography gutterBottom variant="body2">
-        Topics
-      </Typography>
       {scrollable && gradient}
       <Box
         sx={[

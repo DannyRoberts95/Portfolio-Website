@@ -17,7 +17,7 @@ export default function useOnScreen(ref) {
   )
 
   useEffect(() => {
-    observer.observe(ref.current)
+    ref?.current && observer.observe(ref.current)
     return () => {
       observer.disconnect()
     }

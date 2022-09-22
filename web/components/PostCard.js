@@ -50,12 +50,14 @@ const PostCard = (props) => {
 
   return (
     <Card
+      variant="outlined"
       elevation={0}
       sx={[
         {
           ...sx,
           transition: 'all 0.3s',
           height: '100%',
+          border: (theme) => `1px solid ${theme.palette.primary.main}`,
         },
         hovered && {
           backgroundColor: (theme) => theme.palette.primary.main,

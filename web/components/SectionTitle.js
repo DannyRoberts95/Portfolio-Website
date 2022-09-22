@@ -7,7 +7,7 @@ import techText from 'utils/helpers/techText'
 function SectionTitle(props) {
   const theme = useTheme()
 
-  const {block, sx} = props
+  const {block, sx, sticky} = props
   if (!block) return null
   const {heading, label} = block
   if (!heading || (!heading && !label)) return null
@@ -15,14 +15,15 @@ function SectionTitle(props) {
   return (
     <Box
       width="100%"
-      sx={{
-        position: 'sticky',
-        top: theme.shape.headerHeight,
-        py: 1,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        zIndex: 2,
-      }}
+      sx={[
+        {
+          py: 1,
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+          zIndex: 2,
+        },
+        sticky && {position: 'sticky', top: theme.shape.headerHeight},
+      ]}
       component={Paper}
       elevation={4}
     >

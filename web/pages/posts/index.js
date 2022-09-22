@@ -28,9 +28,6 @@ const Posts = (props) => {
 
   const [postList, setPostList] = useState(posts)
 
-  const latestPost = postList[0]
-  const othersPosts = postList.slice(1, postList.length)
-
   const handleChipClick = (val) => {
     if (selectedCategory === val) {
       router.push('/posts').then(() => getPostByCategory(null))
@@ -54,6 +51,7 @@ const Posts = (props) => {
 
   // Fetch the next 5 posts and add them to the list
   const loadAdditionalPosts = async () => {
+    console.log('Loading more...')
     const startIndex = postList.length
     const endIndex = startIndex + batchNumber
     const additionalPosts = await client.fetch(
@@ -92,17 +90,19 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionTitle block={{heading: 'Posts', label: router.query?.category || ''}} />
+      <SectionTitle
+        block={{heading: 'Outputs', label: router.query?.category || 'Assorted'}}
+        sticky={false}
+      />
+
       <SectionContainer>
-        <Grid container sx={{p: 2}}>
-          <Grid item container>
-            <CategoryList
-              categories={[...categories]}
-              selectedCategory={router?.query?.category}
-              handleSelection={handleChipClick}
-            />
-          </Grid>
-        </Grid>
+        <Box p={2}>
+          <CategoryList
+            categories={[...categories]}
+            selectedCategory={router?.query?.category}
+            handleSelection={handleChipClick}
+          />
+        </Box>
       </SectionContainer>
 
       <SectionContainer>
@@ -111,17 +111,13 @@ const Posts = (props) => {
             item
             container
             spacing={0}
-            sx={{
-              '>*': {
-                border: (theme) => `1px solid ${theme.palette.primary.main}`,
-              },
-              // '>:last-of-type': {
-              //   borderRight: 'none',
-              // },
-              // '>:first-of-type': {
-              //   borderLeft: 'none',
-              // },
-            }}
+            sx={
+              {
+                // '>*': {
+                //   border: (theme) => `1px solid ${theme.palette.primary.main}`,
+                // },
+              }
+            }
           >
             {posts.map((post) => (
               <Fade key={post.slug.current} in timeout={500}>
@@ -132,20 +128,18 @@ const Posts = (props) => {
             ))}
 
             {/* show the posts */}
-            {posts.length === 0 && !latestPost && (
+            {posts.length === 0 && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
                 No Posts to Display
               </Typography>
             )}
 
             {/* Get more posts when I enter the users viewPort */}
-            <span ref={loadMoreRef}>
-              <Fade in={!disableRequests} unmountOnExit>
-                <Grid item container justifyContent="center">
-                  <CircularProgress />
-                </Grid>
-              </Fade>
-            </span>
+            <Fade appear ref={loadMoreRef} in={!disableRequests} unmountOnExit>
+              <Grid item container justifyContent="center" sx={{p: 2}}>
+                <CircularProgress />
+              </Grid>
+            </Fade>
           </Grid>
         </Grid>
       </SectionContainer>
