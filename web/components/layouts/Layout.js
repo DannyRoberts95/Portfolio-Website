@@ -28,7 +28,7 @@ function Layout(props) {
     const fuckTitle = () => {
       fucks++
       console.log(fucks)
-      if (fucks < 10) {
+      if (fucks < 5) {
         document.title = [...document.title]
           .map((char) => chars[Math.floor(Math.random() * chars.length)])
           .join('')
@@ -43,10 +43,9 @@ function Layout(props) {
 
   const handleRouteChangeStart = () => {
     setTransitioning(true)
-    fuckWithDocumentTitle()
   }
   const handleRouteChangeComplete = (url, {shallow}) => {
-    console.log(`App is routed`)
+    fuckWithDocumentTitle()
     setTransitioning(false)
   }
 

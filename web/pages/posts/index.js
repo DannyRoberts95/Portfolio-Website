@@ -96,12 +96,6 @@ const Posts = (props) => {
       <SectionContainer>
         <Grid container sx={{p: 2}}>
           <Grid item container>
-            {/* <Typography variant="overline" color="primary">
-
-            </Typography> */}
-          </Grid>
-
-          <Grid item container>
             <CategoryList
               categories={[...categories]}
               selectedCategory={router?.query?.category}

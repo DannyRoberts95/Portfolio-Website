@@ -13,14 +13,16 @@ import Image from 'next/image'
 import Link from './CustomLink'
 import {useState} from 'react'
 
+import formatDate from '../utils/helpers/formatDate'
+
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
 
-const formatDate = (date) => {
-  const d = new Date(date)
-  return `${new Date(d).toLocaleString('en-us', {month: 'long', year: 'numeric', day: '2-digit'})}`
-}
+// const formatDate = (date) => {
+//   const d = new Date(date)
+//   return `${new Date(d).toLocaleString('en-us', {month: 'long', year: 'numeric', day: '2-digit'})}`
+// }
 
 const PostCard = (props) => {
   const {post, minimal, sx = {}, ...others} = props

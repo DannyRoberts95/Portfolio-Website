@@ -53,7 +53,7 @@ const InternalLink = (props) => {
       ]}
       {...others}
     >
-      {slug.current}
+      {isActiveSlug(slug.current) ? techtext(slug.current) : slug.current}
     </TypographyLink>
   )
 }
@@ -127,7 +127,7 @@ const PathLink = (props) => {
       href={path.toLowerCase()}
       {...others}
     >
-      {title}
+      {isActiveSlug(path.toLowerCase()) ? techtext(title) : title}
     </TypographyLink>
   )
 }

@@ -12,56 +12,58 @@ export default function SketchSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
   //accept a css value for the width and height of the sketch container
-  const {type, sectionTitle, body, ctas, reversed} = props
+  const {type, sectionTitle, body, ctas, reversed, fullWidth} = props
 
   const mediaHeight = isSm ? '50vh' : '100vh'
 
   return (
     <SectionContainer maxWidth={false}>
       <Grid container spacing={0} direction={reversed ? 'row-reverse' : 'row'}>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={[
-            {
-              borderRight: (theme) => `1px solid ${theme.palette.primary.main}`,
-            },
-            reversed && {
-              borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
-              borderRight: 'none',
-            },
-            isSm && {
-              border: 'none',
-              borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
-              borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
-            },
-          ]}
-        >
-          {sectionTitle && <SectionTitle block={sectionTitle} />}
-          <Container sx={{py: 2}}>
-            <StyledBlockContent blocks={body} />
+        {!fullWidth && (
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={[
+              {
+                borderRight: (theme) => `1px solid ${theme.palette.primary.main}`,
+              },
+              reversed && {
+                borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
+                borderRight: 'none',
+              },
+              isSm && {
+                border: 'none',
+                borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
+                borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
+              },
+            ]}
+          >
+            {sectionTitle && <SectionTitle block={sectionTitle} />}
+            <Container sx={{py: 2}}>
+              <StyledBlockContent blocks={body} />
 
-            {ctas && (
-              <Box
-                sx={{
-                  mt: 2,
-                  display: 'flex',
-                  width: '100%',
-                  '> *:not(:first-of-type)': {ml: 2},
-                }}
-              >
-                {ctas.map((cta) => (
-                  <Cta {...cta} key={cta._key} />
-                ))}
-              </Box>
-            )}
-          </Container>
-        </Grid>
+              {ctas && (
+                <Box
+                  sx={{
+                    mt: 2,
+                    display: 'flex',
+                    width: '100%',
+                    '> *:not(:first-of-type)': {ml: 2},
+                  }}
+                >
+                  {ctas.map((cta) => (
+                    <Cta {...cta} key={cta._key} />
+                  ))}
+                </Box>
+              )}
+            </Container>
+          </Grid>
+        )}
         <Grid
           item
           xs={12}
-          md={6}
+          md={fullWidth ? 12 : 6}
           sx={[
             {
               position: 'sticky',

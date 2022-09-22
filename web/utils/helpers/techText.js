@@ -9,6 +9,7 @@ const legend = [
   {target: 'N', char: `/\\/`},
   {target: 'V', char: `\\/`},
   {target: 'W', char: `\\/\\/`},
+  {target: 'S', char: `5`},
 ]
 
 export default function techtext(str) {

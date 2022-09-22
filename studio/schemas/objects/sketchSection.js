@@ -10,6 +10,12 @@ export default {
     },
     {
       type: 'boolean',
+      name: 'fullWidth',
+      title: 'Fullwidth',
+      initalValue: false
+    },
+    {
+      type: 'boolean',
       name: 'reversed',
       title: 'Reverse Layout',
       initalValue: false

@@ -23,14 +23,9 @@ import PostBlockContent from 'components/PostBlockContent'
 import ShareButton from 'components/ShareButton'
 
 import {useEffect, useState} from 'react'
-
+import formatDate from '../utils/helpers/formatDate'
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
-}
-
-const formatDate = (date) => {
-  const d = new Date()
-  return `${new Date(d).toLocaleString('en-us', {month: 'long', year: 'numeric'})}`
 }
 
 const Post = (props) => {
