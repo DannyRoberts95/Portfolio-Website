@@ -1,10 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {Box, Container, Divider, Grid, Typography, useMediaQuery} from '@mui/material'
-import StyledBlockContent from '../StyledBlockContent'
-import SectionTitle from '../SectionTitle'
-import SectionContainer from '../SectionContainer'
 import {useTheme} from '@emotion/react'
+import {Grid, Typography, useMediaQuery} from '@mui/material'
+import PropTypes from 'prop-types'
+import SectionContainer from '../SectionContainer'
+import SectionTitle from '../SectionTitle'
+import StyledBlockContent from '../StyledBlockContent'
 
 function TextSection(props) {
   const {sectionTitle, sections} = props

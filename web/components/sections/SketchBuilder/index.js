@@ -1,9 +1,8 @@
-import React, {useEffect, useState, useRef} from 'react'
-import capitalizeString from '../../../utils/capitalizeString'
-import * as SketchComponents from '../../../sketches'
-import useOnScreen from '../../../hooks/useOnScreen'
 import {Box} from '@mui/system'
-import {Fade} from '@mui/material'
+import {useEffect, useRef, useState} from 'react'
+import useOnScreen from '../../../hooks/useOnScreen'
+import * as SketchComponents from '../../../sketches'
+import capitalizeString from '../../../utils/capitalizeString'
 
 function isServerSide() {
   return !(typeof window != 'undefined' && window.document)

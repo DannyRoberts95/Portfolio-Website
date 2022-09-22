@@ -4,6 +4,16 @@ export default {
   title: 'Hero',
   fields: [
     {
+      name: 'dark',
+      type: 'boolean',
+      title: 'Dark'
+    },
+    {
+      name: 'blendText',
+      type: 'boolean',
+      title: 'Blend Text'
+    },
+    {
       name: 'heading',
       type: 'string',
       title: 'Heading'
@@ -12,11 +22,6 @@ export default {
       name: 'tagline',
       type: 'string',
       title: 'Tagline'
-    },
-    {
-      name: 'dark',
-      type: 'boolean',
-      title: 'Dark'
     },
     {
       name: 'backgroundImage',

@@ -87,6 +87,7 @@ function ImageSection(props) {
           md={6}
           sx={[
             {
+              position: 'relative',
               maxHeight: mediaHeight,
               borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
             },
@@ -101,17 +102,6 @@ function ImageSection(props) {
             },
           ]}
         >
-          <Typography
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: '-1',
-            }}
-          >
-            {techtext('LOADING...')}
-          </Typography>
           {image && (
             <Box sx={{position: 'sticky', top: theme.shape.headerHeight}}>
               <Image
@@ -121,7 +111,7 @@ function ImageSection(props) {
                 width={dimensiosns?.width || null}
                 height={dimensiosns?.height || null}
                 loading="lazy"
-                quality={50}
+                quality={85}
                 blurDataURL={builder.image(image).url()}
                 src={builder.image(image).url()}
                 alt={image.alt}
@@ -131,61 +121,6 @@ function ImageSection(props) {
         </Grid>
       </Grid>
     </SectionContainer>
-
-    // <SectionContainer maxWidth="lg" sectionGap="sm">
-    //   <Stack
-    //     sx={[
-    //       {width: '100%', flexDirection: 'row', alignItems: 'center'},
-    //       reversed && {flexDirection: 'row-reverse'},
-    //       isSm && {flexDirection: 'column-reverse'},
-    //     ]}
-    //   >
-    //     <Box sx={[{flexBasis: '50%'}, isSm && {flexBasis: '100%', borderRadius: 2}]}>
-    //       {sectionTitle && <SectionTitle block={sectionTitle} />}
-
-    //       {text && <StyledBlockContent blocks={text} />}
-
-    //       <Box sx={{my: 3}}>{cta && <Cta {...cta} color={cta.isPrimary ? null : 'primary'} />}</Box>
-    //     </Box>
-
-    //     <Grow in timeout={1500}>
-    //       <Box
-    //         component="figure"
-    //         sx={[
-    //           {
-    //             flexBasis: '50%',
-    //             width: '100%',
-    //             m: 4,
-    //             position: 'relative',
-    //           },
-    //           isSm && {flexBasis: '100%', borderRadius: 2, height: 100, m: 2},
-    //           elevateImage && {overflow: 'hidden', boxShadow: theme.shadows[4]},
-    //         ]}
-    //       >
-    //         {image && (
-    //           <Image
-    //             objectFit="contain"
-    //             layout="responsive"
-    //             placeholder="blur"
-    //             width={dimensiosns?.width || null}
-    //             height={dimensiosns?.height || null}
-    //             loading="lazy"
-    //             quality={50}
-    //             blurDataURL={builder.image(image).url()}
-    //             src={builder.image(image).url()}
-    //             // styles={{
-    //             //   display: 'block',
-    //             //   maxInlineSize: ' 100%',
-    //             //   blockSize: 'auto',
-    //             //   aspectRatio: aspectRatio,
-    //             // }}
-    //             alt={image.alt}
-    //           />
-    //         )}
-    //       </Box>
-    //     </Grow>
-    //   </Stack>
-    // </SectionContainer>
   )
 }
 

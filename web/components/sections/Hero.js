@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import {useTheme} from '@emotion/react'
+import {Container, Fade, Typography, useMediaQuery} from '@mui/material'
+import {Box} from '@mui/system'
 import imageUrlBuilder from '@sanity/image-url'
+import Image from 'next/image'
+import PropTypes from 'prop-types'
+import {useState} from 'react'
+import ReactPlayer from 'react-player'
 import client from '../../client'
 import Cta from '../Cta'
-import {useTheme} from '@emotion/react'
-import {Container, Divider, Fade, Typography, useMediaQuery} from '@mui/material'
-import {Box} from '@mui/system'
-import ReactPlayer from 'react-player'
-import Image from 'next/image'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source.asset)
@@ -24,7 +24,7 @@ function Hero(props) {
   const [loadedVideo, setloadedVideo] = useState(false)
   const handleVideoLoaded = () => setloadedVideo(true)
 
-  const {heading, backgroundImage, backgroundVideo, tagline, ctas, dark} = props
+  const {heading, backgroundImage, backgroundVideo, tagline, ctas, blendText, dark} = props
 
   const bgColor = () => {
     if (backgroundImage || backgroundVideo) return null
@@ -56,7 +56,6 @@ function Hero(props) {
           <Box
             id="heroImageContainer"
             sx={{
-              zIndex: -1,
               overflow: 'hidden',
               position: 'absolute',
               backgroundColor: theme.palette.primary.main,
@@ -130,7 +129,7 @@ function Hero(props) {
           sx={[
             {
               mb: 2,
-              ...((backgroundImage || backgroundVideo) && {mixBlendMode: 'exclusion'}),
+              ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
             },
             isMd && {
               lineHeight: 1.25,

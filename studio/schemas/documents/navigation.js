@@ -64,8 +64,7 @@ export default {
             select: { columnTitle: 'columnTitle' },
             prepare({ columnTitle }) {
               return {
-                title: 'Footer Column',
-                subTitle: columnTitle
+                title: columnTitle
               }
             }
           }

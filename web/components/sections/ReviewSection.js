@@ -1,5 +1,3 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
 import {
   Box,
   Button,
@@ -8,16 +6,14 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Container,
   Dialog,
   Rating,
-  Typography,
-  useMediaQuery,
 } from '@mui/material'
-import {useTheme} from '@emotion/react'
-import StyledBlockContent from '../StyledBlockContent'
+import PropTypes from 'prop-types'
+import React, {useState} from 'react'
 import SectionContainer from '../SectionContainer'
 import SectionTitle from '../SectionTitle'
+import StyledBlockContent from '../StyledBlockContent'
 
 const Review = ({review, ...others}) => {
   const [open, setOpen] = useState(false)

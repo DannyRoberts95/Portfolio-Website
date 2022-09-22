@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import {Box} from '@mui/system'
-import {Container, Fade, Typography} from '@mui/material'
 import {useTheme} from '@emotion/react'
-import MailchimpInput from '../MailchimpInput'
-import fireGtag from '../../utils/fireGtag'
-import {useRouter} from 'next/router'
-import Image from 'next/image'
+import {Container, Typography} from '@mui/material'
+import {Box} from '@mui/system'
 import imageUrlBuilder from '@sanity/image-url'
+import Image from 'next/image'
+import {useRouter} from 'next/router'
+import PropTypes from 'prop-types'
 import client from '../../client'
+import fireGtag from '../../utils/fireGtag'
+import MailchimpInput from '../MailchimpInput'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source.asset)
