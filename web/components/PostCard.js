@@ -11,6 +11,7 @@ import {Box} from '@mui/system'
 import Image from 'next/image'
 
 import Link from './CustomLink'
+import {useState} from 'react'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -22,13 +23,17 @@ const formatDate = (date) => {
 }
 
 const PostCard = (props) => {
-  const {post, minimal, ...others} = props
+  const {post, minimal, sx = {}, ...others} = props
+
+  const [hovered, setHovered] = useState(null)
+
+  const mouseIn = () => setHovered(true)
+  const mouseOut = () => setHovered(false)
 
   if (!post) return null
 
   const {
     title = 'Missing title',
-    author = null,
     slug,
     publishedAt,
     categories,
@@ -42,7 +47,22 @@ const PostCard = (props) => {
   const {image, alt} = illustration
 
   return (
-    <Card elevation={0} sx={{border: '1px solid balck'}} {...others}>
+    <Card
+      elevation={0}
+      sx={[
+        {
+          ...sx,
+          transition: 'all 0.3s',
+        },
+        hovered && {
+          backgroundColor: (theme) => theme.palette.primary.main,
+          color: (theme) => theme.palette.primary.contrastText,
+        },
+      ]}
+      onMouseEnter={mouseIn}
+      onMouseLeave={mouseOut}
+      {...others}
+    >
       <CardActionArea LinkComponent={Link} href={href}>
         <Box
           sx={{
@@ -63,14 +83,21 @@ const PostCard = (props) => {
             loading="lazy"
           />
         </Box>
-        <CardContent>
+        <CardContent sx={{p: 2}}>
           <Typography gutterBottom variant={!minimal ? 'h5' : 'subtitle2'}>
             {title}
           </Typography>
           {!minimal && (
             <Stack direction={'row'} flexWrap="wrap" gap={1} sx={{my: 1}}>
               {categories.map((cat) => (
-                <Chip key={cat} label={cat} size="small" color="primary" variant="outlined" />
+                <Chip
+                  key={cat}
+                  label={cat}
+                  sx={{transition: 'all 0.3s'}}
+                  size="small"
+                  color={hovered ? 'secondary' : 'primary'}
+                  variant="outlined"
+                />
               ))}
             </Stack>
           )}
@@ -86,8 +113,7 @@ const PostCard = (props) => {
           <Stack direction={'row'} justifyContent="space-between" sx={{mt: 1}}>
             <Stack direction="row" alignItems="center">
               <Stack>
-                {!minimal && <Typography variant="body2">{author.name}</Typography>}
-                <Typography variant="caption">
+                <Typography variant="overline">
                   {formatDate(publishedAt)} {readTime && ` · ${readTime} min read`}
                 </Typography>
               </Stack>

@@ -38,6 +38,7 @@ let theme = createTheme({
 
   typography: {
     fontFamily: headerFont,
+
     fontSize: 16,
     fontWeightRegular: 300,
     fontWeightMedium: 400,
@@ -48,40 +49,53 @@ let theme = createTheme({
       fontFamily: headerFont,
       fontWeight: 700,
       fontSize: '6rem',
+      textTransform: 'uppercase',
     },
     h2: {
       fontFamily: headerFont,
       fontWeight: 700,
       fontSize: '4rem',
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: headerFont,
       fontWeight: 700,
       fontSize: '2.5rem',
+      textTransform: 'uppercase',
     },
     h4: {
+      fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '2rem',
+      textTransform: 'uppercase',
     },
     h5: {
+      fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '2rem',
+      textTransform: 'uppercase',
     },
     h6: {
       fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '1.25rem',
+      textTransform: 'uppercase',
     },
     button: {
       fontFamily: headerFont,
       fontSize: '1rem',
+      textTransform: 'uppercase',
     },
     body1: {fontFamily: bodyFont},
     body2: {
       fontFamily: bodyFont,
       fontSize: '0.875rem',
     },
+    caption: {
+      textTransform: 'uppercase',
+    },
     overline: {
+      textTransform: 'uppercase',
       fontSize: '0.75rem',
     },
   },

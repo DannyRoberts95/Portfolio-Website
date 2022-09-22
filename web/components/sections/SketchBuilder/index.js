@@ -23,7 +23,6 @@ export default function SketchBuilder(props) {
 
 const SketchRenderer = (props) => {
   //grab the css width and height to style the container div
-  if (isServer) return null
 
   const {Sketch, width, height} = props
   const sketchContainerRef = useRef(null)
@@ -43,6 +42,8 @@ const SketchRenderer = (props) => {
       setSh(sketchContainerRef.current?.offsetHeight)
     })
   }
+
+  if (isServer) return null
 
   if (Sketch) {
     return (

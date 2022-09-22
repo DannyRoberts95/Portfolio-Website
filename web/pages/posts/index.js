@@ -1,10 +1,11 @@
 import {useTheme} from '@emotion/react'
-import {CircularProgress, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
+import {Box, CircularProgress, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
 import CategoryList from 'components/CategoryList'
 import LatestPostCard from 'components/LatestPostCard'
 import Layout from 'components/layouts/Layout'
 import PostCard from 'components/PostCard'
 import SectionContainer from 'components/SectionContainer'
+import SectionTitle from 'components/SectionTitle'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
@@ -91,15 +92,13 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
+      <SectionTitle block={{heading: 'Posts', label: router.query?.category || ''}} />
       <SectionContainer>
-        <Grid item container sx={{mt: 2, mb: 2}}>
-          <Grid item container sx={{display: 'block'}}>
-            <Typography variant="overline" color="primary">
-              {router.query?.category || ''}
-            </Typography>
-            <Typography variant="h2" component="h1" gutterBottom>
-              Posts
-            </Typography>
+        <Grid container sx={{p: 2}}>
+          <Grid item container>
+            {/* <Typography variant="overline" color="primary">
+
+            </Typography> */}
           </Grid>
 
           <Grid item container>
@@ -113,20 +112,24 @@ const Posts = (props) => {
       </SectionContainer>
 
       <SectionContainer>
-        <Grid item container sx={{mt: 2, mb: 4}}>
-          {latestPost && (
-            <Fade in={Boolean(latestPost)}>
-              <Grid item container sx={[{minHeight: 400}, isSm && {minHeight: 420}]}>
-                <LatestPostCard post={latestPost} />
-              </Grid>
-            </Fade>
-          )}
-        </Grid>
-
-        <Grid container spacing={2}>
-          <Grid item container spacing={2}>
-            {/* show the posts */}
-            {othersPosts.map((post) => (
+        <Grid container>
+          <Grid
+            item
+            container
+            spacing={0}
+            sx={{
+              '>*': {
+                border: (theme) => `1px solid ${theme.palette.primary.main}`,
+              },
+              // '>:last-of-type': {
+              //   borderRight: 'none',
+              // },
+              // '>:first-of-type': {
+              //   borderLeft: 'none',
+              // },
+            }}
+          >
+            {posts.map((post) => (
               <Fade key={post.slug.current} in timeout={500}>
                 <Grid item xs={12} sm={6} md={4}>
                   <PostCard post={post} />
@@ -135,18 +138,20 @@ const Posts = (props) => {
             ))}
 
             {/* show the posts */}
-            {othersPosts.length === 0 && !latestPost && (
+            {posts.length === 0 && !latestPost && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
                 No Posts to Display
               </Typography>
             )}
 
             {/* Get more posts when I enter the users viewPort */}
-            <Grid ref={loadMoreRef} item container justifyContent="center">
-              <Fade in={!disableRequests}>
-                <CircularProgress />
+            <span ref={loadMoreRef}>
+              <Fade in={!disableRequests} unmountOnExit>
+                <Grid item container justifyContent="center">
+                  <CircularProgress />
+                </Grid>
               </Fade>
-            </Grid>
+            </span>
           </Grid>
         </Grid>
       </SectionContainer>

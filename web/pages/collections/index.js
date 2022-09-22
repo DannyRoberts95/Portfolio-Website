@@ -88,7 +88,7 @@ const Collections = (props) => {
         <Grid item container sx={{mt: 2}}>
           <Grid item container sx={{display: 'block'}}>
             <Typography variant="subtitle1" color="primary">
-              {router.query?.category || 'Aikido'}
+              {router.query?.category || ''}
             </Typography>
             <Typography variant="h2" component="h1" gutterBottom>
               Collections

@@ -31,7 +31,8 @@ const SectionContainer = forwardRef(function (props, ref) {
       sx={{
         py: getPadding(),
         backgroundColor: 'background.paper',
-        borderBottom: (theme) => `2px solid ${theme.palette.primary.main}`,
+        borderTop: (theme) => `1px solid ${theme.palette.primary.main}`,
+        borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
       }}
     >
       <Container disableGutters maxWidth={contentMaxWidth} {...others} sx={{...sx}}>

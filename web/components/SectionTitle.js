@@ -10,7 +10,7 @@ function SectionTitle(props) {
   const {block, sx} = props
   if (!block) return null
   const {heading, label} = block
-  if (!heading && !label) return null
+  if (!heading || (!heading && !label)) return null
 
   return (
     <Box

@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Box, Chip} from '@mui/material'
+import {Box, Chip, Typography} from '@mui/material'
 
 const CategoryList = (props) => {
   const {categories, selectedCategory, scrollable = true, handleSelection = () => {}} = props
@@ -9,7 +9,7 @@ const CategoryList = (props) => {
       sx={{
         width: '10%',
         height: '100%',
-        zIndex: 2,
+        zIndex: 1.1,
         position: 'absolute',
         right: 0,
         backgroundImage:
@@ -20,9 +20,9 @@ const CategoryList = (props) => {
 
   return (
     <Box sx={{position: 'relative', width: '100%'}}>
-      {/* <Typography gutterBottom variant="body2">
+      <Typography gutterBottom variant="body2">
         Topics
-      </Typography> */}
+      </Typography>
       {scrollable && gradient}
       <Box
         sx={[

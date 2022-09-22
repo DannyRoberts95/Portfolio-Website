@@ -73,7 +73,6 @@ function GridSection(props) {
       {tiles && (
         <Grid
           container
-          spacing={getTileSpacing()}
           justifyContent={centered ? 'center' : 'flex-start'}
           sx={{
             '>*': {
@@ -95,7 +94,7 @@ function GridSection(props) {
                 key={tile._key}
                 sx={{
                   // border: (theme) => `1px solid ${theme.palette.primary.main}`,
-                  p: 0,
+                  boxSizing: 'border-box',
                 }}
               >
                 <Box sx={{p: 2}}>
