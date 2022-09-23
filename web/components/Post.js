@@ -24,6 +24,7 @@ import ShareButton from 'components/ShareButton'
 
 import {useEffect, useState} from 'react'
 import formatDate from '../utils/helpers/formatDate'
+import SectionContainer from './SectionContainer'
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
@@ -54,7 +55,7 @@ const Post = (props) => {
 
   return (
     <Box id={_id} {...others}>
-      <Container maxWidth={'lg'} sx={{my: 2, overflowX: 'hidden'}}>
+      <SectionContainer maxWidth={'xl'} sx={{p: 2, overflowX: 'hidden'}}>
         <Typography variant="h2" component="h1" sx={{my: 1}}>
           {title}
         </Typography>
@@ -83,10 +84,9 @@ const Post = (props) => {
           </Stack>
           <ShareButton exposed={!isSm} />
         </Stack>
+      </SectionContainer>
 
-        <Divider />
-      </Container>
-      <Container>
+      <SectionContainer sx={{p: 2}}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
             <TableOfContents
@@ -119,7 +119,7 @@ const Post = (props) => {
             </Button>
           </Box>
         </Grid>
-      </Container>
+      </SectionContainer>
     </Box>
   )
 }

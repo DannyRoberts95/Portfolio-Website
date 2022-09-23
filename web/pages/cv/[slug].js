@@ -34,13 +34,13 @@ const PostPage = (props) => {
   return (
     <>
       <Layout config={config} navigation={navigation} transparentHeader>
-        <NextSeo title={'title'} titleTemplate={`%s | ${config.title}`} description={'summary'} />
+        <NextSeo title={'CV'} titleTemplate={`%s | ${config.title}`} description={'summary'} />
         {illustration && <HeroImage image={image} caption={caption} alt={alt} />}
         <SectionContainer>
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             <Grid item xs={4}>
               {/* Personal info */}
-              <Box sx={{border: '1px solid black', p: 2, mb: 3}}>
+              <Box sx={{border: '1px solid black', p: 2}}>
                 <Typography variant="overline" gutterBottom>
                   Personal Info
                 </Typography>

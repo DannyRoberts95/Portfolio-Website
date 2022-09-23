@@ -8,6 +8,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
+import techtext from 'utils/helpers/techText'
 
 function Layout(props) {
   const router = useRouter()
@@ -21,20 +22,20 @@ function Layout(props) {
 
   const fuckWithDocumentTitle = () => {
     let fucks = 0
+    let inc = 150
     if (typeof document === undefined) return null
     const chars = ['@', '!', '3', '&', '•', '*', '#', 'D', 'H', 'R', '{', '}']
     const correctTitle = document.title
 
     const fuckTitle = () => {
       fucks++
-      console.log(fucks)
-      if (fucks < 5) {
+      if (fucks < 7) {
         document.title = [...document.title]
           .map((char) => chars[Math.floor(Math.random() * chars.length)])
           .join('')
-        setTimeout(() => fuckTitle(), Math.random() * fucks * 250)
+        setTimeout(() => fuckTitle(), Math.random() * fucks * inc)
       } else {
-        document.title = correctTitle
+        document.title = techtext(correctTitle)
       }
     }
 

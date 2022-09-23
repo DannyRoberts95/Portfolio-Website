@@ -1,9 +1,9 @@
 import {responsiveFontSizes} from '@mui/material'
-import {grey, red, blue, orange} from '@mui/material/colors'
+import {grey, red, blue, green, lightBlue, lime} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 // const primaryColor = '#000'
-const primaryColor = grey[900]
+const primaryColor = '#000'
 const secondaryColor = '#fff'
 const bgColor = '#fff'
 

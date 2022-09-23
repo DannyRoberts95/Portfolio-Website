@@ -64,11 +64,10 @@ const AppHeader = (props) => {
           borderBottom: `2px solid ${theme.palette.primary.main}`,
           display: 'flex',
           justifyContent: 'center',
-          minHeight: theme.shape.headerheight,
         }}
       >
         <Container maxWidth={false}>
-          <Toolbar disableGutters sx={{minHeight: theme.shape.headerHeight}}>
+          <Toolbar disableGutters>
             <Box
               sx={{
                 width: '100%',
@@ -78,7 +77,7 @@ const AppHeader = (props) => {
                 justifyContent: 'space-between',
               }}
             >
-              <Logo logo={logos['primary']} alt={title} my={1} />
+              <Logo logo={logos['primary']} alt={title} size={45} />
 
               <Box sx={{display: {xs: 'none', md: 'flex'}, gap: 2.5, my: 1, alignItems: 'center'}}>
                 {navItems.map((item) => (
@@ -108,7 +107,7 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar sx={{minHeight: theme.shape.headerHeight}} />
+      <Toolbar />
     </>
   )
 
@@ -148,10 +147,7 @@ const AppHeader = (props) => {
           <Divider />
 
           <Box sx={{justifySelf: 'flex-end'}}>
-            {ctas &&
-              ctas.map((cta) => (
-                <Cta {...cta} key={cta._key} sx={{mr: 1}} variant="outlined" fullWidth />
-              ))}
+            {ctas && ctas.map((cta) => <Cta {...cta} key={cta._key} />)}
           </Box>
         </Box>
       </Container>

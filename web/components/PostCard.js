@@ -14,6 +14,8 @@ import Link from './CustomLink'
 import {useState} from 'react'
 
 import formatDate from '../utils/helpers/formatDate'
+import techText from '../utils/helpers/techText'
+import techtext from '../utils/helpers/techText'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -73,7 +75,7 @@ const PostCard = (props) => {
           sx={{
             position: 'relative',
             width: '100%',
-            height: minimal ? 100 : 150,
+            height: minimal ? 100 : 175,
             overflow: 'hidden',
           }}
         >
@@ -89,6 +91,7 @@ const PostCard = (props) => {
           />
         </Box>
         <CardContent sx={{p: 2}}>
+          <Typography variant={'overline'}>{techtext(title)}</Typography>
           <Typography gutterBottom variant={!minimal ? 'h5' : 'subtitle2'}>
             {title}
           </Typography>
@@ -106,14 +109,14 @@ const PostCard = (props) => {
               ))}
             </Stack>
           )}
-          {!minimal && (
+          {/* {!minimal && (
             <Box sx={{display: {sm: 'none', md: 'block'}}}>
               <Typography gutterBottom variant="body2">
                 {summary}
               </Typography>
               <Divider sx={{my: 1}} />
             </Box>
-          )}
+          )} */}
 
           <Stack direction={'row'} justifyContent="space-between" sx={{mt: 1}}>
             <Stack direction="row" alignItems="center">

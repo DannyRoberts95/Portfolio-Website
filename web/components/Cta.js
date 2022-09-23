@@ -39,7 +39,7 @@ function Cta(props) {
         LinkComponent={Link}
         href={buildLinkSrc(navLink)}
         variant={isPrimary ? 'contained' : 'outlined'}
-        color={isPrimary ? 'secondary' : 'primary'}
+        color={'primary'}
         onClick={handleClick}
         {...(navLink.linkType === 'external' && externalProps)}
         {...others}

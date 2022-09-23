@@ -1,6 +1,7 @@
 import {useTheme} from '@emotion/react'
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
+import techtext from 'utils/helpers/techText'
 import SectionContainer from '../SectionContainer'
 import SectionTitle from '../SectionTitle'
 import StyledBlockContent from '../StyledBlockContent'
@@ -55,7 +56,7 @@ function TextSection(props) {
               fontStyle={'italic'}
               fontWeight={300}
             >
-              {item.sectionTitle}
+              {techtext(item.sectionTitle)}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={8} md={6} sx={{p: 2}}>
