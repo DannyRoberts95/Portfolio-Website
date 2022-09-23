@@ -22,7 +22,7 @@ function Layout(props) {
 
   const fuckWithDocumentTitle = () => {
     let fucks = 0
-    let inc = 150
+    let inc = 100
     if (typeof document === undefined) return null
     const chars = ['@', '!', '3', '&', '•', '*', '#', 'D', 'H', 'R', '{', '}']
     const correctTitle = document.title
@@ -36,6 +36,9 @@ function Layout(props) {
         setTimeout(() => fuckTitle(), Math.random() * fucks * inc)
       } else {
         document.title = techtext(correctTitle)
+        setTimeout(() => {
+          document.title = correctTitle
+        }, 500)
       }
     }
 

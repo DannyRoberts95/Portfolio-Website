@@ -29,7 +29,7 @@ const LightBox = (props) => {
       <Fade in={open}>
         <Box
           sx={{
-            p: isSm ? 2 : 4,
+            p: 2,
 
             cursor: 'zoom-out',
             backgroundColor: `rgba(0, 0, 0, 0.75)`,

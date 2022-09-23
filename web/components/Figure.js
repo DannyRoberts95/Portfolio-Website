@@ -61,7 +61,7 @@ function Figure(props) {
         ]}
       >
         <Image
-          objectFit="contain"
+          objectFit="cover"
           layout={!dimensiosns ? 'fill' : 'responsive'}
           width={dimensiosns?.width || null}
           height={dimensiosns?.height || null}

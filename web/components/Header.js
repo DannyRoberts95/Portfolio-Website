@@ -75,6 +75,7 @@ const AppHeader = (props) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                minHeight: (theme) => theme.shape.headerHeight,
               }}
             >
               <Logo logo={logos['primary']} alt={title} size={45} />

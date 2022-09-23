@@ -96,7 +96,7 @@ const Posts = (props) => {
       />
 
       <SectionContainer>
-        <Box p={2}>
+        <Box sx={{p: 2, position: 'sticky', top: 100}}>
           <CategoryList
             categories={[...categories]}
             selectedCategory={router?.query?.category}
@@ -107,18 +107,7 @@ const Posts = (props) => {
 
       <SectionContainer>
         <Grid container>
-          <Grid
-            item
-            container
-            spacing={0}
-            sx={
-              {
-                // '>*': {
-                //   border: (theme) => `1px solid ${theme.palette.primary.main}`,
-                // },
-              }
-            }
-          >
+          <Grid item container spacing={0}>
             {posts.map((post) => (
               <Fade key={post.slug.current} in timeout={500}>
                 <Grid item xs={12} sm={6} md={4}>
