@@ -35,43 +35,18 @@ export default function _404(props) {
           maxWidth={'lg'}
           sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh'}}
         >
-          <Box
-            sx={[
-              {
-                position: 'relative',
-                width: 200,
-                height: 200,
-                m: 4,
-                mt: 10,
-              },
-              isSm && {
-                width: 200,
-                height: 200,
-              },
-            ]}
-          >
-            <Image
-              src={'/assets/404.png'}
-              layout="fill"
-              objectFit="cover"
-              priority
-              styles={{
-                display: 'block',
-                maxInlineSize: ' 100%',
-              }}
-              alt={'404 Page not found'}
-            />
-          </Box>
-          <Typography variant="h5" align="center" gutterBottom>
-            <b>Whoops!</b>
-          </Typography>
-          <Typography variant="h6" align="center" sx={{mb: 4}}>
-            We couldn&apos;t find that page...
-          </Typography>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Typography variant="h1" align="center" sx={{mt: 6}}>
+              <b>404</b>
+            </Typography>
+            <Typography variant="h6" align="center" sx={{mb: 2}}>
+              We couldn&apos;t find that page
+            </Typography>
 
-          <Typography variant="caption" align="center">
-            Maybe one of these might help.
-          </Typography>
+            <Typography variant="caption" align="center">
+              Maybe one of these might help.
+            </Typography>
+          </Box>
 
           <Box sx={{display: 'flex', gap: 2, my: 2, alignItems: 'center'}}>
             <Stack direction="row" gap={2}>

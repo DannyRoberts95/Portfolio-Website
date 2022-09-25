@@ -28,7 +28,7 @@ export default (props) => {
 
   if (typeof window === undefined) return null
 
-  let tileNumber = isSm ? 8 : 18
+  let tileNumber = isSm ? 8 : 24
   let tileSize
   let px, py
   const chars = ['@', '!', '3', '&', '•', '*', '#', 'D', 'H', 'R', '{', '}']
@@ -39,7 +39,7 @@ export default (props) => {
     p5.rectMode(p5.CENTER)
     p5.cursor(p5.CROSS)
     p5.ellipseMode(p5.CENTER)
-    p5.strokeCap(p5.SQUARE)
+    p5.strokeCap(p5.ROUND)
     p5.angleMode(p5.DEGREES)
 
     px = p5.width / 2
@@ -49,16 +49,14 @@ export default (props) => {
   const draw = (p5) => {
     if (paused) return null
 
-    // console.log('mouseX', mouseX)
-    // console.log('mouseY', mouseY)
-    px = !p5.mouseX ? p5.noise(p5.frameCount * 0.01) * p5.width : p5.lerp(px, p5.mouseX, 0.03)
-    py = !p5.mouseY ? p5.noise(p5.frameCount * 0.01) * p5.height : p5.lerp(py, p5.mouseY, 0.03)
+    px = p5.lerp(px, p5.mouseX, 0.03)
+    py = p5.lerp(py, p5.mouseY, 0.03)
 
-    p5.randomSeed(1)
     p5.background(100)
+    p5.randomSeed(1)
 
     tileSize = p5.width / tileNumber
-    let sWidth = 10
+    let sWidth = 5
 
     for (let x = 0; x <= p5.width + tileSize; x += tileSize) {
       for (let y = 0; y <= p5.height; y += tileSize) {
@@ -70,14 +68,10 @@ export default (props) => {
         p5.push()
         p5.translate(posX, posY)
         p5.rotate(angle)
-
-        // p5.textSize(48)
-        // p5.textAlign(p5.CENTER)
-        // p5.text(chars[p5.floor(p5.random(0, chars.length))], 0, 0)
-
-        p5.stroke(0)
-        p5.strokeWeight(sWidth)
-        p5.line(-0, -0, size, size)
+        p5.text(0, 0, chars[0])
+        // p5.stroke(0)
+        // p5.strokeWeight(sWidth)
+        // p5.line(-0, -0, size, size)
         p5.pop()
       }
     }

@@ -68,7 +68,7 @@ export default function SketchSection(props) {
             {
               position: 'sticky',
               top: theme.shape.headerHeight,
-              maxHeight: mediaHeight,
+              height: mediaHeight,
               borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
             },
             reversed && {

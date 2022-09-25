@@ -12,18 +12,21 @@ const isServer = isServerSide()
 export default function SketchBuilder(props) {
   //accept a css value for the width and height of the sketch container
   const {type, width = '500px', height = '500px'} = props
+
+  console.log(props)
+  console.log('WxH', width, height)
   //Grab the sketch referenced by the parent or default to the first one
   const Sketch =
     SketchComponents[capitalizeString(type)] || SketchComponents[Object.keys(SketchComponents)[0]]
   //If the sketch exists then pass it to the renderer along with the css width and height from the parent...
   if (Sketch) return <SketchRenderer Sketch={Sketch} width={width} height={height} />
-  console.error('Cant find Sketch', type) // eslint-disable-line no-console
+
   return null
 }
 
 const SketchRenderer = (props) => {
   //grab the css width and height to style the container div
-
+  console.log('props2', props)
   const {Sketch, width, height} = props
   const sketchContainerRef = useRef(null)
   const onScreen = useOnScreen(sketchContainerRef)

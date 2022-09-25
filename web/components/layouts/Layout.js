@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 
-import {Box, Fade, Grow} from '@mui/material'
+import {Box, Fade, Grow, Slide} from '@mui/material'
 import {LogoJsonLd} from 'next-seo'
 import CookieBanner from '../CookieBanner'
 import Footer from '../Footer'
@@ -85,7 +85,7 @@ function Layout(props) {
           logos={logos}
         />
 
-        <Fade in={!transitioning} timeout={500}>
+        <Fade in={!transitioning} timeout={300}>
           <Box className="content">{children}</Box>
         </Fade>
 

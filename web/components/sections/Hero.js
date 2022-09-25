@@ -58,10 +58,10 @@ function Hero(props) {
             sx={{
               overflow: 'hidden',
               position: 'absolute',
-              backgroundColor: theme.palette.primary.main,
               minWidth: '100%',
               height: '100%',
               top: 0,
+              zIndex: -1,
             }}
           >
             <Image
@@ -143,7 +143,9 @@ function Hero(props) {
           align="center"
           gutterBottom
           variant={'h6'}
-          sx={{...((backgroundImage || backgroundVideo) && {mixBlendMode: 'exclusion'})}}
+          sx={{
+            ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
+          }}
         >
           {tagline}
         </Typography>

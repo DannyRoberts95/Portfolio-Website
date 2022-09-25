@@ -21,7 +21,7 @@ export default (props) => {
 
     p5.mousePressed = () => console.log(props)
 
-    p5.createCanvas(window.innerWidth, 500).parent(canvasParentRef)
+    p5.createCanvas(props.width, props.height).parent(canvasParentRef)
     p5.strokeCap(p5.SQUARE)
   }
 
