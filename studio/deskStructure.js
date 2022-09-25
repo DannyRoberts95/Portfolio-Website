@@ -11,6 +11,7 @@ const hiddenDocTypes = listItem =>
     'term',
     'site-config',
     'page',
+    'output',
     'site-navigation'
   ].includes(listItem.getId())
 
@@ -45,7 +46,7 @@ const siteSettingsStructure = S.listItem()
       ])
   )
 const learnStructure = S.listItem()
-  .title('Learn Content')
+  .title('Content')
   .child(
     S.list()
       // Sets a title for our new list
@@ -53,6 +54,7 @@ const learnStructure = S.listItem()
       // Each will pull one of our new singletons
       .items([
         S.documentTypeListItem('post').title('Posts'),
+        S.documentTypeListItem('output').title('Outputs'),
         S.documentTypeListItem('collection').title('Post Collections'),
         S.documentTypeListItem('person').title('Authors'),
         S.documentTypeListItem('category').title('Content Categories')

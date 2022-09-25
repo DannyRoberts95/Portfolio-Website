@@ -5,11 +5,12 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // Document types
+import cv from './documents/cv'
 import navigation from './documents/navigation'
+import output from './documents/output'
 import page from './documents/page'
 import route from './documents/route'
 import siteConfig from './documents/siteConfig'
-import cv from './documents/cv'
 
 // Object types
 import cta from './objects/cta'
@@ -17,8 +18,8 @@ import figure from './objects/figure'
 import internalLink from './objects/internalLink'
 import link from './objects/link'
 import navigationLink from './objects/navLink'
-import portableText from './objects/portableText'
 import pagePortableText from './objects/pagePortableText'
+import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
 //Learn Components
 import category from './documents/category'
@@ -34,12 +35,12 @@ import hero from './objects/hero'
 import imageSection from './objects/imageSection'
 import mailchimpSection from './objects/mailchimpSection'
 import reviewSection from './objects/reviewSection'
-import textSection from './objects/textSection'
 import sketchSection from './objects/sketchSection'
+import textSection from './objects/textSection'
 
 //post
-import illustration from './objects/illustration'
 import accordian from './objects/accordian'
+import illustration from './objects/illustration'
 
 import { embedCodeSnippet, embedHTML, embedVideo } from './objects/embeds'
 import exitIntentModal from './objects/exitIntentModal'
@@ -64,6 +65,7 @@ export default createSchema({
     navLinkDropdown,
     navigation,
     cta,
+    output,
     embedHTML,
     embedVideo,
     embedCodeSnippet,

@@ -26,7 +26,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'heading',
+      title: 'caption',
       media: 'illustration.image'
     },
     prepare({ title, media }) {
