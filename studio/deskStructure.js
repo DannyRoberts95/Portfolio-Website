@@ -12,6 +12,7 @@ const hiddenDocTypes = listItem =>
     'site-config',
     'page',
     'output',
+    'cv',
     'site-navigation'
   ].includes(listItem.getId())
 
@@ -54,9 +55,10 @@ const learnStructure = S.listItem()
       // Each will pull one of our new singletons
       .items([
         S.documentTypeListItem('post').title('Posts'),
+        S.documentTypeListItem('cv').title('CVs'),
         S.documentTypeListItem('output').title('Outputs'),
         S.documentTypeListItem('collection').title('Post Collections'),
-        S.documentTypeListItem('person').title('Authors'),
+        S.documentTypeListItem('person').title('People'),
         S.documentTypeListItem('category').title('Content Categories')
         // S.documentTypeListItem('term').title('Terms'),
       ])

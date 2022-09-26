@@ -10,7 +10,7 @@ import LightBox from './LightBox'
 const builder = imageUrlBuilder(client)
 
 function Figure(props) {
-  const {value, lightBox = false} = props
+  const {value, hideCaption, lightBox = false} = props
 
   const [lightBoxOpen, setLightBoxOpen] = useState(false)
 
@@ -28,7 +28,7 @@ function Figure(props) {
   const {aspectRatio, alt, caption, asset} = value
 
   if (!asset) {
-    return undefined
+    return null
   }
 
   switch (aspectRatio) {
@@ -47,7 +47,7 @@ function Figure(props) {
   }
 
   return (
-    <Box sx={{my: 2, display: 'flex', flexDirection: 'column'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column'}}>
       <Box
         component={'figure'}
         sx={[
@@ -74,7 +74,7 @@ function Figure(props) {
         />
       </Box>
 
-      {caption && (
+      {!hideCaption && caption && (
         <Typography variant="caption" color="textSecondary" sx={{mt: 1}}>
           //:{caption}
         </Typography>

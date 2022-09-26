@@ -25,6 +25,7 @@ export default {
       }
     },
     { type: 'figure' },
+    { type: 'accordian', title: 'Accordian' },
     { type: 'embedVideo' },
     { type: 'embedCodeSnippet', title: 'Code Snippet' }
   ]

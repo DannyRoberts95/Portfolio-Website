@@ -30,7 +30,7 @@ const CategoryList = (props) => {
           },
           scrollable && {
             flexWrap: 'nowrap',
-            overflowX: 'auto',
+            overflowX: 'scroll',
             webkitOverflowScrolling: 'touch',
             '&::-webkit-scrollbar': {
               display: 'none',

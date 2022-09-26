@@ -8,6 +8,8 @@ import {Box, Typography} from '@mui/material'
 import {useTheme} from '@emotion/react'
 import CustomLink from './CustomLink'
 
+import CustomAccordian from './CustomAccordian'
+
 //https://github.com/portabletext/react-portabletext
 
 function StyledBlockContent(props) {
@@ -153,6 +155,7 @@ function StyledBlockContent(props) {
           embedHTML: EmbedHTML,
           embedVideo: EmbedVideo,
           figure: Figure,
+          accordian: CustomAccordian,
         },
       }}
     />

@@ -2,13 +2,13 @@ import {useEffect, useState} from 'react'
 
 import isServer from '../utils/isServer'
 
-export default function useOnScreen(ref) {
+export default function useOnScreen(ref, threshold = 0) {
   const [isIntersecting, setIntersecting] = useState(false)
 
   if (isServer || !Boolean(ref)) return false
 
   let options = {
-    threshold: 0,
+    threshold,
   }
 
   const observer = new IntersectionObserver(

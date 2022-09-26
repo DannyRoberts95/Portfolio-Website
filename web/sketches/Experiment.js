@@ -9,7 +9,6 @@ import {useTheme} from '@emotion/react'
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
-
 const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
   ssr: false,
 })
@@ -51,8 +50,8 @@ export default (props) => {
 
     // console.log('mouseX', mouseX)
     // console.log('mouseY', mouseY)
-    px = !p5.mouseX ? p5.noise(p5.frameCount * 0.01) * p5.width : p5.lerp(px, p5.mouseX, 0.03)
-    py = !p5.mouseY ? p5.noise(p5.frameCount * 0.01) * p5.height : p5.lerp(py, p5.mouseY, 0.03)
+    px = !p5.mouseX ? p5.sin(p5.frameCount * 0.1) * p5.width : p5.lerp(px, p5.mouseX, 0.03)
+    py = !p5.mouseY ? p5.cos(p5.frameCount * 0.1) * p5.height : p5.lerp(py, p5.mouseY, 0.03)
 
     p5.randomSeed(1)
     p5.background(100)

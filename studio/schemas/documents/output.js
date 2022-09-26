@@ -44,8 +44,8 @@ export default {
       of: [
         {
           name: 'illustration',
-          title: 'Post Illustration',
-          type: 'illustration'
+          title: 'Illustration',
+          type: 'figure'
         }
       ],
       validation: Rule => Rule.unique()

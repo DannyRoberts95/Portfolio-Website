@@ -39,51 +39,16 @@ export default {
     {
       name: 'illustration',
       title: 'Header Image',
-      type: 'illustration'
+      type: 'figure'
+    },
+    //Person
+    {
+      name: 'person',
+      title: 'Person',
+      type: 'reference',
+      to: [{ type: 'person' }]
     },
 
-    // Personal
-    {
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-      fieldset: 'personal'
-    },
-    {
-      name: 'nationality',
-      title: 'Nationality',
-      type: 'string',
-      fieldset: 'personal'
-    },
-    {
-      name: 'dob',
-      title: 'Date of Birth',
-      type: 'date',
-      fieldset: 'personal'
-    },
-    //Links
-    {
-      name: 'links',
-      title: 'links',
-      type: 'array',
-      of: [{ title: 'Weblink', type: 'accordian' }],
-      fieldset: 'webLinks'
-    },
-    //Skills
-    {
-      title: 'Experienced With',
-      name: 'experienced',
-      type: 'array',
-      of: [{ type: 'string' }],
-      fieldset: 'skills'
-    },
-    {
-      title: 'Familiar With',
-      name: 'familiar',
-      type: 'array',
-      of: [{ type: 'string' }],
-      fieldset: 'skills'
-    },
     //Body
     {
       title: 'Main Section',

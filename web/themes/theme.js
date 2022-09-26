@@ -81,6 +81,16 @@ let theme = createTheme({
       fontSize: '1.25rem',
       textTransform: 'uppercase',
     },
+    subtitle1: {
+      fontWeight: 700,
+      fontFamily: headerFont,
+      textTransform: 'uppercase',
+    },
+    subtitle2: {
+      fontWeight: 700,
+      fontFamily: headerFont,
+      textTransform: 'uppercase',
+    },
     button: {
       fontFamily: headerFont,
       fontSize: '1rem',
@@ -160,6 +170,7 @@ let theme = createTheme({
         root: {
           textTransform: 'uppercase',
           borderRadius: 0,
+          border: `1px solid ${primaryColor}`,
         },
       },
     },

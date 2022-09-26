@@ -42,7 +42,6 @@ export default function SketchSection(props) {
             {sectionTitle && <SectionTitle block={sectionTitle} />}
             <Container sx={{py: 2}}>
               <StyledBlockContent blocks={body} />
-
               {ctas && (
                 <Box
                   sx={{

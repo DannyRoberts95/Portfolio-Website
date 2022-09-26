@@ -3,26 +3,26 @@ export default {
   name: 'accordian',
   title: 'Accordian',
   fields: [
-      {
-          type: 'string',
-          name: 'summary',
-          title: 'Accordian Summary',
-      },
-      {
-          type: 'portableText',
-          name: 'content',
-          title: 'Accordian Content',
-      },
+    {
+      type: 'string',
+      name: 'summary',
+      title: 'Accordian Summary'
+    },
+    {
+      type: 'simplePortableText',
+      name: 'content',
+      title: 'Accordian Content'
+    }
   ],
   preview: {
-      select: {
-          title: 'summary',
-      },
-      prepare({ title }) {
-          return {
-              title,
-              subtitle:"Accordian",
-          };
-      },
-  },
+    select: {
+      title: 'summary'
+    },
+    prepare({ title }) {
+      return {
+        title,
+        subtitle: 'Accordian'
+      }
+    }
+  }
 }
