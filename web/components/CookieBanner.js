@@ -54,11 +54,11 @@ export default function CookieBanner() {
       >
         <Stack direction={'row'} alignItems="center" gap={1}>
           <Typography variant="body2">
-            This site uses cookies for essentail functionality.
+            This site uses cookies for to see inside your brain.
           </Typography>
 
           <Button color="primary" onClick={handleClose} size="small">
-            Okay
+            Okay...
           </Button>
         </Stack>
       </Paper>

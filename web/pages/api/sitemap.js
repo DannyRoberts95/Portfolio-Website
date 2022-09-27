@@ -5,13 +5,18 @@ import client from '../../client'
 import {slugToAbsUrl} from '../../utils/urls'
 
 export default async function handler(req, res) {
-  const {allRoutesSlugs, baseUrl} = await client.fetch(groq`{
+  const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(groq`{
     // Get the slug of all routes that should be in the sitemap
     "allRoutesSlugs": *[
       _type == "route" &&
       !(_id in path("drafts.**")) &&
       includeInSitemap != false &&
       disallowRobots != true
+    ].slug.current,
+
+     "allPostSlugs": *[
+      _type == "post" &&
+      draft != false
     ].slug.current,
 
     // And the base site URL
@@ -21,7 +26,7 @@ export default async function handler(req, res) {
   const sitemap = `
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${allRoutesSlugs
+    ${[...allRoutesSlugs, ...allPostSlugs]
       .map(
         (slug) => `
     <url>

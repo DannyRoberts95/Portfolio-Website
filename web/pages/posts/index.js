@@ -1,7 +1,6 @@
 import {useTheme} from '@emotion/react'
 import {Box, CircularProgress, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
 import CategoryList from 'components/CategoryList'
-import LatestPostCard from 'components/LatestPostCard'
 import Layout from 'components/layouts/Layout'
 import PostCard from 'components/PostCard'
 import SectionContainer from 'components/SectionContainer'
@@ -91,7 +90,7 @@ const Posts = (props) => {
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
       <SectionTitle
-        block={{heading: 'Outputs', label: router.query?.category || 'Assorted'}}
+        block={{heading: 'Posts', label: router.query?.category || 'Assorted'}}
         sticky={false}
       />
 
