@@ -1,13 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {Box, Typography, Container, Paper} from '@mui/material'
 import {useTheme} from '@emotion/react'
+import {Box, Container, Paper, Typography} from '@mui/material'
+import PropTypes from 'prop-types'
 import techText from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
 
-  const {block, sx, sticky = true} = props
+  const {block, small, sx, ...others} = props
   if (!block) return null
   const {heading, label} = block
   if (!heading || (!heading && !label)) return null
@@ -21,15 +20,15 @@ function SectionTitle(props) {
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.primary.contrastText,
           zIndex: 2,
+          ...sx,
         },
-        sticky && {position: 'sticky', top: theme.shape.headerHeight},
       ]}
       component={Paper}
       elevation={2}
     >
       <Container maxWidth={false}>
-        <Typography variant="overline">{label}</Typography>
-        <Typography variant="h3" component={'h2'} letterSpacing={-1}>
+        {!small && <Typography variant="overline">{label}</Typography>}
+        <Typography variant={small ? 'h5' : 'h3'} component={'h2'}>
           {techText(heading)}
         </Typography>
       </Container>

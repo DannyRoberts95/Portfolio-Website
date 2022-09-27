@@ -1,22 +1,18 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import {useState} from 'react'
 
 import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
 
-import {useTheme} from '@emotion/react'
-import techText from 'utils/helpers/techText'
-import StyledBlockContent from './StyledBlockContent'
+import {Add, ExpandLess} from '@mui/icons-material'
 import {Typography} from '@mui/material'
-import {Add, ExpandMore, ExpandLess} from '@mui/icons-material'
 import {Box} from '@mui/system'
-import theme from 'themes/theme'
+import StyledBlockContent from './StyledBlockContent'
 
 function CustomAccordian({value}) {
-  const {content, summary, title} = value
+  const {content, summary, title, expanded = true} = value
 
-  const [open, setOpen] = useState(null)
+  const [open, setOpen] = useState(expanded)
 
   return (
     <Accordion
@@ -25,7 +21,7 @@ function CustomAccordian({value}) {
       onClick={() => setOpen(!open)}
       sx={{
         '::before': {backgroundColor: 'transparent'},
-        borderLeft: (theme) => `2px solid ${theme.palette.primary.main}`,
+        border: (theme) => `2px solid ${theme.palette.primary.main}`,
         my: 2,
       }}
     >

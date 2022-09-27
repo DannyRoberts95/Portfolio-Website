@@ -51,10 +51,39 @@ export default {
 
     //Body
     {
-      title: 'Main Section',
-      name: 'mainSection',
-      type: 'portableText',
-      fieldset: 'sections'
+      title: 'Main Sections',
+      type: 'array',
+      name: 'mainSections',
+      of: [
+        {
+          type: 'object',
+          name: 'mainSection',
+          fields: [
+            {
+              title: 'Title',
+              name: 'mainSectionTitle',
+              type: 'sectionTitle'
+            },
+            {
+              title: 'Main Section',
+              name: 'mainSectionContent',
+              type: 'portableText'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'mainSectionTitle'
+            },
+            prepare(selection) {
+              const { title } = selection
+              return {
+                title: title.heading,
+                subtitle: 'Section'
+              }
+            }
+          }
+        }
+      ]
     }
   ],
   preview: {

@@ -4,20 +4,20 @@ import groq from 'groq'
 import client from '../../client'
 
 import {Chip, Grid, Stack, Typography} from '@mui/material'
-import {Box} from '@mui/system'
 import Layout from 'components/layouts/Layout'
-import PostBlockContent from 'components/PostBlockContent'
 import SectionContainer from 'components/SectionContainer'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import HeroImage from '../../components/HeroImage'
 
-import formatDate from '../../utils/helpers/formatDate'
 import {useTheme} from '@emotion/react'
+import {Box} from '@mui/system'
+import SectionTitle from 'components/SectionTitle'
 import StyledBlockContent from 'components/StyledBlockContent'
+import formatDate from '../../utils/helpers/formatDate'
 
-const PostPage = (props) => {
+const CVPage = (props) => {
   const router = useRouter()
   const theme = useTheme()
   const {cv, config, navigation} = props
@@ -29,7 +29,7 @@ const PostPage = (props) => {
   }, [])
 
   if (!cv) return null
-  const {illustration} = cv
+  const {illustration, mainSections = []} = cv
   const {caption, alt} = illustration
   const {name, nationality, dob, bio, experienced, familiar} = cv.person
 
@@ -40,12 +40,11 @@ const PostPage = (props) => {
         {illustration && <HeroImage image={illustration} caption={caption} alt={alt} />}
         <SectionContainer>
           <Grid container spacing={0}>
-            <Grid item xs={4}>
+            {/* SideBar */}
+            <Grid item xs={12} md={4}>
               {/* Personal info */}
+              <SectionTitle small block={{heading: 'Info', label: 'Info'}} />
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="h5" gutterBottom>
-                  Personal Info
-                </Typography>
                 <Typography variant="body1" gutterBottom>
                   <b>Name: </b>
                   {name}
@@ -56,7 +55,7 @@ const PostPage = (props) => {
                 </Typography>
                 <Typography variant="body1" gutterBottom>
                   <b>DOB: </b>
-                  {formatDate(new Date(dob))}
+                  {formatDate(new Date(dob).toDateString())}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
                   <b>Bio:</b>
@@ -64,10 +63,8 @@ const PostPage = (props) => {
                 </Typography>
               </Stack>
               {/* Skills */}
+              <SectionTitle small block={{heading: 'Skills'}} />
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="h5" gutterBottom>
-                  Skillset
-                </Typography>
                 <Typography variant="h6" gutterBottom>
                   Experienced
                 </Typography>
@@ -88,10 +85,18 @@ const PostPage = (props) => {
             </Grid>
 
             {/* Main Section */}
-            <Grid item xs={8}>
-              <Box sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}}>
-                <StyledBlockContent blocks={cv.mainSection} />
-              </Box>
+            <Grid item xs={12} md={8}>
+              {mainSections.map((section) => (
+                <Grid item container>
+                  {console.log(section)}
+                  <Box sx={{border: `1px solid ${theme.palette.primary.main}`, width: '100%'}}>
+                    <SectionTitle small block={section.mainSectionTitle} />
+                    <Box sx={{p: 2}}>
+                      <StyledBlockContent blocks={section.mainSectionContent} />
+                    </Box>
+                  </Box>
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         </SectionContainer>
@@ -100,7 +105,7 @@ const PostPage = (props) => {
   )
 }
 
-PostPage.getInitialProps = async function (context) {
+CVPage.getInitialProps = async function (context) {
   const {slug = ''} = context.query
 
   const cv = await client.fetch(
@@ -125,4 +130,4 @@ PostPage.getInitialProps = async function (context) {
   }
 }
 
-export default PostPage
+export default CVPage

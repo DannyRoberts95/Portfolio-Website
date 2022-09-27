@@ -4,6 +4,11 @@ export default {
   title: 'Accordian',
   fields: [
     {
+      type: 'boolean',
+      name: 'exapnded',
+      title: 'Expanded'
+    },
+    {
       type: 'string',
       name: 'title',
       title: 'Title'

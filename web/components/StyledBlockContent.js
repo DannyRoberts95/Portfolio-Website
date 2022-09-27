@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
-import {PortableText} from '@portabletext/react'
-import Figure from './Figure'
-import EmbedVideo from './EmbedVideo'
-import EmbedHTML from './EmbedHTML'
-import {Box, Typography} from '@mui/material'
 import {useTheme} from '@emotion/react'
+import {Box, Typography} from '@mui/material'
+import {PortableText} from '@portabletext/react'
+import PropTypes from 'prop-types'
+import {useState} from 'react'
 import CustomLink from './CustomLink'
+import EmbedHTML from './EmbedHTML'
+import EmbedVideo from './EmbedVideo'
+import Figure from './Figure'
 
 import CustomAccordian from './CustomAccordian'
 
@@ -28,41 +28,7 @@ function StyledBlockContent(props) {
 
   const [blockStyles] = useState({
     //Centered Text Content
-    'body1-centered': ({children}) => (
-      <Typography variant="body1" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'body2-centered': ({children}) => (
-      <Typography variant="body2" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'h6-centered': ({children}) => (
-      <Typography variant="h6" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'h5-centered': ({children}) => (
-      <Typography variant="h5" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'h4-centered': ({children}) => (
-      <Typography variant="h4" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'h3-centered': ({children}) => (
-      <Typography variant="h3" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
-    'h2-centered': ({children}) => (
-      <Typography variant="h2" align="center" gutterBottom>
-        {children}
-      </Typography>
-    ),
+
     //Normal Text Content
     normal: ({children}) => (
       <Typography variant="body1" gutterBottom>
@@ -134,18 +100,18 @@ function StyledBlockContent(props) {
       components={{
         list: {
           bullet: ({children}) => (
-            <Box component={'ul'} sx={{px: 2}}>
-              {children}
+            <Box component={'ul'} sx={{px: 2, listStyleType: 'square'}}>
+              <Typography> {children}</Typography>
             </Box>
           ),
           number: ({children}) => (
             <Box component={'ol'} sx={{px: 2}}>
-              {children}
+              <Typography> {children}</Typography>
             </Box>
           ),
           checkmarks: ({children}) => (
             <Box component={'ol'} sx={{px: 2}}>
-              {children}
+              <Typography> {children}</Typography>
             </Box>
           ),
         },
