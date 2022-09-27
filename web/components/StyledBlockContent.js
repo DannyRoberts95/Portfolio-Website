@@ -19,7 +19,7 @@ function StyledBlockContent(props) {
     link: (props) => {
       const {value, children} = props
       return (
-        <CustomLink underline="hover" href={value?.href || '#'}>
+        <CustomLink underline="always" href={value?.href || '#'}>
           {children}
         </CustomLink>
       )

@@ -5,18 +5,23 @@ export default {
   fields: [
     {
       type: 'string',
-      name: 'summary',
-      title: 'Accordian Summary'
+      name: 'title',
+      title: 'Title'
     },
     {
-      type: 'simplePortableText',
+      type: 'portableText',
+      name: 'summary',
+      title: 'Summary Details'
+    },
+    {
+      type: 'portableText',
       name: 'content',
-      title: 'Accordian Content'
+      title: 'Content'
     }
   ],
   preview: {
     select: {
-      title: 'summary'
+      title: 'title'
     },
     prepare({ title }) {
       return {

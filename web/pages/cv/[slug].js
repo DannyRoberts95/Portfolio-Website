@@ -43,7 +43,7 @@ const PostPage = (props) => {
             <Grid item xs={4}>
               {/* Personal info */}
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Personal Info
                 </Typography>
                 <Typography variant="body1" gutterBottom>
@@ -65,7 +65,7 @@ const PostPage = (props) => {
               </Stack>
               {/* Skills */}
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="overline" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Skillset
                 </Typography>
                 <Typography variant="h6" gutterBottom>
@@ -86,6 +86,8 @@ const PostPage = (props) => {
                 </Stack>
               </Stack>
             </Grid>
+
+            {/* Main Section */}
             <Grid item xs={8}>
               <Box sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}}>
                 <StyledBlockContent blocks={cv.mainSection} />
