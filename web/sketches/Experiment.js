@@ -27,10 +27,6 @@ export default (props) => {
 
   if (typeof window === undefined) return null
 
-  const minRad = 10
-  const maxRad = 200
-  const circles = []
-
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(width || 0, height || 0).parent(canvasParentRef)
   }
