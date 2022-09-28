@@ -1,14 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import StyledBlockContent from './StyledBlockContent'
-import {Container, Grid, Stack, Typography, useMediaQuery} from '@mui/material'
-import {Box} from '@mui/system'
-import Logo from './Logo'
 import {useTheme} from '@emotion/react'
-import MailchimpInput from './MailchimpInput'
+import {Grid, Stack, Typography, useMediaQuery} from '@mui/material'
+import {Box} from '@mui/system'
+import PropTypes from 'prop-types'
 import fireGtag from '../utils/fireGtag'
+import Logo from './Logo'
 import NavItem from './NavItem'
 import SectionContainer from './SectionContainer'
+import StyledBlockContent from './StyledBlockContent'
 
 function chunkArray(items, size) {
   if (!items) return null
@@ -59,7 +57,6 @@ function Footer(props) {
           }}
         >
           <Logo logo={logos['primary']} alt={title} sx={{my: 2}} size="75px" />
-          {/* <MailchimpInput handleSumbitComplete={handleSumbitComplete} /> */}
         </Stack>
 
         <Grid container spacing={2} sx={{my: 4}}>

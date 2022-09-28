@@ -34,7 +34,6 @@ export default {
           type: 'imageSection'
         },
         { type: 'gridSection' },
-        { type: 'mailchimpSection' },
         { type: 'textSection' },
         { type: 'reviewSection' },
         { type: 'logSection' },

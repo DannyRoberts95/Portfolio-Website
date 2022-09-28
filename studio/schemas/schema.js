@@ -34,7 +34,6 @@ import contactSection from './objects/contactSection'
 import gridSection from './objects/gridSection'
 import hero from './objects/hero'
 import imageSection from './objects/imageSection'
-import mailchimpSection from './objects/mailchimpSection'
 import reviewSection from './objects/reviewSection'
 import sketchSection from './objects/sketchSection'
 import textSection from './objects/textSection'
@@ -48,7 +47,6 @@ import exitIntentModal from './objects/exitIntentModal'
 import externalLink from './objects/externalLink'
 import logos from './objects/logos'
 import { logEntry, logSection } from './objects/logSection'
-import { mailChimpTag, mailchimpTagArray } from './objects/mailChimpTags'
 import review from './objects/review'
 import sectionTitle from './objects/sectionTitle'
 import tile from './objects/tile'
@@ -85,11 +83,8 @@ export default createSchema({
     logos,
     link,
     contactSection,
-    mailchimpSection,
-    mailchimpTagArray,
     sectionTitle,
     accordian,
-    mailChimpTag,
     page,
     portableText,
     pagePortableText,

@@ -10,7 +10,6 @@ import client from '../client'
 import useExitIntent from '../hooks/useExitIntent'
 import {getCookie, setCookie} from '../utils/cookieHelpers'
 import fireGtag from '../utils/fireGtag'
-import MailchimpInput from './MailchimpInput'
 import StyledBlockContent from './StyledBlockContent'
 
 const EXIT_COOKIE_NAME = 'exitIntentModalShown'
@@ -67,7 +66,6 @@ export default function ExitIntentModal(props) {
             </Typography>
           )}
           {textBlocks && <StyledBlockContent blocks={textBlocks} />}
-          {<MailchimpInput handleSumbitComplete={handleSumbitComplete} />}
         </Box>
         <Box
           sx={[
