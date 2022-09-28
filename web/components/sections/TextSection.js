@@ -1,7 +1,6 @@
 import {useTheme} from '@emotion/react'
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
-import techtext from 'utils/helpers/techText'
 import SectionContainer from '../SectionContainer'
 import SectionTitle from '../SectionTitle'
 import StyledBlockContent from '../StyledBlockContent'
@@ -14,28 +13,17 @@ function TextSection(props) {
 
   return (
     <SectionContainer maxWidth={false}>
-      {sectionTitle && (
-        <SectionTitle
-          block={sectionTitle}
-          sx={{borderBottom: `1px solid ${theme.palette.primary.contrastText}`}}
-        />
-      )}
+      {sectionTitle && <SectionTitle block={sectionTitle} sticky={false} />}
       {sections.map((item) => (
         <Grid
           key={item._key}
           container
           sx={{
+            backgroundColor: theme.palette.background.default,
             flexDirection: item.reversed && !isSm ? 'row-reverse' : 'row',
-            '>*': {
-              borderLeft: `1px solid ${theme.palette.primary.main}`,
-              borderRight: `1px solid ${theme.palette.primary.main}`,
-            },
-            '>:last-of-type': {
-              borderRight: 'none',
-            },
-            '>:first-of-type': {
-              borderLeft: 'none',
-            },
+            border: `1px solid ${theme.palette.primary.main}`,
+            position: 'sticky',
+            top: theme.shape.headerHeight,
           }}
         >
           <Grid
@@ -43,21 +31,21 @@ function TextSection(props) {
             xs={12}
             sm={4}
             md={6}
-            sx={{
-              p: 2,
-              // border: `2px solid ${theme.palette.primary.contrastText}`,
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.primary.contrastText,
-            }}
+            sx={[
+              {
+                p: 2,
+                borderRight: `2px solid ${theme.palette.primary.main}`,
+              },
+              item.reversed &
+                {
+                  borderLeft: `2px solid ${theme.palette.primary.main}`,
+                },
+            ]}
           >
-            <Typography
-              variant="h3"
-              align={item.reversed ? 'right' : 'left'}
-              fontStyle={'italic'}
-              fontWeight={300}
-            >
-              {techtext(item.sectionTitle)}
+            <Typography variant="h5" align={item.reversed ? 'right' : 'left'} fontStyle={'italic'}>
+              {item.sectionTitle}
             </Typography>
+            {item.sectionSummary && <StyledBlockContent blocks={item.sectionSummary} />}
           </Grid>
           <Grid item xs={12} sm={8} md={6} sx={{p: 2}}>
             {item.sectionText && <StyledBlockContent blocks={item.sectionText} />}

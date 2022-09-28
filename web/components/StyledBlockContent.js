@@ -8,6 +8,7 @@ import EmbedHTML from './EmbedHTML'
 import EmbedVideo from './EmbedVideo'
 import Figure from './Figure'
 
+import Cta from './Cta'
 import CustomAccordian from './CustomAccordian'
 
 //https://github.com/portabletext/react-portabletext
@@ -31,17 +32,17 @@ function StyledBlockContent(props) {
 
     //Normal Text Content
     normal: ({children}) => (
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1" gutterBottom textAlign={'justify'}>
         {children}
       </Typography>
     ),
     body1: ({children}) => (
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1" gutterBottom textAlign={'justify'}>
         {children}
       </Typography>
     ),
     body2: ({children}) => (
-      <Typography variant="body2" gutterBottom>
+      <Typography variant="body2" gutterBottom textAlign={'justify'}>
         {children}
       </Typography>
     ),
@@ -70,7 +71,11 @@ function StyledBlockContent(props) {
         {children}
       </Typography>
     ),
-    h1: ({children}) => <Typography variant="h1">{children}</Typography>,
+    h1: ({children}) => (
+      <Typography variant="h1" gutterBottom>
+        {children}
+      </Typography>
+    ),
     blockquote: ({children}) => (
       <Typography
         variant="subtitle1"
@@ -122,6 +127,7 @@ function StyledBlockContent(props) {
           embedVideo: EmbedVideo,
           figure: Figure,
           accordian: CustomAccordian,
+          cta: ({value}) => <Cta sx={{my: 2}} {...value} />,
         },
       }}
     />

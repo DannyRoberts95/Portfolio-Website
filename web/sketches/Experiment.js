@@ -26,7 +26,7 @@ let radius = 500
 let resolution = charString.length * 4
 
 let innerRings = 5
-let agentSize = radius / (innerRings / 2)
+let agentSize = radius / innerRings
 
 let col, bgCol
 
@@ -71,9 +71,10 @@ export default (props) => {
     lay.strokeWeight(agentSize * 0.01)
     lay.stroke(255)
 
+    lay.noStroke()
     lay.translate(width / 2, height / 2)
 
-    lay.rotate(p5.frameCount * 0.005)
+    lay.rotate(p5.frameCount * 0.0025)
     // radius = p5.map(p5.mouseX, 0, p5.width, -p5.width * 1, p5.width * 1)
     // agentSize = p5.map(p5.mouseX, 0, p5.width, 16, p5.width * 1)
 
@@ -91,13 +92,13 @@ export default (props) => {
 
         lay.translate(x, y)
         lay.rotate(rotation)
-        lay.textSize(agentSize * scl)
+        lay.textSize(agentSize * 1.5)
         lay.text(charString[j % charString.length], 0, 0)
         lay.pop()
       }
     }
 
-    p5.background(255, 20)
+    p5.background(255)
     p5.image(lay, p5.width / 2, p5.height / 2, p5.width, p5.height)
 
     // // FEEDBACK

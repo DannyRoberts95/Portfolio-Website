@@ -1,17 +1,6 @@
 // [slug].js
 
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Container,
-  Divider,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
+import {Avatar, Box, Button, Chip, Grid, Stack, Typography, useMediaQuery} from '@mui/material'
 import imageUrlBuilder from '@sanity/image-url'
 import PropTypes from 'prop-types'
 import client from '../client'

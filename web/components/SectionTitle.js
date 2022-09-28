@@ -6,7 +6,7 @@ import techText from 'utils/helpers/techText'
 function SectionTitle(props) {
   const theme = useTheme()
 
-  const {block, small, sx, ...others} = props
+  const {block, small, sticky = true, sx, ...others} = props
   if (!block) return null
   const {heading, label} = block
   if (!heading || (!heading && !label)) return null
@@ -22,13 +22,17 @@ function SectionTitle(props) {
           zIndex: 2,
           ...sx,
         },
+        sticky && {
+          position: 'sticky',
+          top: theme.shape.headerHeight,
+        },
       ]}
       component={Paper}
       elevation={2}
     >
       <Container maxWidth={false}>
         {!small && <Typography variant="overline">{label}</Typography>}
-        <Typography variant={small ? 'h5' : 'h3'} component={'h2'}>
+        <Typography variant={small ? 'h6' : 'h4'} component={'h2'}>
           {techText(heading)}
         </Typography>
       </Container>

@@ -25,15 +25,20 @@ export default {
               type: 'string'
             },
             {
-              name: 'sectionText',
+              name: 'sectionSummary',
               type: 'portableText',
-              title: 'Section Text '
+              title: 'Section Summary '
             },
             {
               type: 'boolean',
               name: 'reversed',
               title: 'Reverse Layout',
               initalValue: false
+            },
+            {
+              name: 'sectionText',
+              type: 'portableText',
+              title: 'Section Text '
             }
           ]
         }

@@ -1,5 +1,5 @@
 import {responsiveFontSizes} from '@mui/material'
-import {grey, red, blue, green, lightBlue, lime} from '@mui/material/colors'
+import {grey, red} from '@mui/material/colors'
 import {createTheme} from '@mui/material/styles'
 
 // const primaryColor = '#000'
