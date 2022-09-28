@@ -26,7 +26,6 @@ export default function SketchBuilder(props) {
 
 const SketchRenderer = (props) => {
   //grab the css width and height to style the container div
-  console.log('props2', props)
   const {Sketch, width, height} = props
   const sketchContainerRef = useRef(null)
   const onScreen = useOnScreen(sketchContainerRef)

@@ -54,7 +54,11 @@ export default {
       name: 'url',
       type: 'url',
       title: 'URL',
-      fieldset: 'external'
+      fieldset: 'external',
+      validation: Rule =>
+        Rule.uri({
+          scheme: ['http', 'https', 'mailto', 'tel']
+        })
     },
     //Path
 
