@@ -38,7 +38,8 @@ export default {
         { type: 'textSection' },
         { type: 'reviewSection' },
         { type: 'logSection' },
-        { type: 'sketchSection' }
+        { type: 'sketchSection' },
+        { type: 'contactSection' }
       ]
     },
     {

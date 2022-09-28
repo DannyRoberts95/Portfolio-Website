@@ -30,6 +30,7 @@ import post from './documents/post'
 import term from './documents/term'
 
 // Page sections
+import contactSection from './objects/contactSection'
 import gridSection from './objects/gridSection'
 import hero from './objects/hero'
 import imageSection from './objects/imageSection'
@@ -83,6 +84,7 @@ export default createSchema({
     exitIntentModal,
     logos,
     link,
+    contactSection,
     mailchimpSection,
     mailchimpTagArray,
     sectionTitle,

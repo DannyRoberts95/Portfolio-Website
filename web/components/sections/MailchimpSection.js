@@ -42,7 +42,7 @@ export default function MailchimpSection(props) {
     <Box
       component="section"
       sx={{
-        color: '#fff',
+        // color: '#fff',
         textShadow: ' 0 2px 2px rgba(0, 0, 0, 0.33)',
         position: 'relative',
         py: 8,
@@ -55,8 +55,8 @@ export default function MailchimpSection(props) {
           zIndex: -4,
           overflow: 'hidden',
           position: 'absolute',
-          backgroundColor: theme.palette.primary.dark,
-          backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+          // backgroundColor: theme.palette.primary.dark,
+          // backgroundImage: `linear-gradient(45deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
           minWidth: '100%',
           height: '100%',
           top: 0,
