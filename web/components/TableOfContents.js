@@ -41,7 +41,7 @@ const TableOfContents = (props) => {
             key={header.id + header.innerHTML}
             onClick={() => handleClicked(header.id)}
           >
-            {header.innerText}
+            <Typography variant="body2">{header.innerText}</Typography>
           </ListItemButton>
         ))}
       </List>

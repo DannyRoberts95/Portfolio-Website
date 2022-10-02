@@ -13,8 +13,6 @@ export default function SketchBuilder(props) {
   //accept a css value for the width and height of the sketch container
   const {type, width = '500px', height = '500px'} = props
 
-  console.log(props)
-  console.log('WxH', width, height)
   //Grab the sketch referenced by the parent or default to the first one
   const Sketch =
     SketchComponents[capitalizeString(type)] || SketchComponents[Object.keys(SketchComponents)[0]]

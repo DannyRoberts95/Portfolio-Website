@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import {useMediaQuery} from '@mui/material'
 import dynamic from 'next/dynamic'
-import {Fade, Grow, useMediaQuery} from '@mui/material'
 
-import client from 'client'
-import imageUrlBuilder from '@sanity/image-url'
 import {useTheme} from '@emotion/react'
+import imageUrlBuilder from '@sanity/image-url'
+import client from 'client'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -28,10 +27,9 @@ export default (props) => {
 
   if (typeof window === undefined) return null
 
-  let tileNumber = isSm ? 8 : 24
+  let tileNumber
   let tileSize
   let px, py
-  const chars = ['@', '!', '3', '&', '•', '*', '#', 'D', 'H', 'R', '{', '}']
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(width || 0, height || 0).parent(canvasParentRef)
@@ -44,13 +42,14 @@ export default (props) => {
 
     px = p5.width / 2
     py = p5.height / 2
+    tileNumber = p5.width / 50
   }
 
   const draw = (p5) => {
     if (paused) return null
 
-    px = p5.lerp(px, p5.mouseX, 0.03)
-    py = p5.lerp(py, p5.mouseY, 0.03)
+    px = p5.lerp(px, p5.mouseX, 0.05)
+    py = p5.lerp(py, p5.mouseY, 0.05)
 
     p5.background(100)
     p5.randomSeed(1)
@@ -68,10 +67,9 @@ export default (props) => {
         p5.push()
         p5.translate(posX, posY)
         p5.rotate(angle)
-        p5.text(0, 0, chars[0])
-        // p5.stroke(0)
-        // p5.strokeWeight(sWidth)
-        // p5.line(-0, -0, size, size)
+        p5.stroke(0)
+        p5.strokeWeight(sWidth)
+        p5.line(-0, -0, size, size)
         p5.pop()
       }
     }

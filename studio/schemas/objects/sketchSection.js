@@ -2,6 +2,17 @@ export default {
   type: 'object',
   name: 'sketchSection',
   title: 'Sketch',
+  fieldsets: [
+    {
+      name: 'sketchData',
+      title: 'Data',
+      description: 'The Sanity Data Passed to this sketch'
+    },
+    {
+      title: 'Details',
+      name: 'details'
+    }
+  ],
   fields: [
     {
       name: 'sectionTitle',

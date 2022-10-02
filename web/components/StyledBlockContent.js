@@ -31,21 +31,9 @@ function StyledBlockContent(props) {
     //Centered Text Content
 
     //Normal Text Content
-    normal: ({children}) => (
-      <Typography variant="body1" gutterBottom textAlign={'justify'}>
-        {children}
-      </Typography>
-    ),
-    body1: ({children}) => (
-      <Typography variant="body1" gutterBottom textAlign={'justify'}>
-        {children}
-      </Typography>
-    ),
-    body2: ({children}) => (
-      <Typography variant="body2" gutterBottom textAlign={'justify'}>
-        {children}
-      </Typography>
-    ),
+    normal: ({children}) => <Typography variant="body1">{children}</Typography>,
+    body1: ({children}) => <Typography variant="body1">{children}</Typography>,
+    body2: ({children}) => <Typography variant="body2">{children}</Typography>,
     h6: ({children}) => (
       <Typography variant="h6" gutterBottom>
         {children}
@@ -106,17 +94,17 @@ function StyledBlockContent(props) {
         list: {
           bullet: ({children}) => (
             <Box component={'ul'} sx={{px: 2, listStyleType: 'square'}}>
-              <Typography> {children}</Typography>
+              <Typography variant="body2"> {children}</Typography>
             </Box>
           ),
           number: ({children}) => (
             <Box component={'ol'} sx={{px: 2}}>
-              <Typography> {children}</Typography>
+              <Typography variant="body2"> {children}</Typography>
             </Box>
           ),
           checkmarks: ({children}) => (
             <Box component={'ol'} sx={{px: 2}}>
-              <Typography> {children}</Typography>
+              <Typography variant="body2"> {children}</Typography>
             </Box>
           ),
         },

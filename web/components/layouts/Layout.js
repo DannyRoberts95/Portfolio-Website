@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 
-import {Box, Fade, Grow, Slide} from '@mui/material'
+import {Box, Fade} from '@mui/material'
 import {LogoJsonLd} from 'next-seo'
-import CookieBanner from '../CookieBanner'
-import Footer from '../Footer'
-import Header from '../Header'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import techtext from 'utils/helpers/techText'
+import CookieBanner from '../CookieBanner'
+import Footer from '../Footer'
+import Header from '../Header'
 
 function Layout(props) {
   const router = useRouter()
@@ -86,10 +86,16 @@ function Layout(props) {
         />
 
         <Fade in={!transitioning} timeout={500}>
-          <Box className="content">{children}</Box>
+          <Box className="content">
+            {children}
+            <Footer
+              logos={logos}
+              title={title}
+              footerNavigation={footerNavigation}
+              text={footerText}
+            />
+          </Box>
         </Fade>
-
-        <Footer logos={logos} title={title} footerNavigation={footerNavigation} text={footerText} />
 
         {!disableCookieBanner && <CookieBanner />}
         {logoUrl && url && <LogoJsonLd url={url} logo={logoUrl} />}

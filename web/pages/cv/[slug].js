@@ -45,8 +45,7 @@ const CVPage = (props) => {
               {/* Personal info */}
               <SectionTitle small block={{heading: 'Info', label: 'Info'}} />
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="body1" gutterBottom>
-                  <b>Name: </b>
+                <Typography variant="h3" gutterBottom>
                   {name}
                 </Typography>
                 <Typography variant="body1" gutterBottom>

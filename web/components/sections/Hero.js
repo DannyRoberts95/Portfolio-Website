@@ -129,6 +129,8 @@ function Hero(props) {
           sx={[
             {
               mb: 2,
+
+              ...((backgroundImage || backgroundVideo) && {textShadow: `3px 3px 6px #000`}),
               ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
             },
             isMd && {
@@ -140,10 +142,11 @@ function Hero(props) {
         </Typography>
 
         <Typography
-          align="justify"
+          align="center"
           gutterBottom
           variant={'h6'}
           sx={{
+            ...((backgroundImage || backgroundVideo) && {textShadow: `2px 2px 3px #000`}),
             ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
           }}
         >

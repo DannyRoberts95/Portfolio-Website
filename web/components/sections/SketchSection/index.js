@@ -14,7 +14,7 @@ export default function SketchSection(props) {
   //accept a css value for the width and height of the sketch container
   const {type, sectionTitle, body, ctas, reversed, fullWidth} = props
 
-  const mediaHeight = isSm ? '50vh' : '100vh'
+  const mediaHeight = isSm ? '50vh' : '95vh'
 
   return (
     <SectionContainer maxWidth={false}>
@@ -81,6 +81,62 @@ export default function SketchSection(props) {
             },
           ]}
         >
+          {fullWidth && (
+            <>
+              <Container
+                maxWidth={'md'}
+                sx={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 2,
+                }}
+              >
+                <Typography
+                  align="center"
+                  gutterBottom
+                  variant={'h2'}
+                  sx={[
+                    {
+                      mb: 2,
+                      textShadow: `3px 3px 6px #fff`,
+                    },
+                  ]}
+                >
+                  {sectionTitle.heading}
+                </Typography>
+
+                <Typography
+                  align="center"
+                  gutterBottom
+                  variant={'h6'}
+                  sx={{
+                    textShadow: `2px 2px 3px #fff`,
+                  }}
+                >
+                  {console.log(sectionTitle)}
+                  {sectionTitle.label}
+                </Typography>
+
+                {ctas && (
+                  <Box
+                    sx={{
+                      mt: 2,
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'center',
+                      '> *:not(:first-of-type)': {ml: 2},
+                    }}
+                  >
+                    {ctas.map((cta) => (
+                      <Cta {...cta} key={cta._key} color={dark ? 'secondary' : 'primary'} />
+                    ))}
+                  </Box>
+                )}
+              </Container>
+            </>
+          )}
           <Typography
             sx={{
               position: 'absolute',
