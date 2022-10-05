@@ -17,9 +17,10 @@ function SectionTitle(props) {
       sx={[
         {
           py: 1,
-          backgroundColor: theme.palette.primary.main,
-          color: theme.palette.primary.contrastText,
+          color: theme.palette.primary.main,
+          backgroundColor: theme.palette.primary.contrastText,
           zIndex: 2,
+          borderBottom: `2px solid ${theme.palette.primary.main}`,
           ...sx,
         },
         sticky && {
@@ -28,11 +29,11 @@ function SectionTitle(props) {
         },
       ]}
       component={Paper}
-      elevation={2}
+      elevation={0}
     >
       <Container maxWidth={false}>
         {!small && <Typography variant="overline">{label}</Typography>}
-        <Typography variant={small ? 'h6' : 'h4'} component={'h2'}>
+        <Typography variant={small ? 'h5' : 'h3'} component={'h2'} fontWeight="700">
           {techText(heading)}
         </Typography>
       </Container>

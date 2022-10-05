@@ -1,7 +1,6 @@
-import React from 'react'
-import Document, {Html, Head, Main, NextScript} from 'next/document'
-import client from '../client'
 import {CssBaseline} from '@mui/material'
+import Document, {Head, Html, Main, NextScript} from 'next/document'
+import client from '../client'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -25,24 +24,6 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff"></meta>
-
-          {/* {embededSnippets &&
-            embededSnippets.map((snippet) => {
-              const {
-                _key,
-                embededSnippet: {html},
-                snippetTitle,
-              } = snippet
-              console.log(html.trim())
-              if (!html) return null
-              return (
-                <span
-                  key={_key}
-                  id={snippetTitle.trim().replace(' ', '_') + '_script_mounting_container'}
-                  dangerouslySetInnerHTML={{__html: html.trim()}}
-                />
-              )
-            })} */}
         </Head>
         <CssBaseline enableColorScheme />
         <body id={'documentBody'}>

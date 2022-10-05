@@ -36,10 +36,10 @@ function TextSection(props) {
                 p: 2,
                 borderRight: `2px solid ${theme.palette.primary.main}`,
               },
-              item.reversed &
-                {
-                  borderLeft: `2px solid ${theme.palette.primary.main}`,
-                },
+              item.reversed && {
+                borderRight: `none`,
+                borderLeft: `2px solid ${theme.palette.primary.main}`,
+              },
             ]}
           >
             <Typography variant="h5" align={item.reversed ? 'right' : 'left'} fontStyle={'italic'}>
