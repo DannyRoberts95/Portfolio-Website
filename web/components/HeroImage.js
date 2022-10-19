@@ -62,8 +62,7 @@ function Hero(props) {
       <Image
         id="postHeroIllustration"
         layout="responsive"
-        objectFit="cover"
-        objectPosition="50% 50%"
+        objectPosition="center"
         loading={'eager'}
         placeholder="blur"
         quality={100}

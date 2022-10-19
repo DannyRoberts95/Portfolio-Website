@@ -93,18 +93,27 @@ function StyledBlockContent(props) {
       components={{
         list: {
           bullet: ({children}) => (
-            <Box component={'ul'} sx={{px: 2, listStyleType: 'square'}}>
-              <Typography variant="body2"> {children}</Typography>
+            <Box sx={{px: 2, listStyleType: 'square'}}>
+              <Typography variant="body2" component={'ul'}>
+                {' '}
+                {children}
+              </Typography>
             </Box>
           ),
           number: ({children}) => (
-            <Box component={'ol'} sx={{px: 2}}>
-              <Typography variant="body2"> {children}</Typography>
+            <Box sx={{px: 2}}>
+              <Typography variant="body2" component={'ol'}>
+                {' '}
+                {children}
+              </Typography>
             </Box>
           ),
           checkmarks: ({children}) => (
-            <Box component={'ol'} sx={{px: 2}}>
-              <Typography variant="body2"> {children}</Typography>
+            <Box sx={{px: 2}}>
+              <Typography variant="body2" component={'ol'}>
+                {' '}
+                {children}
+              </Typography>
             </Box>
           ),
         },

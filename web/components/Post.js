@@ -77,6 +77,10 @@ const Post = (props) => {
 
       <SectionContainer sx={{p: 2}}>
         <Grid container spacing={2}>
+          <Grid item xs={12} md={9}>
+            <PostBlockContent blocks={body} />
+          </Grid>
+
           <Grid item xs={12} md={3}>
             <TableOfContents
               header={title}
@@ -92,9 +96,6 @@ const Post = (props) => {
                 },
               }}
             />
-          </Grid>
-          <Grid item xs={12} md={9}>
-            <PostBlockContent blocks={body} />
           </Grid>
 
           <Box display="flex" justifyContent={'center'} width="100%">
