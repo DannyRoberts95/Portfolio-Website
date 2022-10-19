@@ -24,7 +24,16 @@ function Hero(props) {
   const [loadedVideo, setloadedVideo] = useState(false)
   const handleVideoLoaded = () => setloadedVideo(true)
 
-  const {heading, backgroundImage, backgroundVideo, tagline, ctas, blendText, dark} = props
+  const {
+    heading,
+    backgroundImage,
+    backgroundVideo,
+    tagline,
+    ctas,
+    blendText,
+    dark,
+    firstComponent,
+  } = props
 
   const bgColor = () => {
     if (backgroundImage || backgroundVideo) return null
@@ -52,7 +61,7 @@ function Hero(props) {
       ]}
     >
       {backgroundImage && (
-        <Fade in={backgroundImage && loadedImage}>
+        <Fade in={(backgroundImage && loadedImage) || firstComponent}>
           <Box
             id="heroImageContainer"
             sx={{
@@ -67,6 +76,7 @@ function Hero(props) {
             <Image
               id="heroImage"
               layout="fill"
+              priority={firstComponent}
               onLoad={handleImageLoaded}
               objectFit="cover"
               quality={85}
