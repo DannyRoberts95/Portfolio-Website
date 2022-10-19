@@ -1,4 +1,4 @@
-import {Avatar, CardActionArea, Chip, Divider, Stack} from '@mui/material'
+import {CardActionArea, Chip, Stack} from '@mui/material'
 import imageUrlBuilder from '@sanity/image-url'
 import PropTypes from 'prop-types'
 import client from '../client'
@@ -10,11 +10,10 @@ import Typography from '@mui/material/Typography'
 import {Box} from '@mui/system'
 import Image from 'next/image'
 
-import Link from './CustomLink'
 import {useState} from 'react'
+import Link from './CustomLink'
 
 import formatDate from '../utils/helpers/formatDate'
-import techText from '../utils/helpers/techText'
 import techtext from '../utils/helpers/techText'
 
 function urlFor(source) {
@@ -75,7 +74,7 @@ const PostCard = (props) => {
           sx={{
             position: 'relative',
             width: '100%',
-            height: minimal ? 100 : 175,
+            height: minimal ? 175 : 250,
             overflow: 'hidden',
           }}
         >

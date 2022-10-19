@@ -17,8 +17,8 @@ function SectionTitle(props) {
       sx={[
         {
           py: 1,
-          color: theme.palette.primary.main,
-          backgroundColor: theme.palette.primary.contrastText,
+          color: theme.palette.primary.contrastText,
+          backgroundColor: theme.palette.primary.main,
           zIndex: 2,
           borderBottom: `2px solid ${theme.palette.primary.main}`,
           ...sx,
@@ -30,6 +30,7 @@ function SectionTitle(props) {
       ]}
       component={Paper}
       elevation={0}
+      {...others}
     >
       <Container maxWidth={false}>
         {!small && <Typography variant="overline">{label}</Typography>}

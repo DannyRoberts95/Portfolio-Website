@@ -58,7 +58,7 @@ export default function CookieBanner() {
           </Typography>
 
           <Button color="primary" onClick={handleClose} size="small">
-            Okay...
+            Okay
           </Button>
         </Stack>
       </Paper>
