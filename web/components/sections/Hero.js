@@ -76,6 +76,7 @@ function Hero(props) {
             <Image
               id="heroImage"
               layout="fill"
+              loading={firstComponent ? 'eager' : 'lazy'}
               priority={firstComponent}
               onLoad={handleImageLoaded}
               objectFit="cover"

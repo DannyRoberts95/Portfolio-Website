@@ -63,6 +63,7 @@ function Hero(props) {
         id="postHeroIllustration"
         layout="responsive"
         objectFit="cover"
+        objectPosition="50% 50%"
         loading={'eager'}
         placeholder="blur"
         quality={100}

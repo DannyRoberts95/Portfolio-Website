@@ -1,6 +1,6 @@
 import {useTheme} from '@emotion/react'
 import {Link} from '@mui/icons-material'
-import {Grow, IconButton, Stack, Tooltip, Typography, useMediaQuery} from '@mui/material'
+import {Box, Grow, IconButton, Stack, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import {PortableText} from '@portabletext/react'
 import PropTypes from 'prop-types'
 import {useState} from 'react'
@@ -9,8 +9,6 @@ import EmbedCodeSnippet from './EmbedCodeSnippet'
 import EmbedHTML from './EmbedHTML'
 import EmbedVideo from './EmbedVideo'
 import Figure from './Figure'
-
-import dynamic from 'next/dynamic'
 
 //https://github.com/portabletext/react-portabletext
 
@@ -176,7 +174,11 @@ function PostBlockContent(props) {
         types: {
           embedHTML: EmbedHTML,
           embedVideo: EmbedVideo,
-          figure: (props) => <Figure {...props} lightBox />,
+          figure: (props) => (
+            <Box my={2}>
+              <Figure {...props} lightBox />{' '}
+            </Box>
+          ),
           embedCodeSnippet: EmbedCodeSnippet,
         },
       }}
