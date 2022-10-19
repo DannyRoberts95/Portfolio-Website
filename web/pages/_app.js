@@ -47,8 +47,9 @@ class App extends BaseApp {
           />
         </Head>
 
-        <script
+        <Script
           async
+          strategy="lazyOnload"
           id="ga-script-loader"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
         />

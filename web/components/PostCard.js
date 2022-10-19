@@ -90,8 +90,11 @@ const PostCard = (props) => {
           />
         </Box>
         <CardContent sx={{p: 2}}>
-          <Typography variant={'overline'}>{techtext(title)}</Typography>
-          <Typography gutterBottom variant={!minimal ? 'h5' : 'subtitle2'}>
+          <Typography variant={'overline'}>
+            {techtext(title)}
+            {formatDate(publishedAt)}
+          </Typography>
+          <Typography gutterBottom variant={!minimal ? 'h6' : 'subtitle2'}>
             {title}
           </Typography>
           {!minimal && (
@@ -108,24 +111,6 @@ const PostCard = (props) => {
               ))}
             </Stack>
           )}
-          {/* {!minimal && (
-            <Box sx={{display: {sm: 'none', md: 'block'}}}>
-              <Typography gutterBottom variant="body2">
-                {summary}
-              </Typography>
-              <Divider sx={{my: 1}} />
-            </Box>
-          )} */}
-
-          <Stack direction={'row'} justifyContent="space-between" sx={{mt: 1}}>
-            <Stack direction="row" alignItems="center">
-              <Stack>
-                <Typography variant="overline">
-                  {formatDate(publishedAt)} {readTime && ` · ${readTime} min read`}
-                </Typography>
-              </Stack>
-            </Stack>
-          </Stack>
         </CardContent>
       </CardActionArea>
     </Card>

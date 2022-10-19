@@ -53,47 +53,5 @@ export default {
       description: 'Upload SVG files for best results.',
       type: 'logos'
     }
-
-    // {
-    //     title: 'Site Tracking Tags',
-    //     name: 'embededSnippets',
-    //     description:
-    //         'Embed script snippets in the <head> of the site. Ensure tags are optimised and defer loading unless nessecary.',
-    //     type: 'array',
-    //     of: [
-    //         {
-    //             title: 'snippet',
-    //             name: 'embededSnippet',
-    //             type: 'object',
-    //             fields: [
-    //                 {
-    //                     title: 'Snippet Title',
-    //                     description: 'What is this code?',
-    //                     name: 'snippetTitle',
-    //                     type: 'string',
-    //                 },
-    //                 {
-    //                     title: 'Code Snippet',
-    //                     description: 'Raw HTML to be embeded',
-    //                     name: 'embededSnippet',
-    //                     type: 'embedHTML',
-    //                 },
-    //                 {
-    //                     title: 'Snippet Preload',
-    //                     description:
-    //                         'Only preload scripts when nessecary as it can severly hurt site loading and performace.',
-    //                     name: 'preload',
-    //                     type: 'boolean',
-    //                 },
-    //             ],
-    //         },
-    //     ],
-
-    //     preview: {
-    //         select: {
-    //             title: 'snippetTitle',
-    //         },
-    //     },
-    // },
   ]
 }

@@ -168,6 +168,7 @@ let theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
+          fontSize: '0.75rem',
           textTransform: 'uppercase',
           borderRadius: 0,
           border: `1px solid ${primaryColor}`,

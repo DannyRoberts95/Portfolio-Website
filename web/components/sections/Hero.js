@@ -125,7 +125,7 @@ function Hero(props) {
         <Typography
           align="center"
           gutterBottom
-          variant={'h2'}
+          variant={'h1'}
           sx={[
             {
               mb: 2,
