@@ -52,7 +52,7 @@ const LinkableHeader = (props) => {
       </Typography>
 
       <Grow in={isSm || hovered}>
-        <Tooltip title={copied ? 'Link Copied!' : 'Copy to Clipboard'}>
+        <Tooltip title={copied ? 'Link Copied!' : 'Copy Link to Clipboard'}>
           <IconButton onClick={handleCopy} color="primary">
             <Link fontSize={isSm ? 'small' : 'medium'} color="inherit" />
           </IconButton>

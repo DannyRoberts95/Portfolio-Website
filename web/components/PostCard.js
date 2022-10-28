@@ -14,7 +14,6 @@ import {useState} from 'react'
 import Link from './CustomLink'
 
 import formatDate from '../utils/helpers/formatDate'
-import techtext from '../utils/helpers/techText'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -90,10 +89,7 @@ const PostCard = (props) => {
           />
         </Box>
         <CardContent sx={{p: 2}}>
-          <Typography variant={'overline'}>
-            {techtext(title)}
-            {formatDate(publishedAt)}
-          </Typography>
+          <Typography variant={'overline'}>{formatDate(publishedAt)}</Typography>
           <Typography gutterBottom variant={!minimal ? 'h6' : 'subtitle2'}>
             {title}
           </Typography>

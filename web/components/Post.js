@@ -6,13 +6,13 @@ import PropTypes from 'prop-types'
 import client from '../client'
 
 import {useTheme} from '@emotion/react'
-import TableOfContents from 'components/TableOfContents'
 
 import PostBlockContent from 'components/PostBlockContent'
 import ShareButton from 'components/ShareButton'
 
 import {useEffect, useState} from 'react'
 import formatDate from '../utils/helpers/formatDate'
+import Link from './CustomLink'
 import SectionContainer from './SectionContainer'
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -45,57 +45,45 @@ const Post = (props) => {
   return (
     <Box id={_id} {...others}>
       <SectionContainer maxWidth={'xl'} sx={{p: 2, overflowX: 'hidden'}}>
-        <Typography variant="h2" component="h1" sx={{my: 1}}>
-          {title}
-        </Typography>
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={12} md={9}>
+            <Typography variant="overline" component="h1" sx={{my: 1}}>
+              <Link href="/posts">Back to posts</Link>
+            </Typography>
+            <Typography variant="h2" component="h1" sx={{my: 1}}>
+              {title}
+            </Typography>
 
-        <Stack direction={'row'} gap={1} sx={{my: 2}}>
-          {categories.map((cat) => (
-            <Chip key={cat} label={cat} size="small" color="primary" variant="outlined" />
-          ))}
-        </Stack>
-
-        <Stack direction={'row'} justifyContent="space-between" sx={{my: 1}}>
-          <Stack direction="row" alignItems="center">
-            <Box mr={2}>
-              <Avatar
-                variant="square"
-                src={urlFor(author.image).format('webp').url()}
-                sx={{width: 48, height: 48}}
-              />
-            </Box>
-            <Stack>
-              <Typography variant="body1">{author.name}</Typography>
-              <Typography variant="caption">
-                {formatDate(publishedAt)} {readTime && ` · ${readTime} min read`}
-              </Typography>
+            <Stack direction={'row'} gap={1} sx={{my: 2}}>
+              {categories.map((cat) => (
+                <Chip key={cat} label={cat} size="small" color="primary" variant="outlined" />
+              ))}
             </Stack>
-          </Stack>
-          <ShareButton exposed={!isSm} />
-        </Stack>
+
+            <Stack direction={'row'} justifyContent="space-between" sx={{my: 1}}>
+              <Stack direction="row" alignItems="center">
+                <Box mr={2}>
+                  <Avatar
+                    variant="square"
+                    src={urlFor(author.image).format('webp').url()}
+                    sx={{width: 48, height: 48}}
+                  />
+                </Box>
+                <Stack>
+                  <Typography variant="body1">{author.name}</Typography>
+                  <Typography variant="caption">{formatDate(publishedAt)}</Typography>
+                </Stack>
+              </Stack>
+              <ShareButton exposed={!isSm} />
+            </Stack>
+          </Grid>
+        </Grid>
       </SectionContainer>
 
       <SectionContainer sx={{p: 2}}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={9}>
             <PostBlockContent blocks={body} />
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <TableOfContents
-              header={title}
-              elementList={contentSections}
-              accordian={isSm}
-              sx={{
-                overflowY: 'scroll',
-                position: 'sticky',
-                top: `calc(${theme.shape.headerHeight}px + ${theme.spacing(1)})`,
-                maxHeight: '80vh',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              }}
-            />
           </Grid>
 
           <Box display="flex" justifyContent={'center'} width="100%">

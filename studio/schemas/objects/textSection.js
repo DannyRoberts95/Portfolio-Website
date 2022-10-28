@@ -47,12 +47,13 @@ export default {
   ],
   preview: {
     select: {
-      heading: 'sectionTitle.heading'
+      heading: 'sectionTitle.heading',
+      sections: 'sections'
     },
-    prepare({ heading }) {
+    prepare({ heading, sections }) {
       return {
-        title: `${heading}`,
-        subtitle: 'Text section'
+        title: `${heading || 'Text Section - No Header'}`,
+        subtitle: `${sections.length} - ${sections.map(sec => `${sec.sectionTitle}`).join(', ')}`
       }
     }
   }

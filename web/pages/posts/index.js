@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Box, CircularProgress, Fade, Grid, Typography, useMediaQuery} from '@mui/material'
+import {Box, Fade, Grid, LinearProgress, Typography, useMediaQuery} from '@mui/material'
 import CategoryList from 'components/CategoryList'
 import Layout from 'components/layouts/Layout'
 import PostCard from 'components/PostCard'
@@ -50,7 +50,6 @@ const Posts = (props) => {
 
   // Fetch the next 5 posts and add them to the list
   const loadAdditionalPosts = async () => {
-    console.log('Loading more...')
     const startIndex = postList.length
     const endIndex = startIndex + batchNumber
     const additionalPosts = await client.fetch(
@@ -124,8 +123,10 @@ const Posts = (props) => {
 
             {/* Get more posts when I enter the users viewPort */}
             <Fade appear ref={loadMoreRef} in={!disableRequests} unmountOnExit>
-              <Grid item container justifyContent="center" sx={{p: 2}}>
-                <CircularProgress />
+              <Grid item container>
+                <Box sx={{width: '100%'}}>
+                  <LinearProgress />
+                </Box>
               </Grid>
             </Fade>
           </Grid>
