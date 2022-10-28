@@ -38,7 +38,7 @@ function Hero(props) {
           cursor: 'zoom-in',
           position: 'relative',
           overflow: 'hidden',
-          maxHeight: '50vh',
+          minHeight: isSm ? '33vh' : '66vh',
           transition: 'all 0.5s ease-in-out',
 
           '&::before': {
@@ -61,13 +61,12 @@ function Hero(props) {
     >
       <Image
         id="postHeroIllustration"
-        layout="responsive"
+        layout="fill"
         objectPosition="center"
+        objectFit="cover"
         loading={'eager'}
         placeholder="blur"
         quality={100}
-        width={1920}
-        height={(9 / 16) * 1920}
         priority
         alt={alt}
         blurDataURL={urlFor(image).width(480).format('webp').url()}
