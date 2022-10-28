@@ -4,6 +4,7 @@ import {Box, Grow, IconButton, Stack, Tooltip, Typography, useMediaQuery} from '
 import {PortableText} from '@portabletext/react'
 import PropTypes from 'prop-types'
 import {useState} from 'react'
+import Cta from './Cta'
 import CustomLink from './CustomLink'
 import EmbedCodeSnippet from './EmbedCodeSnippet'
 import EmbedHTML from './EmbedHTML'
@@ -174,6 +175,7 @@ function PostBlockContent(props) {
         types: {
           embedHTML: EmbedHTML,
           embedVideo: EmbedVideo,
+          cta: ({value}) => <Cta sx={{my: 2}} {...value} />,
           figure: (props) => (
             <Box my={2}>
               <Figure {...props} lightBox />{' '}
