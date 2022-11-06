@@ -1,4 +1,4 @@
-import {CardActionArea, Chip, Stack} from '@mui/material'
+import {CardActionArea, Stack} from '@mui/material'
 import imageUrlBuilder from '@sanity/image-url'
 import PropTypes from 'prop-types'
 import client from '../client'
@@ -11,6 +11,7 @@ import {Box} from '@mui/system'
 import Image from 'next/image'
 
 import {useState} from 'react'
+import CategoryChip from './CategoryChip'
 import Link from './CustomLink'
 
 import formatDate from '../utils/helpers/formatDate'
@@ -96,10 +97,12 @@ const PostCard = (props) => {
           {!minimal && (
             <Stack direction={'row'} flexWrap="wrap" gap={1} sx={{my: 1}}>
               {categories.map((cat) => (
-                <Chip
-                  key={cat}
-                  label={cat}
+                <CategoryChip
+                  clickable={false}
+                  key={cat.title}
+                  label={cat.title}
                   sx={{transition: 'all 0.3s'}}
+                  categoryColor={cat.color}
                   size="small"
                   color={hovered ? 'secondary' : 'primary'}
                   variant="outlined"

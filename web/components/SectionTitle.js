@@ -1,10 +1,11 @@
 import {useTheme} from '@emotion/react'
-import {Box, Container, Paper, Typography} from '@mui/material'
+import {Box, Container, Paper, Typography, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
 import techText from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
   const {block, small, sticky = true, sx, ...others} = props
   if (!block) return null
@@ -23,10 +24,11 @@ function SectionTitle(props) {
           borderBottom: `2px solid ${theme.palette.primary.main}`,
           ...sx,
         },
-        sticky && {
-          position: 'sticky',
-          top: theme.shape.headerHeight,
-        },
+        sticky &&
+          !isSm && {
+            position: 'sticky',
+            top: theme.shape.headerHeight,
+          },
       ]}
       component={Paper}
       elevation={0}

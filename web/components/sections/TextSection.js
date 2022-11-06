@@ -22,7 +22,7 @@ function TextSection(props) {
             backgroundColor: theme.palette.background.default,
             flexDirection: item.reversed && !isSm ? 'row-reverse' : 'row',
             border: `1px solid ${theme.palette.primary.main}`,
-            position: 'sticky',
+            position: isSm ? 'relative' : 'sticky',
             top: theme.shape.headerHeight,
           }}
         >
@@ -34,6 +34,7 @@ function TextSection(props) {
             sx={[
               {
                 p: 2,
+                py: 4,
                 borderRight: `2px solid ${theme.palette.primary.main}`,
               },
               item.reversed && {
@@ -47,7 +48,7 @@ function TextSection(props) {
             </Typography>
             {item.sectionSummary && <StyledBlockContent blocks={item.sectionSummary} />}
           </Grid>
-          <Grid item xs={12} sm={8} md={6} sx={{p: 2}}>
+          <Grid item xs={12} sm={8} md={6} sx={{p: 2, py: 4}}>
             {item.sectionText && <StyledBlockContent blocks={item.sectionText} />}
           </Grid>
         </Grid>

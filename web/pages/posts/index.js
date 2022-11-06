@@ -94,7 +94,7 @@ const Posts = (props) => {
       />
 
       <SectionContainer>
-        <Box sx={{p: 2, position: 'sticky', top: 100}}>
+        <Box sx={[{position: 'sticky', top: 100}]}>
           <CategoryList
             categories={[...categories]}
             selectedCategory={router?.query?.category}
@@ -149,7 +149,7 @@ Posts.getInitialProps = async function (context) {
   )
 
   const categories = await client.fetch(`*[_type == "category"]{
-    title
+    ...
   }`)
 
   return {
@@ -171,7 +171,10 @@ const postQuery = `
         summary,
         readTime,
         title,
-        "categories": categories[]->title,
+        "categories": categories[]->{
+          title,
+          color
+        },
         "author":{
           "name": author->name,
           "image": author->image.asset,

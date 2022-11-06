@@ -46,7 +46,9 @@ PostPage.getInitialProps = async function (context) {
     groq`*[_type == "post" && slug.current == $slug && publishedAt < now()][0]{
         ...,
         _key,
-        "categories": categories[]->title,
+        "categories": categories[]->{
+          title,
+          color},
         "author":{
           "name": author->name,
           "image": author->image.asset,

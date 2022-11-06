@@ -1,6 +1,6 @@
 // [slug].js
 
-import {Avatar, Box, Button, Chip, Grid, Stack, Typography, useMediaQuery} from '@mui/material'
+import {Avatar, Box, Button, Grid, Stack, Typography, useMediaQuery} from '@mui/material'
 import imageUrlBuilder from '@sanity/image-url'
 import PropTypes from 'prop-types'
 import client from '../client'
@@ -12,6 +12,7 @@ import ShareButton from 'components/ShareButton'
 
 import {useEffect, useState} from 'react'
 import formatDate from '../utils/helpers/formatDate'
+import CategoryChip from './CategoryChip'
 import Link from './CustomLink'
 import SectionContainer from './SectionContainer'
 function urlFor(source) {
@@ -56,7 +57,15 @@ const Post = (props) => {
 
             <Stack direction={'row'} gap={1} sx={{my: 2}}>
               {categories.map((cat) => (
-                <Chip key={cat} label={cat} size="small" color="primary" variant="outlined" />
+                <CategoryChip
+                  clickable
+                  key={cat.title}
+                  label={cat.title}
+                  categoryColor={cat.color}
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                />
               ))}
             </Stack>
 

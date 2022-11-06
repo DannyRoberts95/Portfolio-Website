@@ -54,7 +54,8 @@ export default function CookieBanner() {
       >
         <Stack direction={'row'} alignItems="center" gap={1}>
           <Typography variant="body2">
-            This site uses cookies for to see inside your brain.
+            This site uses cookies for essential functionality, analytics and seeing inside your
+            brain.
           </Typography>
 
           <Button color="primary" onClick={handleClose} size="small">

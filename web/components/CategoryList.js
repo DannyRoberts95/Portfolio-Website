@@ -1,7 +1,13 @@
 import {useTheme} from '@emotion/react'
-import {Box, Chip, Typography} from '@mui/material'
+import {Box, useMediaQuery} from '@mui/material'
+import {useRouter} from 'next/router'
+import CategoryChip from './CategoryChip'
 
 const CategoryList = (props) => {
+  const router = useRouter()
+  const theme = useTheme()
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+
   const {categories, selectedCategory, scrollable = true, handleSelection = () => {}} = props
 
   const gradient = (
@@ -27,6 +33,7 @@ const CategoryList = (props) => {
             display: 'flex',
             flexWrap: 'wrap',
             gap: 1,
+            p: isSm ? 1 : 2,
           },
           scrollable && {
             flexWrap: 'nowrap',
@@ -38,15 +45,23 @@ const CategoryList = (props) => {
           },
         ]}
       >
-        {categories.map((cat) => (
-          <Chip
-            key={cat.title}
-            label={cat.title}
-            color="primary"
-            variant={selectedCategory === cat.title ? 'contained' : 'outlined'}
-            onClick={() => handleSelection(cat.title)}
-          />
-        ))}
+        {categories
+          .sort((a) =>
+            router.asPath
+              .replace(/[^a-zA-Z ]/g, '')
+              .replace(' ', '')
+              .includes(a.title.replace(/[^a-zA-Z ]/g, '').replace(' ', ''))
+          )
+          .map((cat) => (
+            <CategoryChip
+              categoryColor={cat.color}
+              key={cat.title}
+              label={cat.title}
+              color="primary"
+              variant={selectedCategory === cat.title ? 'contained' : 'outlined'}
+              onClick={() => handleSelection(cat.title)}
+            />
+          ))}
       </Box>
     </Box>
   )
