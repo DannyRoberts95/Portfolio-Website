@@ -35,7 +35,7 @@ import gridSection from './objects/gridSection'
 import hero from './objects/hero'
 import imageSection from './objects/imageSection'
 import reviewSection from './objects/reviewSection'
-import sketchSection from './objects/sketchSection'
+
 import textSection from './objects/textSection'
 
 //post
@@ -45,7 +45,7 @@ import illustration from './objects/illustration'
 import { embedCodeSnippet, embedHTML, embedVideo } from './objects/embeds'
 import exitIntentModal from './objects/exitIntentModal'
 import externalLink from './objects/externalLink'
-import illustrationList from './objects/illustrationList'
+import figureList from './objects/figureList'
 import logos from './objects/logos'
 import { logEntry, logSection } from './objects/logSection'
 import review from './objects/review'
@@ -61,7 +61,7 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     illustration,
-    illustrationList,
+    figureList,
     navigationLink,
     navLinkDropdown,
     navigation,
@@ -99,7 +99,6 @@ export default createSchema({
     post,
     cv,
     collection,
-    term,
-    sketchSection
+    term
   ])
 })

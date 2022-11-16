@@ -25,7 +25,7 @@ export default {
       }
     },
     { type: 'figure' },
-    { type: 'illustrationList', title: 'Illustration List' },
+    { type: 'figureList', title: 'Image List' },
     { type: 'accordian', title: 'Accordian' },
     { type: 'embedVideo' },
     { type: 'embedCodeSnippet', title: 'Code Snippet' },

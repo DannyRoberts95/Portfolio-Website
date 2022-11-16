@@ -104,12 +104,13 @@ export default {
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'illustraion.image'
+      media: 'illustraion.image',
+      draft: 'draft'
     },
     prepare(selection) {
-      const { author, media } = selection
+      const { author, media, draft } = selection
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        subtitle: author && `by ${author}` + `${draft ? ' (Draft)' : ''}`,
         media
       })
     }

@@ -10,6 +10,7 @@ import EmbedCodeSnippet from './EmbedCodeSnippet'
 import EmbedHTML from './EmbedHTML'
 import EmbedVideo from './EmbedVideo'
 import Figure from './Figure'
+import FigureList from './FigureList'
 
 //https://github.com/portabletext/react-portabletext
 
@@ -176,6 +177,7 @@ function PostBlockContent(props) {
           embedHTML: EmbedHTML,
           embedVideo: EmbedVideo,
           cta: ({value}) => <Cta sx={{my: 2}} {...value} />,
+          figureList: FigureList,
           figure: (props) => (
             <Box my={2}>
               <Figure {...props} lightBox />{' '}

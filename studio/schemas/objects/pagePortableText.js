@@ -23,7 +23,6 @@ export default {
         annotations: [{ type: 'link' }]
       }
     },
-    { type: 'illustrationList' },
     { type: 'figure' },
     { type: 'embedVideo' },
     { type: 'embedCodeSnippet', title: 'Code Snippet' }
