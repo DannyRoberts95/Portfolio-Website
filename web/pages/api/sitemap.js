@@ -5,6 +5,7 @@ import client from '../../client'
 import {slugToAbsUrl} from '../../utils/urls'
 
 export default async function handler(req, res) {
+  const explicitPaths = ['/posts', '/collections']
   const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(groq`{
     // Get the slug of all routes that should be in the sitemap
     "allRoutesSlugs": *[
@@ -32,6 +33,15 @@ export default async function handler(req, res) {
         (slug) => `
     <url>
       <loc>${slugToAbsUrl(slug, baseUrl)}</loc>
+    </url>
+    `
+      )
+      .join('\n')}
+    ${[explicitPaths]
+      .map(
+        (path) => `
+    <url>
+      <loc>${slugToAbsUrl(path, baseUrl)}</loc>
     </url>
     `
       )

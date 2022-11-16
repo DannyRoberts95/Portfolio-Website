@@ -1,9 +1,6 @@
-import { BsFile } from '@react-icons/all-files/bs/BsFile'
-
 export default {
   name: 'post',
   title: 'Post',
-  icon: BsFile,
   type: 'document',
   fieldsets: [
     {
@@ -110,9 +107,10 @@ export default {
       media: 'illustraion.image'
     },
     prepare(selection) {
-      const { author } = selection
+      const { author, media } = selection
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`
+        subtitle: author && `by ${author}`,
+        media
       })
     }
   }

@@ -45,6 +45,7 @@ import illustration from './objects/illustration'
 import { embedCodeSnippet, embedHTML, embedVideo } from './objects/embeds'
 import exitIntentModal from './objects/exitIntentModal'
 import externalLink from './objects/externalLink'
+import illustrationList from './objects/illustrationList'
 import logos from './objects/logos'
 import { logEntry, logSection } from './objects/logSection'
 import review from './objects/review'
@@ -60,6 +61,7 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     illustration,
+    illustrationList,
     navigationLink,
     navLinkDropdown,
     navigation,
