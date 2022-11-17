@@ -6,11 +6,9 @@ import {
   Container,
   Divider,
   IconButton,
-  Slide,
   Stack,
   SwipeableDrawer,
   Toolbar,
-  useScrollTrigger,
 } from '@mui/material'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
@@ -53,7 +51,7 @@ const AppHeader = (props) => {
   }, [])
 
   const navbar = (
-    <>
+    <Box component={'span'}>
       <AppBar
         position="fixed"
         elevation={0}
@@ -108,8 +106,8 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar />
-    </>
+      <Toolbar sx={{minHeight: ({shape}) => shape.headerHeight}} />
+    </Box>
   )
 
   const drawer = (
@@ -135,7 +133,7 @@ const AppHeader = (props) => {
           <Divider />
 
           <Stack gap={2}>
-            {navItems.map((item) => (
+            {navItems.map((item, i) => (
               <NavItem
                 key={item._key}
                 navItem={item}

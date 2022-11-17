@@ -88,19 +88,14 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionTitle
-        block={{heading: 'Posts', label: router.query?.category || 'Assorted'}}
-        sticky={false}
-      />
+      <SectionTitle block={{heading: 'Posts', label: router.query?.category || 'Assorted'}} />
 
       <SectionContainer>
-        <Box sx={[{position: 'sticky', top: 100}]}>
-          <CategoryList
-            categories={[...categories]}
-            selectedCategory={router?.query?.category}
-            handleSelection={handleChipClick}
-          />
-        </Box>
+        <CategoryList
+          categories={[...categories]}
+          selectedCategory={router?.query?.category}
+          handleSelection={handleChipClick}
+        />
       </SectionContainer>
 
       <SectionContainer>

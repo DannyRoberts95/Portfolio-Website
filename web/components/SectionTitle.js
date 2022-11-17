@@ -5,9 +5,9 @@ import techText from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+  const isSm = useMediaQuery(theme.breakpoints.down('md'))
 
-  const {block, small, sticky = true, sx, ...others} = props
+  const {block, small, sx, ...others} = props
   if (!block) return null
   const {heading, label} = block
   if (!heading || (!heading && !label)) return null
@@ -20,15 +20,9 @@ function SectionTitle(props) {
           py: 1,
           color: theme.palette.primary.contrastText,
           backgroundColor: theme.palette.primary.main,
-          zIndex: 2,
           borderBottom: `2px solid ${theme.palette.primary.main}`,
           ...sx,
         },
-        sticky &&
-          !isSm && {
-            position: 'sticky',
-            top: theme.shape.headerHeight,
-          },
       ]}
       component={Paper}
       elevation={0}

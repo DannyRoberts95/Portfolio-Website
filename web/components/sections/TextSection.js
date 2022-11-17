@@ -23,7 +23,7 @@ function TextSection(props) {
             flexDirection: item.reversed && !isSm ? 'row-reverse' : 'row',
             border: `1px solid ${theme.palette.primary.main}`,
             position: isSm ? 'relative' : 'sticky',
-            top: theme.shape.headerHeight,
+            top: isSm ? 0 : theme.shape.headerHeight,
           }}
         >
           <Grid

@@ -31,7 +31,12 @@ const PostPage = (props) => {
   return (
     <>
       <Layout config={config} navigation={navigation} transparentHeader>
-        <NextSeo title={title} titleTemplate={`%s | ${config.title}`} description={summary} />
+        <NextSeo
+          title={title}
+          titleTemplate={`%s | ${config.title}`}
+          description={summary}
+          noindex={post.draft}
+        />
         {illustration && <HeroImage image={image} caption={caption} alt={alt} />}
         <Post post={post} />
       </Layout>
