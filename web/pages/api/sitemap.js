@@ -1,12 +1,15 @@
 // this may break vercel deployment******
 
 import groq from 'groq'
+import isServer from 'utils/isServer'
 import client from '../../client'
 import {slugToAbsUrl} from '../../utils/urls'
 
+const explicitPaths = ['/posts', '/collections']
+
 export default async function handler(req, res) {
-  const explicitPaths = ['/posts', '/collections']
-  const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(groq`{
+  if (isServer) {
+    const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(groq`{
     // Get the slug of all routes that should be in the sitemap
     "allRoutesSlugs": *[
       _type == "route" &&
@@ -24,29 +27,28 @@ export default async function handler(req, res) {
     "baseUrl": *[_id == "global-config"][0].url,
   }`)
 
-  const sitemap = `
-  <?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  /posts
-    ${[...allRoutesSlugs, ...allPostSlugs]
-      .map(
-        (slug) => `
+    const sitemap = `
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+/posts
+${[...allRoutesSlugs, ...allPostSlugs, ...explicitPaths]
+  .map(
+    (slug) => `
     <url>
-      <loc>${slugToAbsUrl(slug, baseUrl)}</loc>
+    <loc>${slugToAbsUrl(slug, baseUrl)}</loc>
     </url>
     `
-      )
-      .join('\n')}
-    ${[explicitPaths]
-      .map(
-        (path) => `
-    <url>
-      <loc>${slugToAbsUrl(path, baseUrl)}</loc>
-    </url>
-    `
-      )
-      .join('\n')}
-  </urlset>`
+  )
+  .join('\n')}
 
-  res.status(200).send(sitemap)
+    </urlset>`
+
+    console.log('**************')
+    console.log('Sitemap Built!')
+    console.log('**************')
+
+    res.status(200).send(sitemap)
+  }
+
+  res.status(200).send()
 }
