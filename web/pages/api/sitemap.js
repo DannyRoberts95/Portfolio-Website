@@ -28,9 +28,7 @@ export default async function handler(req, res) {
   }`)
 
     const sitemap = `
-<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-/posts
 ${[...allRoutesSlugs, ...allPostSlugs, ...explicitPaths]
   .map(
     (slug) => `
@@ -46,7 +44,6 @@ ${[...allRoutesSlugs, ...allPostSlugs, ...explicitPaths]
     console.log('**************')
     console.log('Sitemap Built!')
     console.log('**************')
-
     res.status(200).send(sitemap)
   }
 
