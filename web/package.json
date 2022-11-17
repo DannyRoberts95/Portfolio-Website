@@ -31,6 +31,7 @@
     "react-share": "^4.4.0",
     "react-syntax-highlighter": "^15.5.0",
     "rm": "^0.1.8",
+    "save": "^2.9.0",
     "uninstall": "^0.0.0",
     "yup": "^0.32.11"
   },
@@ -47,6 +48,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "globby": "^13.1.2",
     "prettier": "2.7.1"
   }
 }
