@@ -1,6 +1,17 @@
 const fs = require('fs')
-const client = require('../client')
-const {slugToAbsUrl} = require('../utils/urls')
+// const {slugToAbsUrl} = require('../utils/urls')
+const sanityClient = require('@sanity/client')
+
+function isServer() {
+  return !(typeof window != 'undefined' && window.document)
+}
+
+const client = sanityClient({
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_DATASET,
+  apiVersion: process.env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
+  useCdn: isServer() ? true : false, // `false` if you want to ensure fresh data
+})
 
 async function generateSitemap() {
   const explicitPaths = ['/posts', '/collections']
@@ -26,10 +37,10 @@ async function generateSitemap() {
     "baseUrl": *[_id == "global-config"][0].url,
   }`)
 
-  const buildUrl = (slug) => (slug) =>
+  const buildUrl = (slug) =>
     `
     <url>
-      <loc>${slugToAbsUrl(slug, baseUrl)}</loc>
+      <loc>${baseUrl}/${slug}</loc>
     </url>
     `
 
