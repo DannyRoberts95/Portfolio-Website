@@ -59,8 +59,8 @@ function Hero(props) {
             borderTop: `1px solid ${theme.palette.secondary.main}`,
             borderBottom: `1px solid ${theme.palette.secondary.main}`,
           }),
-
           py: 16,
+          maxHeight: '80vh',
         },
       ]}
     >
@@ -71,9 +71,9 @@ function Hero(props) {
             sx={{
               overflow: 'hidden',
               position: 'absolute',
+              top: 0,
               minWidth: '100%',
               height: '100%',
-              top: 0,
               zIndex: -1,
             }}
           >

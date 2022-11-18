@@ -1,10 +1,10 @@
 {
   "private": true,
-  "name": "sanity-nextjs-landing-pages-web",
+  "name": "Dan-Howard-Design-Portfolio",
   "version": "1.0.12",
-  "author": "Sanity <hello@sanity.io>",
+  "author": "Dan Howard Design",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "format": "prettier --write \"**/*.js\" \"!.next/**\" \"!node_modules/**\" \"!out/**\"",
     "lint": "next lint",

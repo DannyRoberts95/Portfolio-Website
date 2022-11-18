@@ -4,8 +4,8 @@ import Head from 'next/head'
 import Script from 'next/script'
 import client from '../client'
 import theme from '../themes/theme'
-import {navigationQuery} from '../utils/consts/groq/navigationQuery.js'
-import siteConfigQuery from '../utils/consts/groq/siteConfigQuery.js'
+
+import {siteQuery} from '../utils/consts/groq/index.js'
 
 class App extends BaseApp {
   static async getInitialProps({Component, ctx}) {
@@ -16,23 +16,11 @@ class App extends BaseApp {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    // Add site navigation from sanity
-    await client.fetch(navigationQuery).then((navigation) => {
-      if (navigation && pageProps) {
-        pageProps.navigation = navigation
-      }
+    await client.fetch(siteQuery).then((res) => {
+      pageProps = {...pageProps, ...res}
     })
 
-    // Add site config from sanity
-    return client.fetch(siteConfigQuery).then((config) => {
-      if (!config) {
-        return {pageProps}
-      }
-      if (config && pageProps) {
-        pageProps.config = config
-      }
-      return {pageProps}
-    })
+    return {pageProps}
   }
 
   render() {

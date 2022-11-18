@@ -2,14 +2,13 @@ import imageUrlBuilder from '@sanity/image-url'
 import groq from 'groq'
 import {NextSeo} from 'next-seo'
 import PropTypes from 'prop-types'
-import React, {useEffect} from 'react'
 
-import client from '../client'
 import Layout from 'components/layouts/Layout'
 import RenderSections from 'components/RenderSections'
-import {linkSnippet} from 'utils/consts/groq/navigationQuery'
-import {getSlugVariations, slugParamToPath} from '../utils/urls'
 import {useRouter} from 'next/router'
+import {linkSnippet} from 'utils/consts/groq'
+import client from '../client'
+import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
 const pageFragment = `
 ...,

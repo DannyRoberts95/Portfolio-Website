@@ -1,3 +1,15 @@
+export const siteConfigQuery = `
+  *[_id == "global-config"] {
+    ...,
+    logos {
+      "primary" :logoPrimary{asset->{extension, url}},
+      "contrast" :logoContrast{asset->{extension, url}},
+    },
+
+
+  }[0]
+  `
+
 export const linkSnippet = `
 linkType == "external" => {
 ...,
@@ -48,3 +60,10 @@ export const navigationQuery = `
     footerText
  }[0]
   `
+
+export const siteQuery = `
+{
+    'navigation': ${navigationQuery},
+    'config': ${siteConfigQuery}
+}
+`

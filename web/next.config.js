@@ -1,7 +1,5 @@
-module.exports = (req, res) => {
-  return {
-    images: {
-      domains: ['cdn.sanity.io'],
-    },
-  }
+module.exports = {
+  images: {
+    domains: ['cdn.sanity.io'],
+  },
 }
