@@ -11,7 +11,9 @@ import Link from './CustomLink'
 import DropdownMenu from './DropdownMenu'
 
 const TypographyLink = (props) => {
-  return <Typography component={Link} underline="none" variant="body2" {...props} />
+  return (
+    <Typography component={Link} underline="none" variant="body2" fontWeight={500} {...props} />
+  )
 }
 
 // Component to handle internal routing

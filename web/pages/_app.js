@@ -2,6 +2,7 @@ import {ThemeProvider} from '@mui/material/styles'
 import BaseApp from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
+import isServer from 'utils/isServer'
 import client from '../client'
 import theme from '../themes/theme'
 
@@ -25,6 +26,14 @@ class App extends BaseApp {
 
   render() {
     const {Component, pageProps} = this.props
+
+    if (!isServer) {
+      console.groupCollapsed(
+        '%c🔮 Designed and Developed by Dan Howard 🔮 \n– https://www.danhowarddesign.com/contact',
+        'display:block;padding:0.125em 1em;font-family:courier;font-size:14px;font-weight:bold;line-height:2;text-transform:uppercase;background:black;color:white;'
+      )
+      console.groupEnd()
+    }
 
     return (
       <>

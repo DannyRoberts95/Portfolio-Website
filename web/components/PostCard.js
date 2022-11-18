@@ -51,12 +51,12 @@ const PostCard = (props) => {
           transition: 'all 0.3s',
           height: '100%',
           border: (theme) => `1px solid ${theme.palette.primary.main}`,
-          filter: 'grayscale(1)',
+          filter: 'invert(0)',
         },
         hovered && {
           backgroundColor: (theme) => theme.palette.primary.main,
           color: (theme) => theme.palette.primary.contrastText,
-          filter: 'grayscale(0)',
+          filter: 'invert(1)',
         },
       ]}
       onMouseEnter={mouseIn}
@@ -81,6 +81,7 @@ const PostCard = (props) => {
             placeholder="blur"
             objectFit="cover"
             loading="lazy"
+            style={{transition: 'transform 0.5s', transform: hovered ? 'scale(1.1)' : 'scale(1)'}}
           />
         </Box>
         <CardContent sx={{p: 2}}>

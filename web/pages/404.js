@@ -1,11 +1,10 @@
 import {useTheme} from '@emotion/react'
 import {Container, Fade, Stack, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
-import NavItem from 'components/NavItem'
-import {NextSeo} from 'next-seo'
-import Image from 'next/image'
 import Cta from 'components/Cta'
 import Header from 'components/Header'
+import NavItem from 'components/NavItem'
+import {NextSeo} from 'next-seo'
 
 export default function _404(props) {
   const theme = useTheme()
@@ -39,11 +38,11 @@ export default function _404(props) {
             <Typography variant="h1" align="center" sx={{mt: 6}}>
               <b>404</b>
             </Typography>
-            <Typography variant="h6" align="center" sx={{mb: 2}}>
+            <Typography variant="h3" align="center" sx={{mb: 2}}>
               We couldn&apos;t find that page
             </Typography>
 
-            <Typography variant="caption" align="center">
+            <Typography variant="h6" align="center">
               Maybe one of these might help.
             </Typography>
           </Box>
