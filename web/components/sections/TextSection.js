@@ -13,7 +13,7 @@ function TextSection(props) {
 
   return (
     <SectionContainer maxWidth={false}>
-      {sectionTitle && <SectionTitle block={sectionTitle} sticky={false} />}
+      {sectionTitle && <SectionTitle block={sectionTitle} />}
       {sections.map((item) => (
         <Grid
           key={item._key}

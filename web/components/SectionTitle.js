@@ -1,15 +1,14 @@
 import {useTheme} from '@emotion/react'
-import {Box, Container, Paper, Typography, useMediaQuery} from '@mui/material'
+import {Box, Container, Paper, Typography} from '@mui/material'
 import PropTypes from 'prop-types'
-import techText from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
-  const isSm = useMediaQuery(theme.breakpoints.down('md'))
 
   const {block, small, sx, ...others} = props
+  const {heading = '', label} = block
+
   if (!block) return null
-  const {heading, label} = block
   if (!heading || (!heading && !label)) return null
 
   return (
@@ -29,9 +28,8 @@ function SectionTitle(props) {
       {...others}
     >
       <Container maxWidth={false}>
-        {!small && <Typography variant="overline">{label}</Typography>}
         <Typography variant={small ? 'h5' : 'h3'} component={'h2'} fontWeight="700">
-          {techText(heading)}
+          {heading}
         </Typography>
       </Container>
     </Box>

@@ -74,12 +74,6 @@ export default {
     },
     {
       fieldset: 'details',
-      name: 'readTime',
-      title: 'Read time in minutes',
-      type: 'number'
-    },
-    {
-      fieldset: 'details',
       name: 'categories',
       title: 'Categories',
       type: 'array',

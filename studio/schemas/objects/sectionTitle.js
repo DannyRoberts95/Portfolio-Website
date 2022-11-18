@@ -4,11 +4,6 @@ export default {
   title: 'Section Title',
   fields: [
     {
-      name: 'label',
-      type: 'string',
-      title: 'Label'
-    },
-    {
       name: 'heading',
       type: 'string',
       title: 'Heading'
