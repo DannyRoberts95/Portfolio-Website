@@ -35,15 +35,7 @@ const PostCard = (props) => {
 
   if (!post) return null
 
-  const {
-    title = 'Missing title',
-    slug,
-    publishedAt,
-    categories,
-    readTime,
-    summary,
-    illustration,
-  } = post
+  const {title = 'Missing title', slug, publishedAt, categories, illustration} = post
 
   const {href = `/posts/${slug.current}`} = props
 
@@ -59,10 +51,12 @@ const PostCard = (props) => {
           transition: 'all 0.3s',
           height: '100%',
           border: (theme) => `1px solid ${theme.palette.primary.main}`,
+          filter: 'grayscale(1)',
         },
         hovered && {
           backgroundColor: (theme) => theme.palette.primary.main,
           color: (theme) => theme.palette.primary.contrastText,
+          filter: 'grayscale(0)',
         },
       ]}
       onMouseEnter={mouseIn}
@@ -91,7 +85,7 @@ const PostCard = (props) => {
         </Box>
         <CardContent sx={{p: 2}}>
           <Typography variant={'overline'}>{formatDate(publishedAt)}</Typography>
-          <Typography gutterBottom variant={!minimal ? 'h6' : 'subtitle2'}>
+          <Typography gutterBottom variant={!minimal ? 'h5' : 'h6'}>
             {title}
           </Typography>
           {!minimal && (

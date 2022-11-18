@@ -47,8 +47,12 @@ function Layout(props) {
 
   const handleRouteChangeStart = () => {
     setTransitioning(true)
+    const body = document.getElementById('documentBody')
+    body.style.cursor = 'wait'
   }
   const handleRouteChangeComplete = (url, {shallow}) => {
+    const body = document.getElementById('documentBody')
+    body.style.cursor = 'auto'
     fuckWithDocumentTitle()
     setTransitioning(false)
   }

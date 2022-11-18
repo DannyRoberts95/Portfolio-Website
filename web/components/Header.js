@@ -115,7 +115,6 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      {console.log(computeToolbarHeight())}
       <Toolbar sx={{minHeight: computeToolbarHeight(), height: computeToolbarHeight()}} />
     </Box>
   )

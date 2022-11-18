@@ -2,9 +2,10 @@ import {useTheme} from '@emotion/react'
 import {Container, Fade, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
 import imageUrlBuilder from '@sanity/image-url'
+import useOnScreen from 'hooks/useOnScreen'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import ReactPlayer from 'react-player'
 import client from '../../client'
 import Cta from '../Cta'
@@ -17,6 +18,9 @@ function Hero(props) {
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down('md'))
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
+
+  const textRef = useRef()
+  const isVisible = useOnScreen(textRef)
 
   const [loadedImage, setloadedImage] = useState(false)
   const handleImageLoaded = () => setloadedImage(true)
@@ -132,51 +136,54 @@ function Hero(props) {
         </Box>
       )}
 
-      <Container maxWidth={'md'}>
-        <Typography
-          align="center"
-          variant={'h1'}
-          sx={[
-            {
-              ...((backgroundImage || backgroundVideo) && {textShadow: `3px 3px 6px #000`}),
-              ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
-            },
-            isMd && {
-              lineHeight: 1.25,
-            },
-          ]}
-        >
-          {heading}
-        </Typography>
+      <Fade in={isVisible} timeout={1000}>
+        <Container maxWidth={'md'} ref={textRef}>
+          <Typography
+            align="center"
+            variant={'h1'}
+            sx={[
+              {
+                ...((backgroundImage || backgroundVideo) && {textShadow: `3px 3px 6px #000`}),
+                ...((backgroundImage || backgroundVideo) &&
+                  blendText && {mixBlendMode: 'exclusion'}),
+              },
+              isMd && {
+                lineHeight: 1.25,
+              },
+            ]}
+          >
+            {heading}
+          </Typography>
 
-        <Typography
-          align="center"
-          gutterBottom
-          variant={'h4'}
-          sx={{
-            ...((backgroundImage || backgroundVideo) && {textShadow: `2px 2px 3px #000`}),
-            ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
-          }}
-        >
-          {tagline}
-        </Typography>
-
-        {ctas && (
-          <Box
+          <Typography
+            align="center"
+            gutterBottom
+            variant={'h4'}
             sx={{
-              mt: 2,
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              '> *:not(:first-of-type)': {ml: 2},
+              ...((backgroundImage || backgroundVideo) && {textShadow: `2px 2px 3px #000`}),
+              ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
             }}
           >
-            {ctas.map((cta) => (
-              <Cta {...cta} key={cta._key} color={dark ? 'secondary' : 'primary'} />
-            ))}
-          </Box>
-        )}
-      </Container>
+            {tagline}
+          </Typography>
+
+          {ctas && (
+            <Box
+              sx={{
+                mt: 2,
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                '> *:not(:first-of-type)': {ml: 2},
+              }}
+            >
+              {ctas.map((cta) => (
+                <Cta {...cta} key={cta._key} color={dark ? 'secondary' : 'primary'} />
+              ))}
+            </Box>
+          )}
+        </Container>
+      </Fade>
     </Box>
   )
 }
