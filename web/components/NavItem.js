@@ -11,7 +11,7 @@ import Link from './CustomLink'
 import DropdownMenu from './DropdownMenu'
 
 const TypographyLink = (props) => {
-  return <Typography component={Link} underline="none" variant="caption" {...props} />
+  return <Typography component={Link} underline="none" variant="body2" {...props} />
 }
 
 // Component to handle internal routing
@@ -127,7 +127,7 @@ const PathLink = (props) => {
       href={path.toLowerCase()}
       {...others}
     >
-      {isActiveSlug(path.toLowerCase()) ? techtext(title) : title}
+      {title}
     </TypographyLink>
   )
 }

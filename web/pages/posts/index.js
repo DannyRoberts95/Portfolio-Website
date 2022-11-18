@@ -88,7 +88,7 @@ const Posts = (props) => {
     <Layout config={config} navigation={navigation} transparentHeader>
       <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionTitle block={{heading: 'Posts', label: router.query?.category || 'Assorted'}} />
+      <SectionTitle block={{heading: 'Projects', label: router.query?.category || 'Assorted'}} />
 
       <SectionContainer>
         <CategoryList
@@ -112,7 +112,7 @@ const Posts = (props) => {
             {/* show the posts */}
             {posts.length === 0 && (
               <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
-                No Posts to Display
+                Nothing to Display
               </Typography>
             )}
 

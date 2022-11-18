@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Cta from './Cta'
 import Logo from './Logo'
 import NavItem from './NavItem'
@@ -43,6 +43,14 @@ const AppHeader = (props) => {
     setMobileMenuOpen(false)
   }
 
+  const appBar = useRef()
+  const computeToolbarHeight = () => {
+    if (appBar?.current) {
+      return appBar.current.clientHeight
+    }
+    return theme.shape.headerHeight
+  }
+
   useEffect(() => {
     router.events.on('routeChangeStart', handleCloseMenu)
     return () => {
@@ -53,6 +61,7 @@ const AppHeader = (props) => {
   const navbar = (
     <Box component={'span'}>
       <AppBar
+        ref={appBar}
         position="fixed"
         elevation={0}
         sx={{
@@ -106,7 +115,8 @@ const AppHeader = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar sx={{minHeight: ({shape}) => shape.headerHeight}} />
+      {console.log(computeToolbarHeight())}
+      <Toolbar sx={{minHeight: computeToolbarHeight(), height: computeToolbarHeight()}} />
     </Box>
   )
 

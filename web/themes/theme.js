@@ -11,8 +11,8 @@ const errorColor = red[900]
 
 const headerHeight = 75
 
-const headerFont = 'lexia mono, monospace, sans-serif'
-const bodyFont = 'lexia mono, monospace, sans-serif'
+const headerFont = 'Teko, sans-serif'
+const bodyFont = 'Raleway, sans-serif'
 
 let theme = createTheme({
   spacing: 12,
@@ -76,24 +76,21 @@ let theme = createTheme({
       textTransform: 'uppercase',
     },
     h6: {
-      fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '1.25rem',
       textTransform: 'uppercase',
     },
     subtitle1: {
-      fontWeight: 700,
       fontFamily: headerFont,
       textTransform: 'uppercase',
     },
     subtitle2: {
-      fontWeight: 700,
       fontFamily: headerFont,
       textTransform: 'uppercase',
     },
     button: {
       fontFamily: headerFont,
-      fontSize: '1rem',
+      letterSpacing: 2,
       textTransform: 'uppercase',
     },
     body1: {fontFamily: bodyFont},
@@ -105,6 +102,7 @@ let theme = createTheme({
       textTransform: 'uppercase',
     },
     overline: {
+      letterSpacing: 1.25,
       textTransform: 'uppercase',
       fontSize: '0.75rem',
     },
@@ -151,7 +149,10 @@ let theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          textTransform: 'uppercase',
+          letterSpacing: 1.5,
+          fontFamily: bodyFont,
+          fontSize: '0.875rem',
+          // textTransform: 'uppercase',
           borderRadius: 0,
         },
       },
@@ -168,7 +169,7 @@ let theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          fontSize: '0.75rem',
+          fontSize: '0.875rem',
           textTransform: 'uppercase',
           borderRadius: 0,
           border: `1px solid ${primaryColor}`,
