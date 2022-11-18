@@ -48,8 +48,11 @@ let theme = createTheme({
     h1: {
       fontFamily: headerFont,
       fontWeight: 700,
-      fontSize: '6rem',
+      fontSize: '8.5rem',
+      lineHeight: 1.25,
       textTransform: 'uppercase',
+
+      marginBottom: 0,
     },
     h2: {
       fontFamily: headerFont,

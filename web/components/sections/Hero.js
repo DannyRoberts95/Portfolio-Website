@@ -135,12 +135,9 @@ function Hero(props) {
       <Container maxWidth={'md'}>
         <Typography
           align="center"
-          gutterBottom
           variant={'h1'}
           sx={[
             {
-              mb: 2,
-
               ...((backgroundImage || backgroundVideo) && {textShadow: `3px 3px 6px #000`}),
               ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
             },
@@ -155,7 +152,7 @@ function Hero(props) {
         <Typography
           align="center"
           gutterBottom
-          variant={'h6'}
+          variant={'h4'}
           sx={{
             ...((backgroundImage || backgroundVideo) && {textShadow: `2px 2px 3px #000`}),
             ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
