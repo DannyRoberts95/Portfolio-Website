@@ -1,23 +1,18 @@
 const fs = require('fs')
-// const {slugToAbsUrl} = require('../utils/urls')
+require('dotenv').config()
 const sanityClient = require('@sanity/client')
-
-function isServer() {
-  return !(typeof window != 'undefined' && window.document)
-}
 
 const client = sanityClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
   apiVersion: process.env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
-  useCdn: isServer() ? true : false, // `false` if you want to ensure fresh data
+  useCdn: false, // `false` if you want to ensure fresh data
 })
 
 async function generateSitemap() {
-  const explicitPaths = ['/posts', '/collections']
-
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
+  const explicitPaths = ['/posts', '/collections']
 
   const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(`{
     // Get the slug of all routes that should be in the sitemap
@@ -51,6 +46,10 @@ async function generateSitemap() {
   </urlset>`
 
   fs.writeFileSync('public/sitemap.xml', sitemap)
+
+  console.log('********************************')
+  console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️')
+  console.log('********************************')
 }
 
 generateSitemap()

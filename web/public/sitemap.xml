@@ -1,52 +1,54 @@
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
     <url>
       <loc>https://www.danhowarddesign.com//about</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com///</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//transmission-space-stage</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//audio-flowers</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//oweynagat</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//aikido-learn</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//aikido</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com//rouen-97</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com///posts</loc>
     </url>
-
+    
 
     <url>
       <loc>https://www.danhowarddesign.com///collections</loc>
     </url>
-
+    
   </urlset>
