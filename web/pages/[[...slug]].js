@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import Layout from 'components/layouts/Layout'
 import RenderSections from 'components/RenderSections'
 import {useRouter} from 'next/router'
-import {linkSnippet} from 'utils/consts/groq'
 import client from '../client'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
@@ -18,12 +17,6 @@ content[] {
     ...,
     route->
   },
-  ctas[] {
-    "navLink":navLink{
-      ${linkSnippet}
-    },
-  },
-
 }`
 
 export const getServerSideProps = async ({params}) => {
