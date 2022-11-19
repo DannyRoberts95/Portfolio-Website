@@ -1,18 +1,17 @@
 import {CssBaseline} from '@mui/material'
 import Document, {Head, Html, Main, NextScript} from 'next/document'
-import client from '../client'
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return client.fetch('*[_id == "global-config"] {lang}.lang[0]').then((lang) => {
-      return {...initialProps, lang}
-    })
-  }
+  // static async getInitialProps(ctx) {
+  //   const initialProps = await Document.getInitialProps(ctx)
+  //   return client.fetch('*[_id == "global-config"] {lang}.lang[0]').then((lang) => {
+  //     return {...initialProps, lang}
+  //   })
+  // }
 
   render() {
     return (
-      <Html lang={this.props.lang || 'en'}>
+      <Html lang={'en'}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

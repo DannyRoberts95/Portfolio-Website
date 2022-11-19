@@ -3,13 +3,15 @@ require('dotenv').config()
 const sanityClient = require('@sanity/client')
 
 const client = sanityClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
-  apiVersion: process.env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
   useCdn: false, // `false` if you want to ensure fresh data
 })
 
 async function generateSitemap() {
+  const timerLabel = 'Build Time'
+  console.time(timerLabel)
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
   const explicitPaths = ['/posts', '/collections']
@@ -47,9 +49,10 @@ async function generateSitemap() {
 
   fs.writeFileSync('public/sitemap.xml', sitemap)
 
-  console.log('********************************')
+  console.log('************************************')
   console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️')
-  console.log('********************************')
+  console.timeEnd(timerLabel)
+  console.log('************************************')
 }
 
 generateSitemap()
