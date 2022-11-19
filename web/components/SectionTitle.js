@@ -7,10 +7,9 @@ function SectionTitle(props) {
   const theme = useTheme()
 
   const {block, small, sx, ...others} = props
-  const {heading = '', label} = block
+  const {heading = '', reverseDirection} = block
 
-  if (!block) return null
-  if (!heading || (!heading && !label)) return null
+  if (!block || !heading) return null
 
   const component = (
     <Typography variant={small ? 'h5' : 'h3'} component={'h2'} fontWeight="700" sx={{px: 1}}>
@@ -35,7 +34,7 @@ function SectionTitle(props) {
       elevation={0}
       {...others}
     >
-      <Marquee gradient={false}>
+      <Marquee gradient={false} direction={reverseDirection ? 'right' : 'left'}>
         {component}
         {component}
         {component}
