@@ -3,9 +3,9 @@ require('dotenv').config()
 const sanityClient = require('@sanity/client')
 
 const client = sanityClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
-  apiVersion: process.env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: process.NEXT_PUBLIC_env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
   useCdn: false, // `false` if you want to ensure fresh data
 })
 

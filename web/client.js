@@ -4,9 +4,9 @@ import sanityClient from '@sanity/client'
 const isProduction = process.env.NODE_ENV || 'development'
 
 const client = sanityClient({
-  projectId: '9rg3r6lx',
-  dataset: 'production',
-  apiVersion: '2022-01-31',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: process.NEXT_PUBLIC_env.SANITY_API_VERSION,
   useCdn: isProduction,
 })
 
