@@ -5,11 +5,12 @@ const sanityClient = require('@sanity/client')
 const client = sanityClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: process.NEXT_PUBLIC_env.SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION, // use current UTC date - see "specifying API version"!
   useCdn: false, // `false` if you want to ensure fresh data
 })
 
 async function generateSitemap() {
+  console.time()
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
   const explicitPaths = ['/posts', '/collections']
@@ -48,7 +49,7 @@ async function generateSitemap() {
   fs.writeFileSync('public/sitemap.xml', sitemap)
 
   console.log('********************************')
-  console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️')
+  console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️' + console.timeEnd())
   console.log('********************************')
 }
 
