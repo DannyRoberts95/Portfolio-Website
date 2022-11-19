@@ -8,3 +8,6 @@
 /lerna-debug.log
 
 .vercel
+
+# Local Netlify folder
+.netlify
