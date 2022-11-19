@@ -10,7 +10,8 @@ const client = sanityClient({
 })
 
 async function generateSitemap() {
-  console.time('Build Time')
+  const timerLabel = 'Build Time'
+  console.time(timerLabel)
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
   const explicitPaths = ['/posts', '/collections']
@@ -48,9 +49,10 @@ async function generateSitemap() {
 
   fs.writeFileSync('public/sitemap.xml', sitemap)
 
-  console.log('********************************')
-  console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️' + console.timeEnd())
-  console.log('********************************')
+  console.log('************************************')
+  console.log('🗺️ SITEMAP GENERATED SUCCESSFULLY! 🗺️')
+  console.timeEnd(timerLabel)
+  console.log('************************************')
 }
 
 generateSitemap()
