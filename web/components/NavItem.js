@@ -1,5 +1,4 @@
 import {useTheme} from '@emotion/react'
-import {Add} from '@mui/icons-material'
 import {Box, Stack, Typography, useMediaQuery} from '@mui/material'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
@@ -157,7 +156,7 @@ const NavDropdownMenu = ({navItem, darkText, ...others}) => {
     <Box component={'span'} onMouseEnter={handleHover}>
       <Stack ref={anchorRef} direction="row" alignItems={'center'}>
         <NavItem navItem={baseLink} darkText={darkText} {...others} />
-        <Add
+        {/* <Add
           fontSize="small"
           htmlColor={textColor}
           sx={{
@@ -165,7 +164,7 @@ const NavDropdownMenu = ({navItem, darkText, ...others}) => {
             transition: 'transform 0.25s',
             transform: menuOpen ? 'rotate(45deg)' : 'rotate(0deg)',
           }}
-        />
+        /> */}
       </Stack>
 
       <DropdownMenu

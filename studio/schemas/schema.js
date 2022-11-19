@@ -47,7 +47,7 @@ import exitIntentModal from './objects/exitIntentModal'
 import externalLink from './objects/externalLink'
 import figureList from './objects/figureList'
 import logos from './objects/logos'
-import { logEntry, logSection } from './objects/logSection'
+
 import review from './objects/review'
 import sectionTitle from './objects/sectionTitle'
 import tile from './objects/tile'
@@ -75,8 +75,7 @@ export default createSchema({
     imageSection,
     gridSection,
     tile,
-    logSection,
-    logEntry,
+
     reviewSection,
     review,
     internalLink,

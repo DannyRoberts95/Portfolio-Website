@@ -1,4 +1,3 @@
-import {ExpandMore} from '@mui/icons-material'
 import {
   Accordion,
   AccordionDetails,
@@ -51,11 +50,7 @@ const TableOfContents = (props) => {
   if (accordian) {
     return (
       <Accordion elevation={0} variant="outlined" {...(accordian && others)}>
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          aria-controls={`${header}-content`}
-          id={`${header}-title`}
-        >
+        <AccordionSummary aria-controls={`${header}-content`} id={`${header}-title`}>
           <Stack>
             <Typography variant="caption" color="textSecondary">
               Tabel of Contents

@@ -1,5 +1,6 @@
 import {useTheme} from '@emotion/react'
-import {Clear, Menu} from '@mui/icons-material'
+
+import {UilBars, UilTimes} from '@iconscout/react-unicons'
 import {
   AppBar,
   Box,
@@ -108,7 +109,7 @@ const AppHeader = (props) => {
                   color="inherit"
                   aria-details="the_menu_button_to_open_the_mobile_site_naviagtion"
                 >
-                  <Menu />
+                  <UilBars />
                 </IconButton>
               </Box>
             </Box>
@@ -135,7 +136,7 @@ const AppHeader = (props) => {
           <Stack direction={'row'} justifyContent="space-between" alignItems={'flex-start'}>
             <Logo logo={logos['primary']} width={125} />
             <IconButton size="small" onClick={handleCloseMenu}>
-              <Clear />
+              <UilTimes />
             </IconButton>
           </Stack>
 

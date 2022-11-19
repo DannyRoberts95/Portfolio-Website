@@ -1,4 +1,3 @@
-import {Lens} from '@mui/icons-material'
 import {Chip} from '@mui/material'
 import {Box} from '@mui/system'
 import {useState} from 'react'
@@ -28,7 +27,7 @@ export default function CategoryChip({label, categoryColor, sx, clickable = true
               gap: 0.5,
             }}
           >
-            <Lens htmlColor={categoryColor} fontSize={'inherit'} />
+            <span style={{transform: 'scale(2)'}}>•</span>
             {label}
           </Box>
         </>

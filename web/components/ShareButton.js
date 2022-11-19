@@ -1,4 +1,4 @@
-import {ContentCopy, FacebookOutlined, Reddit, ShareOutlined, Twitter} from '@mui/icons-material'
+import {UilCopy, UilFacebook, UilReddit, UilShareAlt, UilTwitter} from '@iconscout/react-unicons'
 import {IconButton, Stack, Tooltip} from '@mui/material'
 
 import {useEffect, useRef, useState} from 'react'
@@ -48,21 +48,21 @@ export default function ShareButton(props) {
   const buttons = (
     <Stack direction="row" columnGap={1} alignItems="center" sx={{px: 1}}>
       <TwitterShareButton {...buttonProps}>
-        <Twitter color="action" />
+        <UilTwitter color="action" />
       </TwitterShareButton>
       <FacebookShareButton {...buttonProps}>
-        <FacebookOutlined color="action" />
+        <UilFacebook color="action" />
       </FacebookShareButton>
       {/* <WhatsappShareButton {...buttonProps}>
         <WhatsApp color="action" />
       </WhatsappShareButton> */}
       <RedditShareButton {...buttonProps}>
-        <Reddit color="action" />
+        <UilReddit color="action" />
       </RedditShareButton>
       {/* <EmailShareButton {...buttonProps}>
         <Email color="action" />
       </EmailShareButton> */}
-      <CopyButton url={shareUrl} color="action" />
+      <UilCopy url={shareUrl} color="action" />
     </Stack>
   )
 
@@ -71,7 +71,7 @@ export default function ShareButton(props) {
   return (
     <>
       <IconButton ref={anchorEle} onClick={handleClick} {...others}>
-        <ShareOutlined color="primary" />
+        <UilShareAlt color="primary" />
       </IconButton>
       <DropdownMenu
         open={open}

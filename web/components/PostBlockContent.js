@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Link} from '@mui/icons-material'
+import {UilLink} from '@iconscout/react-unicons'
 import {Box, Grow, IconButton, Stack, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import {PortableText} from '@portabletext/react'
 import PropTypes from 'prop-types'
@@ -57,7 +57,7 @@ const LinkableHeader = (props) => {
       <Grow in={isSm || hovered}>
         <Tooltip title={copied ? 'Link Copied!' : 'Copy to Clipboard'}>
           <IconButton onClick={handleCopy} color="primary">
-            <Link fontSize={isSm ? 'small' : 'medium'} color="inherit" />
+            <UilLink fontSize={isSm ? 'small' : 'medium'} color="inherit" />
           </IconButton>
         </Tooltip>
       </Grow>
