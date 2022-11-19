@@ -17,8 +17,5 @@
     "@sanity/cli": "^2.26.0",
     "lerna": "^4.0.0"
   },
-  "dependencies": {
-    "eslint-plugin-next": "^0.0.0",
-    "eslint-plugin-simple-import-sort": "^8.0.0"
-  }
+  "dependencies": {}
 }
