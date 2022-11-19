@@ -8,7 +8,6 @@ import client from '../client'
 import {useTheme} from '@emotion/react'
 
 import PostBlockContent from 'components/PostBlockContent'
-import ShareButton from 'components/ShareButton'
 
 import {useEffect, useState} from 'react'
 import formatDate from '../utils/helpers/formatDate'
@@ -83,7 +82,6 @@ const Post = (props) => {
                   <Typography variant="caption">{formatDate(publishedAt)}</Typography>
                 </Stack>
               </Stack>
-              <ShareButton exposed={!isSm} />
             </Stack>
           </Grid>
         </Grid>
