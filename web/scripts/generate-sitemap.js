@@ -10,7 +10,7 @@ const client = sanityClient({
 })
 
 async function generateSitemap() {
-  console.time()
+  console.time('Build Time')
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
   const explicitPaths = ['/posts', '/collections']
