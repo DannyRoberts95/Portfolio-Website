@@ -2,21 +2,10 @@ import {useTheme} from '@emotion/react'
 import {Grid, Stack, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
 import PropTypes from 'prop-types'
-import fireGtag from '../utils/fireGtag'
 import Logo from './Logo'
 import NavItem from './NavItem'
 import SectionContainer from './SectionContainer'
 import StyledBlockContent from './StyledBlockContent'
-
-function chunkArray(items, size) {
-  if (!items) return null
-  const chunks = []
-  items = [].concat(...items)
-  while (items.length) {
-    chunks.push(items.splice(0, size))
-  }
-  return chunks
-}
 
 function Footer(props) {
   const theme = useTheme()
@@ -25,11 +14,7 @@ function Footer(props) {
 
   const {footerNavigation = [], title, text, logos} = props
 
-  const handleSumbitComplete = () => {
-    fireGtag('sign_up', {label: 'footer'})
-  }
-
-  const cols = footerNavigation.map((col, i) => (
+  const cols = footerNavigation.map((col) => (
     <Grid item xs={6} md={3} key={col.columnTitle}>
       <Typography variant="subtitle1" gutterBottom>
         {col.columnTitle}

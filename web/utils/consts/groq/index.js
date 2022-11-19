@@ -1,35 +1,36 @@
-export const siteConfigQuery = `
+import groq from 'groq'
+
+export const siteConfigQuery = groq`
   *[_id == "global-config"] {
-    ...,
+    title,
+    url,
+    disableCookieBanner,
     logos {
       "primary" :logoPrimary{asset->{extension, url}},
       "contrast" :logoContrast{asset->{extension, url}},
     },
-
-
   }[0]
   `
 
-export const linkSnippet = `
+export const linkSnippet = groq`
 linkType == "external" => {
-...,
- "itemType":linkType,
+title,
+url,
+"itemType":linkType,
+_key
 },
 
 linkType == "internal" => {
-  ...,
+  _key,
   "title":internal->page->title,
   "itemType":linkType,
   "slug":internal->slug,
 
 },
-linkType == "path" => {
-  ...,
-  "itemType":linkType,
-},
+linkType == "path" => {path, title, "itemType":linkType, _key},
 `
 
-export const navigationQuery = `
+export const navigationQuery = groq`
 *[_id == "site-navigation" ] {
 
   "mainNavigation":mainNavigation[]{
@@ -47,21 +48,19 @@ export const navigationQuery = `
   },
 
   "footerNavigation":footerNavigation[]{
-    ...,
     "links":links[]{${linkSnippet}}
-
-    },
-    "navigationCTAs":navigationCTAs[]{
-      ...,
+  },
+  "navigationCTAs":navigationCTAs[]{
+      _key,
       "navLink":navLink{
         ${linkSnippet}
       },
-    },
+  },
     footerText
  }[0]
   `
 
-export const siteQuery = `
+export const siteQuery = groq`
 {
     'navigation': ${navigationQuery},
     'config': ${siteConfigQuery}

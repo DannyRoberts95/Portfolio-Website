@@ -17,9 +17,13 @@ class App extends BaseApp {
       pageProps = await Component.getInitialProps(ctx)
     }
 
+    console.time('SiteQuery')
     await client.fetch(siteQuery).then((res) => {
       pageProps = {...pageProps, ...res}
     })
+    console.log('*********************')
+    console.timeEnd('SiteQuery')
+    console.log('*********************')
 
     return {pageProps}
   }
