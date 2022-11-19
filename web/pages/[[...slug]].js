@@ -19,33 +19,20 @@ content[] {
     route->
   },
   ctas[] {
-    ...,
-
-
     "navLink":navLink{
       ${linkSnippet}
     },
   },
-  plans[]->{
-    ...,
-    benifits,
-    "backgroundImage" :planImage{asset->{extension, url}}}
+
 }`
 
-/**
- * Fetches data for our pages.
- *
- * The [[...slug]] name for this file is intentional - it means Next will run this getServerSideProps
- * for every page requested - /, /about, /contact, etc..
- * From the received params.slug, we're able to query Sanity for the route coresponding to the currently requested path.
- */
 export const getServerSideProps = async ({params}) => {
   const slug = slugParamToPath(params?.slug)
 
   let data
 
-  // Frontpage - fetch the linked `frontpage` from the global configuration document.
   if (slug === '/') {
+    console.log('Frontpage requested!')
     data = await client
       .fetch(
         groq`
@@ -56,8 +43,12 @@ export const getServerSideProps = async ({params}) => {
         }
       `
       )
-      .then((res) => (res?.frontpage ? {...res.frontpage, slug} : undefined))
+      .then((res) => {
+        console.log('Frontpage Response:\n'.res)
+        return res?.frontpage ? {...res.frontpage, slug} : undefined
+      })
   } else {
+    console.log('Regular page requested!')
     // Regular route
     data = await client
       .fetch(
@@ -69,10 +60,17 @@ export const getServerSideProps = async ({params}) => {
         }`,
         {possibleSlugs: getSlugVariations(slug)}
       )
-      .then((res) => (res?.page ? {...res.page, slug} : undefined))
+      .then((res) => {
+        console.log('Regular Res:\n', res)
+        return res?.page ? {...res.page, slug} : undefined
+      })
   }
+  console.log('****************************************************')
+  console.log('Page Data:\n', data)
+  console.log('****************************************************')
 
   if (!data || !data?._type === 'page') {
+    console.log('⚠️ Error Getting Page Data ⚠️:\n', data)
     return {
       notFound: true,
     }

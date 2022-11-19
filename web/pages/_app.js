@@ -18,9 +18,15 @@ class App extends BaseApp {
     }
 
     console.time('SiteQuery')
+
     await client.fetch(siteQuery).then((res) => {
+      console.log('*********************')
+      console.log('Site Query Res')
+      console.log(res)
+      console.log('*********************')
       pageProps = {...pageProps, ...res}
     })
+
     console.log('*********************')
     console.timeEnd('SiteQuery')
     console.log('*********************')
