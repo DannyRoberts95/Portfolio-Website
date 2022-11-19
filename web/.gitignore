@@ -40,3 +40,7 @@ jspm_packages
 # Static
 out
 .vercel
+
+# Local Netlify folder
+.netlify
+
