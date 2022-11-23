@@ -13,12 +13,12 @@ export const siteConfigQuery = groq`
   `
 
 export const linkSnippet = groq`
-linkType == "external" => {
-title,
-url,
-"itemType":linkType,
-_key
-},
+  linkType == "external" => {
+    title,
+    url,
+    linkType,
+    _key
+  },
 
 linkType == "internal" => {
   _key,
@@ -27,12 +27,16 @@ linkType == "internal" => {
   "slug":internal->slug,
 
 },
-linkType == "path" => {path, title, "itemType":linkType, _key},
+linkType == "path" => {
+  path,
+  title,
+  "itemType":linkType,
+  _key
+  },
 `
 
 export const navigationQuery = groq`
-*[_id == "site-navigation" ] {
-
+*[_id == "site-navigation" ]{
   "mainNavigation":mainNavigation[]{
     ${linkSnippet}
     _type=="navLinkDropdown"=>{

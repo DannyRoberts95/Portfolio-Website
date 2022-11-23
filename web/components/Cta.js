@@ -1,25 +1,21 @@
 import {Button} from '@mui/material'
-import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import fireGtag from '../utils/fireGtag'
 import Link from './CustomLink.js'
-function Cta(props) {
-  const buildLinkSrc = (navLink) => {
-    if (!navLink) return '#'
 
-    const {linkType} = navLink
-    switch (linkType) {
-      case 'external':
-        return navLink.url
-      case 'path':
-        return navLink.path
-      case 'internal':
-        return navLink?.slug?.current
-      default:
-        return '#'
-    }
+const buildLinkSrc = (navLink) => {
+  const {linkType} = navLink
+  switch (linkType) {
+    case 'external':
+      return navLink.url
+    case 'path':
+      return navLink.path
+    case 'internal':
+      return navLink?.slug?.current
+    default:
+      return '#'
   }
-
+}
+function Cta(props) {
   const {title, route, navLink, isPrimary, color = null, ...others} = props
 
   if (!navLink) {
@@ -28,7 +24,6 @@ function Cta(props) {
 
   const handleClick = () => {
     // fireGtag('cta_click', {label: `${title}`, category: `page_${asPath}`})
-    console.log('add gtag event in CTA')
   }
 
   if (navLink) {
