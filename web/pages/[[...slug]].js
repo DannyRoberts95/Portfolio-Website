@@ -15,38 +15,40 @@ slug,
 title,
 content`
 
-export const getServerSideProps = async ({params}) => {
+export async function getStaticPaths() {
+  let slugs = []
+  await client
+    .fetch(
+      groq`{
+    // Get the slug of all routes that should be in the sitemap
+    "slugs": *[
+      _type == "route" &&
+      includeInSitemap != false &&
+      disallowRobots != true
+    ].slug.current,
+  }`
+    )
+    .then((res) => {
+      slugs = res.slugs
+    })
+
+  const paths = slugs.map((slug) => {
+    console.log(slug)
+    return {
+      params: {slug: [slug]},
+    }
+  })
+
+  return {
+    paths: ['/', ...paths],
+    fallback: false, // can also be true or 'blocking'
+  }
+}
+
+export const getStaticProps = async ({params}) => {
   const slug = slugParamToPath(params?.slug)
 
   let data
-
-  // const buildQuery = (slug) => {
-  //   if (slug === '/') {
-  //     return groq`
-  //       *[_id == "global-config"][0]{
-  //        "page":frontpage -> {
-  //           ${pageFragment}
-  //         }
-  //       }
-  //     `
-  //   }
-
-  //   return (
-  //     groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
-  //         page-> {
-  //           ${pageFragment}
-  //         }
-  //       }`,
-  //     {possibleSlugs: getSlugVariations(slug)}
-  //   )
-  // }
-
-  // console.log('FETCHING ' + slug + ' PAGE')
-
-  // await client.fetch(buildQuery(slug)).then((res) => {
-  //   console.log('Frontpage Response:\n'.res)
-  //   data = res?.page ? {...res.page, slug} : undefined
-  // })
 
   if (slug === '/') {
     data = await client
@@ -96,6 +98,59 @@ export const getServerSideProps = async ({params}) => {
     props: data || {},
   }
 }
+// export const getServerSideProps = async ({params}) => {
+//   const slug = slugParamToPath(params?.slug)
+
+//   let data
+
+//   if (slug === '/') {
+//     data = await client
+//       .fetch(
+//         groq`
+//         *[_id == "global-config"][0]{
+//           frontpage -> {
+//             ${pageFragment}
+//           }
+//         }
+//       `
+//       )
+//       .then((res) => {
+//         console.log('Frontpage Response:\n'.res)
+//         return res?.frontpage ? {...res.frontpage, slug} : undefined
+//       })
+//   } else {
+//     // Regular route
+//     data = await client
+//       .fetch(
+//         // Get the route document with one of the possible slugs for the given requested path
+//         groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
+//           page-> {
+//             ${pageFragment}
+//           }
+//         }`,
+//         {possibleSlugs: getSlugVariations(slug)}
+//       )
+//       .then((res) => {
+//         console.log('Regular Res:\n', res)
+//         return res?.page ? {...res.page, slug} : undefined
+//       })
+//   }
+
+//   console.log('****************************************************')
+//   console.log('Page Data:\n', data)
+//   console.log('****************************************************')
+
+//   if (!data || !data._type === 'page') {
+//     console.log('⚠️ Error Getting Page Data ⚠️:\n', data)
+//     return {
+//       notFound: true,
+//     }
+//   }
+
+//   return {
+//     props: data || {},
+//   }
+// }
 
 const builder = imageUrlBuilder(client)
 
