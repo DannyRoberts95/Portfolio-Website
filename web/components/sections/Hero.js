@@ -22,9 +22,6 @@ function Hero(props) {
   const textRef = useRef()
   const isVisible = useOnScreen(textRef)
 
-  const [loadedImage, setloadedImage] = useState(false)
-  const handleImageLoaded = () => setloadedImage(true)
-
   const [loadedVideo, setloadedVideo] = useState(false)
   const handleVideoLoaded = () => setloadedVideo(true)
 
@@ -59,39 +56,37 @@ function Hero(props) {
             borderTop: `1px solid ${theme.palette.secondary.main}`,
             borderBottom: `1px solid ${theme.palette.secondary.main}`,
           }),
-          py: 16,
+          py: isSm ? 8 : 16,
           maxHeight: '80vh',
         },
       ]}
     >
       {backgroundImage && (
-        <Fade in={(backgroundImage && loadedImage) || firstComponent}>
-          <Box
-            id="heroImageContainer"
-            sx={{
-              overflow: 'hidden',
-              position: 'absolute',
-              top: 0,
-              minWidth: '100%',
-              height: '100%',
-              zIndex: -1,
-            }}
-          >
-            <Image
-              id="heroImage"
-              layout="fill"
-              loading={firstComponent ? 'eager' : 'lazy'}
-              priority={firstComponent}
-              onLoad={handleImageLoaded}
-              objectFit="cover"
-              quality={85}
-              alt="hero_banner_illustartion"
-              blurDataURL={urlFor(backgroundImage).width(480).url().toString()}
-              src={urlFor(backgroundImage).auto('format').url()}
-              srcSet={urlFor(backgroundImage).auto('format').url()}
-            />
-          </Box>
-        </Fade>
+        <Box
+          id="heroImageContainer"
+          sx={{
+            overflow: 'hidden',
+            position: 'absolute',
+            top: 0,
+            minWidth: '100%',
+            height: '100%',
+            zIndex: -1,
+          }}
+        >
+          <Image
+            id="heroImage"
+            layout="fill"
+            loading={firstComponent ? 'eager' : 'lazy'}
+            priority={firstComponent}
+            objectFit="cover"
+            quality={85}
+            alt="hero_banner_illustartion"
+            placeholder="blur"
+            blurDataURL={urlFor(backgroundImage).auto('format').width(480).url()}
+            src={urlFor(backgroundImage).auto('format').url()}
+            srcSet={urlFor(backgroundImage).auto('format').url()}
+          />
+        </Box>
       )}
 
       {/* VIDEO  */}

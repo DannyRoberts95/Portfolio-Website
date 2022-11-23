@@ -101,7 +101,7 @@ const AppHeader = (props) => {
                 <IconButton
                   sx={{p: 0}}
                   size="large"
-                  aria-label="account of current user"
+                  aria-label="menu-icon-button"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenMenu}
