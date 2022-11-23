@@ -96,6 +96,7 @@ export const getStaticProps = async ({params}) => {
 
   return {
     props: data || {},
+    revalidate: 5,
   }
 }
 // export const getServerSideProps = async ({params}) => {
