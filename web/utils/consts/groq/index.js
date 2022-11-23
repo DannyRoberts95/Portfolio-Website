@@ -6,8 +6,8 @@ export const siteConfigQuery = groq`
     url,
     disableCookieBanner,
     logos {
-      "primary" :logoPrimary{asset->{extension, url}},
-      "contrast" :logoContrast{asset->{extension, url}},
+      "primary" :logoPrimary,
+      "contrast" :logoContrast,
     },
   }[0]
   `
@@ -52,6 +52,7 @@ export const navigationQuery = groq`
   },
 
   "footerNavigation":footerNavigation[]{
+    ...,
     "links":links[]{${linkSnippet}}
   },
   "navigationCTAs":navigationCTAs[]{

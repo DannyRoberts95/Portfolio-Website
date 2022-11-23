@@ -9,15 +9,12 @@ import {useRouter} from 'next/router'
 import client from '../client'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
-const pageFragment = `
-...,
-content[] {
-  ...,
-  cta {
-    ...,
-    route->
-  },
-}`
+const pageFragment = groq`
+description,
+openGraphImage,
+slug,
+title,
+content`
 
 export const getServerSideProps = async ({params}) => {
   const slug = slugParamToPath(params?.slug)
@@ -78,6 +75,8 @@ const builder = imageUrlBuilder(client)
 
 const LandingPage = (props) => {
   const router = useRouter()
+
+  // console.log('Page Props:', props)
 
   const {
     title = '',

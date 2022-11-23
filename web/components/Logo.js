@@ -1,9 +1,11 @@
-import React, {forwardRef} from 'react'
+import {forwardRef} from 'react'
 
-import PropTypes from 'prop-types'
 import {Box} from '@mui/material'
-import Link from './CustomLink'
 import Image from 'next/image'
+import PropTypes from 'prop-types'
+import Link from './CustomLink'
+
+import buildUrl from '../utils/helpers/urlForSanityImage'
 
 const Logo = forwardRef((props, ref) => {
   const {logo, alt = 'site logo', href = '/', size = 50, ...others} = props
@@ -15,7 +17,18 @@ const Logo = forwardRef((props, ref) => {
   return (
     <Box width={size} height={size} position="relative" {...others}>
       <Link ref={ref} href={href}>
-        <Image layout="intrinsic" src={logo.asset.url} alt={alt} width={size} height={size} />
+        <Image
+          layout="intrinsic"
+          quality={100}
+          src={buildUrl(logo)
+            .width(size * 2)
+            .height(size * 2)
+            .auto('format')
+            .url()}
+          alt={alt}
+          width={size}
+          height={size}
+        />
       </Link>
     </Box>
   )
