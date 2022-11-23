@@ -16,7 +16,7 @@ async function generateSitemap() {
   // const pages = await globby(['pages/**/*{.js,.mdx}', '!pages/_*.js', '!pages/api'])
   const explicitPaths = ['/posts', '/collections']
 
-  const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(groq`{
+  const {allRoutesSlugs, allPostSlugs, baseUrl} = await client.fetch(`{
     // Get the slug of all routes that should be in the sitemap
     "allRoutesSlugs": *[
       _type == "route" &&

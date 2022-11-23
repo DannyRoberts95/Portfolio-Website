@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   let slugs = []
   await client
     .fetch(
-      groq`{
+      `{
     // Get the slug of all routes that should be in the sitemap
     "slugs": *[
       _type == "route" &&
