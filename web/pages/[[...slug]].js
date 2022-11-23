@@ -19,42 +19,68 @@ content`
 export const getServerSideProps = async ({params}) => {
   const slug = slugParamToPath(params?.slug)
 
-  let data
-
-  if (slug === '/') {
-    console.log('Frontpage requested!')
-    data = await client
-      .fetch(
-        groq`
+  const buildQuery = (slug) => {
+    if (slug === '/') {
+      return groq`
         *[_id == "global-config"][0]{
-          frontpage -> {
+         "page":frontpage -> {
             ${pageFragment}
           }
         }
       `
-      )
-      .then((res) => {
-        console.log('Frontpage Response:\n'.res)
-        return res?.frontpage ? {...res.frontpage, slug} : undefined
-      })
-  } else {
-    console.log('Regular page requested!')
-    // Regular route
-    data = await client
-      .fetch(
-        // Get the route document with one of the possible slugs for the given requested path
-        groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
+    }
+
+    return (
+      groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
           page-> {
             ${pageFragment}
           }
         }`,
-        {possibleSlugs: getSlugVariations(slug)}
-      )
-      .then((res) => {
-        console.log('Regular Res:\n', res)
-        return res?.page ? {...res.page, slug} : undefined
-      })
+      {possibleSlugs: getSlugVariations(slug)}
+    )
   }
+
+  console.log('FETCHING ' + slug + ' PAGE')
+
+  let data
+
+  await client.fetch(buildQuery(slug)).then((res) => {
+    console.log('Frontpage Response:\n'.res)
+    data = res?.page ? {...res.page, slug} : undefined
+  })
+
+  // if (slug === '/') {
+  //   data = await client
+  //     .fetch(
+  //       groq`
+  //       *[_id == "global-config"][0]{
+  //         frontpage -> {
+  //           ${pageFragment}
+  //         }
+  //       }
+  //     `
+  //     )
+  //     .then((res) => {
+  //       console.log('Frontpage Response:\n'.res)
+  //       return res?.frontpage ? {...res.frontpage, slug} : undefined
+  //     })
+  // } else {
+  //   // Regular route
+  //   data = await client
+  //     .fetch(
+  //       // Get the route document with one of the possible slugs for the given requested path
+  //       groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
+  //         page-> {
+  //           ${pageFragment}
+  //         }
+  //       }`,
+  //       {possibleSlugs: getSlugVariations(slug)}
+  //     )
+  //     .then((res) => {
+  //       console.log('Regular Res:\n', res)
+  //       return res?.page ? {...res.page, slug} : undefined
+  //     })
+  // }
 
   console.log('****************************************************')
   console.log('Page Data:\n', data)

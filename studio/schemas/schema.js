@@ -27,14 +27,12 @@ import collection from './documents/collection'
 import person from './documents/person'
 import post from './documents/post'
 //Glossary
-import term from './documents/term'
 
 // Page sections
 import contactSection from './objects/contactSection'
 import gridSection from './objects/gridSection'
 import hero from './objects/hero'
 import imageSection from './objects/imageSection'
-import reviewSection from './objects/reviewSection'
 
 import textSection from './objects/textSection'
 
@@ -47,8 +45,6 @@ import exitIntentModal from './objects/exitIntentModal'
 import externalLink from './objects/externalLink'
 import figureList from './objects/figureList'
 import logos from './objects/logos'
-import { logEntry, logSection } from './objects/logSection'
-import review from './objects/review'
 import sectionTitle from './objects/sectionTitle'
 import tile from './objects/tile'
 
@@ -75,10 +71,6 @@ export default createSchema({
     imageSection,
     gridSection,
     tile,
-    logSection,
-    logEntry,
-    reviewSection,
-    review,
     internalLink,
     externalLink,
     exitIntentModal,
@@ -98,7 +90,6 @@ export default createSchema({
     person,
     post,
     cv,
-    collection,
-    term
+    collection
   ])
 })

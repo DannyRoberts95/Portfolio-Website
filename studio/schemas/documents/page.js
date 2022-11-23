@@ -35,8 +35,6 @@ export default {
         },
         { type: 'gridSection' },
         { type: 'textSection' },
-        { type: 'reviewSection' },
-        { type: 'logSection' },
         { type: 'contactSection' }
       ]
     },
