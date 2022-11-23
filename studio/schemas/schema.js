@@ -7,7 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // Document types
 import cv from './documents/cv'
 import navigation from './documents/navigation'
-import output from './documents/output'
+
 import page from './documents/page'
 import route from './documents/route'
 import siteConfig from './documents/siteConfig'
@@ -56,19 +56,22 @@ export default createSchema({
   // Then proceed to concatenate our our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-    illustration,
-    figureList,
     navigationLink,
     navLinkDropdown,
     navigation,
+
+    illustration,
+    figureList,
+    figure,
+
     cta,
     output,
     embedHTML,
     embedVideo,
     embedCodeSnippet,
-    figure,
-    hero,
+
     imageSection,
+    hero,
     gridSection,
     tile,
     internalLink,
