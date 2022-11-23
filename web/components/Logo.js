@@ -20,11 +20,7 @@ const Logo = forwardRef((props, ref) => {
         <Image
           layout="intrinsic"
           quality={100}
-          src={buildUrl(logo)
-            .width(size * 2)
-            .height(size * 2)
-            .auto('format')
-            .url()}
+          src={buildUrl(logo).width(250).height(250).auto('format').url()}
           alt={alt}
           width={size}
           height={size}

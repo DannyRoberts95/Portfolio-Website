@@ -55,6 +55,7 @@ export const getServerSideProps = async ({params}) => {
         return res?.page ? {...res.page, slug} : undefined
       })
   }
+
   console.log('****************************************************')
   console.log('Page Data:\n', data)
   console.log('****************************************************')

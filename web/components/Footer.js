@@ -41,7 +41,7 @@ function Footer(props) {
             alignContent: 'center',
           }}
         >
-          <Logo logo={logos['primary']} alt={title} sx={{my: 2}} size="75px" />
+          <Logo logo={logos['primary']} width={125} />
         </Stack>
 
         <Grid container spacing={2} sx={{my: 4}}>
