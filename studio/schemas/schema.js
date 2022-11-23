@@ -65,7 +65,6 @@ export default createSchema({
     figure,
 
     cta,
-    output,
     embedHTML,
     embedVideo,
     embedCodeSnippet,

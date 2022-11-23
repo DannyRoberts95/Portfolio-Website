@@ -129,7 +129,7 @@ const PathLink = (props) => {
       href={path.toLowerCase()}
       {...others}
     >
-      {title}
+      {isActiveSlug(title) ? techtext(title) : title}
     </TypographyLink>
   )
 }

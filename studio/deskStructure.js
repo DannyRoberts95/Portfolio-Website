@@ -11,7 +11,6 @@ const hiddenDocTypes = listItem =>
     'term',
     'site-config',
     'page',
-    'output',
     'cv',
     'site-navigation'
   ].includes(listItem.getId())
@@ -56,7 +55,6 @@ const learnStructure = S.listItem()
       .items([
         S.documentTypeListItem('post').title('Posts'),
         S.documentTypeListItem('cv').title('CVs'),
-        S.documentTypeListItem('output').title('Outputs'),
         S.documentTypeListItem('collection').title('Post Collections'),
         S.documentTypeListItem('person').title('People'),
         S.documentTypeListItem('category').title('Content Categories')

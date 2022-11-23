@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 
 import Layout from 'components/layouts/Layout'
 import RenderSections from 'components/RenderSections'
-import {useRouter} from 'next/router'
 import client from '../client'
 import {getSlugVariations, slugParamToPath} from '../utils/urls'
 
@@ -19,74 +18,74 @@ content`
 export const getServerSideProps = async ({params}) => {
   const slug = slugParamToPath(params?.slug)
 
-  const buildQuery = (slug) => {
-    if (slug === '/') {
-      return groq`
-        *[_id == "global-config"][0]{
-         "page":frontpage -> {
-            ${pageFragment}
-          }
-        }
-      `
-    }
-
-    return (
-      groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
-          page-> {
-            ${pageFragment}
-          }
-        }`,
-      {possibleSlugs: getSlugVariations(slug)}
-    )
-  }
-
-  console.log('FETCHING ' + slug + ' PAGE')
-
   let data
 
-  await client.fetch(buildQuery(slug)).then((res) => {
-    console.log('Frontpage Response:\n'.res)
-    data = res?.page ? {...res.page, slug} : undefined
-  })
-
-  // if (slug === '/') {
-  //   data = await client
-  //     .fetch(
-  //       groq`
+  // const buildQuery = (slug) => {
+  //   if (slug === '/') {
+  //     return groq`
   //       *[_id == "global-config"][0]{
-  //         frontpage -> {
+  //        "page":frontpage -> {
   //           ${pageFragment}
   //         }
   //       }
   //     `
-  //     )
-  //     .then((res) => {
-  //       console.log('Frontpage Response:\n'.res)
-  //       return res?.frontpage ? {...res.frontpage, slug} : undefined
-  //     })
-  // } else {
-  //   // Regular route
-  //   data = await client
-  //     .fetch(
-  //       // Get the route document with one of the possible slugs for the given requested path
-  //       groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
+  //   }
+
+  //   return (
+  //     groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
   //         page-> {
   //           ${pageFragment}
   //         }
   //       }`,
-  //       {possibleSlugs: getSlugVariations(slug)}
-  //     )
-  //     .then((res) => {
-  //       console.log('Regular Res:\n', res)
-  //       return res?.page ? {...res.page, slug} : undefined
-  //     })
+  //     {possibleSlugs: getSlugVariations(slug)}
+  //   )
   // }
+
+  // console.log('FETCHING ' + slug + ' PAGE')
+
+  // await client.fetch(buildQuery(slug)).then((res) => {
+  //   console.log('Frontpage Response:\n'.res)
+  //   data = res?.page ? {...res.page, slug} : undefined
+  // })
+
+  if (slug === '/') {
+    data = await client
+      .fetch(
+        groq`
+        *[_id == "global-config"][0]{
+          frontpage -> {
+            ${pageFragment}
+          }
+        }
+      `
+      )
+      .then((res) => {
+        console.log('Frontpage Response:\n'.res)
+        return res?.frontpage ? {...res.frontpage, slug} : undefined
+      })
+  } else {
+    // Regular route
+    data = await client
+      .fetch(
+        // Get the route document with one of the possible slugs for the given requested path
+        groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
+          page-> {
+            ${pageFragment}
+          }
+        }`,
+        {possibleSlugs: getSlugVariations(slug)}
+      )
+      .then((res) => {
+        console.log('Regular Res:\n', res)
+        return res?.page ? {...res.page, slug} : undefined
+      })
+  }
 
   console.log('****************************************************')
   console.log('Page Data:\n', data)
   console.log('****************************************************')
 
-  if (!data || !data?._type === 'page') {
+  if (!data || !data._type === 'page') {
     console.log('⚠️ Error Getting Page Data ⚠️:\n', data)
     return {
       notFound: true,
@@ -101,10 +100,6 @@ export const getServerSideProps = async ({params}) => {
 const builder = imageUrlBuilder(client)
 
 const LandingPage = (props) => {
-  const router = useRouter()
-
-  // console.log('Page Props:', props)
-
   const {
     title = '',
     description,
