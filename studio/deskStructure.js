@@ -5,7 +5,6 @@ const hiddenDocTypes = listItem =>
   ![
     'route',
     'post',
-    'collection',
     'category',
     'person',
     'term',
@@ -55,7 +54,6 @@ const learnStructure = S.listItem()
       .items([
         S.documentTypeListItem('post').title('Posts'),
         S.documentTypeListItem('cv').title('CVs'),
-        S.documentTypeListItem('collection').title('Post Collections'),
         S.documentTypeListItem('person').title('People'),
         S.documentTypeListItem('category').title('Content Categories')
         // S.documentTypeListItem('term').title('Terms'),

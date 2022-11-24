@@ -23,7 +23,6 @@ import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
 //Learn Components
 import category from './documents/category'
-import collection from './documents/collection'
 import person from './documents/person'
 import post from './documents/post'
 //Glossary
@@ -91,7 +90,6 @@ export default createSchema({
     category,
     person,
     post,
-    cv,
-    collection
+    cv
   ])
 })
