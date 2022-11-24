@@ -13,7 +13,6 @@ import HeroImage from '../../components/HeroImage'
 
 import {useTheme} from '@emotion/react'
 import {Box} from '@mui/system'
-import SectionTitle from 'components/SectionTitle'
 import StyledBlockContent from 'components/StyledBlockContent'
 import formatDate from '../../utils/helpers/formatDate'
 
@@ -43,9 +42,8 @@ const CVPage = (props) => {
             {/* SideBar */}
             <Grid item xs={12} md={4}>
               {/* Personal info */}
-              <SectionTitle small block={{heading: 'Info', label: 'Info'}} />
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="h3" gutterBottom>
+                <Typography variant="h2" gutterBottom>
                   {name}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
@@ -62,8 +60,10 @@ const CVPage = (props) => {
                 </Typography>
               </Stack>
               {/* Skills */}
-              <SectionTitle small block={{heading: 'Skills'}} />
               <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
+                <Typography variant="h2" gutterBottom>
+                  Skills
+                </Typography>
                 <Typography variant="h6" gutterBottom>
                   Experienced
                 </Typography>
@@ -89,8 +89,8 @@ const CVPage = (props) => {
                 <Grid item container>
                   {console.log(section)}
                   <Box sx={{border: `1px solid ${theme.palette.primary.main}`, width: '100%'}}>
-                    <SectionTitle small block={section.mainSectionTitle} />
                     <Box sx={{p: 2}}>
+                      <Typography variant="h2">{section.mainSectionTitle.heading}</Typography>
                       <StyledBlockContent blocks={section.mainSectionContent} />
                     </Box>
                   </Box>

@@ -32,6 +32,7 @@ const InternalLink = (props) => {
     if (isServer) return false
     return slugParamToPath(router?.query?.slug) === slug
   }
+
   const textColor = theme.palette.text.secondary
   const href = slug.current === '/' ? slug.current : `/${slug.current}`
 
@@ -129,7 +130,7 @@ const PathLink = (props) => {
       href={path.toLowerCase()}
       {...others}
     >
-      {isActiveSlug(title) ? techtext(title) : title}
+      {isActiveSlug(path.toLowerCase()) ? techtext(title) : title}
     </TypographyLink>
   )
 }

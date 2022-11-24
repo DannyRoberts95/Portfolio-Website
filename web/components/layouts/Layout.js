@@ -89,7 +89,7 @@ function Layout(props) {
           logos={logos}
         />
 
-        <Fade in={!transitioning} timeout={500}>
+        <Fade in={!transitioning} timeout={1000}>
           <Box className="content">
             {children}
             <Footer

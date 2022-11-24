@@ -1,6 +1,7 @@
 import {useTheme} from '@emotion/react'
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
+import techtext from 'utils/helpers/techText'
 import SectionContainer from '../SectionContainer'
 import SectionTitle from '../SectionTitle'
 import StyledBlockContent from '../StyledBlockContent'
@@ -44,7 +45,7 @@ function TextSection(props) {
             ]}
           >
             <Typography variant="h5" align={item.reversed ? 'right' : 'left'} fontStyle={'italic'}>
-              {item.sectionTitle}
+              {techtext(item.sectionTitle)}
             </Typography>
             {item.sectionSummary && <StyledBlockContent blocks={item.sectionSummary} />}
           </Grid>
