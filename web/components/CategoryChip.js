@@ -1,10 +1,16 @@
-import {Lens} from '@mui/icons-material'
+import {ClearOutlined, Lens} from '@mui/icons-material'
 import {Chip} from '@mui/material'
 import {Box} from '@mui/system'
 import {useState} from 'react'
-import Link from './CustomLink'
 
-export default function CategoryChip({label, categoryColor, sx, clickable = true, ...others}) {
+export default function CategoryChip({
+  label,
+  categoryColor,
+  sx,
+  selected,
+  handleClicked = null,
+  ...others
+}) {
   const [hovered, setHovered] = useState(null)
 
   const handleMouseEntered = (e) => {
@@ -16,8 +22,10 @@ export default function CategoryChip({label, categoryColor, sx, clickable = true
 
   const content = (
     <Chip
+      onClick={handleClicked}
       onMouseLeave={handleMouseExited}
       onMouseEnter={handleMouseEntered}
+      variant={selected ? 'contained' : 'outlined'}
       label={
         <>
           <Box
@@ -28,24 +36,20 @@ export default function CategoryChip({label, categoryColor, sx, clickable = true
               gap: 0.5,
             }}
           >
-            <Lens htmlColor={categoryColor} fontSize={'inherit'} />
+            {hovered && selected ? (
+              <ClearOutlined htmlColor={categoryColor} fontSize={'inherit'} />
+            ) : (
+              <Lens htmlColor={categoryColor} fontSize={'inherit'} />
+            )}
             {label}
           </Box>
         </>
       }
       size="small"
       color={hovered ? 'secondary' : 'primary'}
-      variant="outlined"
-      sx={[clickable && {cursor: 'pointer'}, sx]}
+      sx={[handleClicked && {cursor: 'pointer'}, sx]}
       {...others}
     />
   )
-
-  if (!clickable) return content
-
-  return (
-    <Link href={`/posts?category=${label}`} underline="none">
-      {content}
-    </Link>
-  )
+  return content
 }

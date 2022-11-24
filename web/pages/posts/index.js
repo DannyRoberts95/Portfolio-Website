@@ -1,5 +1,4 @@
-import {useTheme} from '@emotion/react'
-import {Box, Fade, Grid, LinearProgress, Typography, useMediaQuery} from '@mui/material'
+import {Fade, Grid, Typography} from '@mui/material'
 import CategoryList from 'components/CategoryList'
 import Layout from 'components/layouts/Layout'
 import PostCard from 'components/PostCard'
@@ -8,81 +7,43 @@ import SectionTitle from 'components/SectionTitle'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useState} from 'react'
 import client from '../../client'
-import useOnScreen from '../../hooks/useOnScreen'
-
-const batchNumber = 12
 
 const Posts = (props) => {
-  const theme = useTheme()
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'))
   const router = useRouter()
-  const loadMoreRef = useRef(null)
-  const feedEnded = useOnScreen(loadMoreRef)
+  const [selectedCategories, setSelectedCategories] = useState([])
 
   const {config, navigation, posts = [], categories} = props
-  const [disableRequests, setDisableRequests] = useState(false)
-  const {category: selectedCategory = null} = router.query
-
-  const [postList, setPostList] = useState(posts)
 
   const handleChipClick = (val) => {
-    if (selectedCategory === val) {
-      router.push('/posts').then(() => getPostByCategory(null))
+    if (selectedCategories.includes(val)) {
+      setSelectedCategories(selectedCategories.filter((item) => item !== val))
     } else {
-      router.push(`/posts?category=${val}`).then(() => getPostByCategory(val))
-    }
-  }
-
-  // Fetch the first batch of categorised posts
-  const getPostByCategory = async (cat) => {
-    const categoricalPosts = await client.fetch(
-      `*[${postFiltering} ${cat ? ` && "${cat}" in categories[]->title` : ''}][0...${batchNumber}]{
-        ${postQuery}
-      }${ordering}
-      `
-    )
-    const allCollectionsRetrieved = categoricalPosts.length < batchNumber
-    setDisableRequests(allCollectionsRetrieved)
-    setPostList(categoricalPosts)
-  }
-
-  // Fetch the next 5 posts and add them to the list
-  const loadAdditionalPosts = async () => {
-    const startIndex = postList.length
-    const endIndex = startIndex + batchNumber
-    const additionalPosts = await client.fetch(
-      `*[${postFiltering} ${
-        selectedCategory ? ` && "${selectedCategory}" in categories[]->title` : ''
-      }][${startIndex}...${endIndex}]{
-        ${postQuery}
-      }${ordering}
-      `
-    )
-    if (additionalPosts.length > 0) {
-      setPostList([...postList, ...additionalPosts])
-    }
-    // check if all posts have been retireved
-    if (additionalPosts.length < batchNumber) {
-      setDisableRequests(true)
+      setSelectedCategories([...selectedCategories, val])
     }
   }
 
   useEffect(() => {
-    if (feedEnded && !disableRequests) {
-      loadAdditionalPosts()
-    }
-  }, [feedEnded])
-
-  useEffect(() => {
-    const {category = null} = router.query
-    if (category) {
-      getPostByCategory()
-    }
-  }, [router.query.toString()])
+    if (router.query.category) setSelectedCategories([router.query.category])
+  }, [router.query])
 
   if (!config || !navigation) return null
+
+  const postsToRender = posts.filter((post) => {
+    if (selectedCategories.length === 0) return true
+    return selectedCategories.every((cat) => post.categories.map((cat) => cat.title).includes(cat))
+  })
+
+  const sortedCategories = categories.sort((a, b) => {
+    if (selectedCategories.includes(a.title) && !selectedCategories.includes(b.title)) {
+      return -1
+    }
+    if (selectedCategories.includes(b.title) && !selectedCategories.includes(a.title)) {
+      return 1
+    }
+    return 0
+  })
 
   return (
     <Layout config={config} navigation={navigation} transparentHeader>
@@ -92,16 +53,18 @@ const Posts = (props) => {
 
       <SectionContainer>
         <CategoryList
-          categories={[...categories]}
-          selectedCategory={router?.query?.category}
+          categories={sortedCategories}
+          selectedCategories={selectedCategories}
+          disableNavigation
           handleSelection={handleChipClick}
+          clearSelection={() => setSelectedCategories([])}
         />
       </SectionContainer>
 
       <SectionContainer>
         <Grid container>
           <Grid item container spacing={0}>
-            {posts.map((post) => (
+            {postsToRender.map((post) => (
               <Fade key={post.slug.current} in timeout={500}>
                 <Grid item xs={12} sm={6} md={4}>
                   <PostCard post={post} />
@@ -110,20 +73,11 @@ const Posts = (props) => {
             ))}
 
             {/* show the posts */}
-            {posts.length === 0 && (
-              <Typography variant="caption" align="center" sx={{my: 2, width: '100%'}}>
+            {postsToRender.length === 0 && (
+              <Typography variant="body1" align="center" sx={{my: 12, width: '100%'}}>
                 Nothing to Display
               </Typography>
             )}
-
-            {/* Get more posts when I enter the users viewPort */}
-            <Fade appear ref={loadMoreRef} in={!disableRequests} unmountOnExit>
-              <Grid item container>
-                <Box sx={{width: '100%'}}>
-                  <LinearProgress />
-                </Box>
-              </Grid>
-            </Fade>
           </Grid>
         </Grid>
       </SectionContainer>
@@ -131,25 +85,23 @@ const Posts = (props) => {
   )
 }
 
-Posts.getInitialProps = async function (context) {
-  const {category = null} = context?.query
-
+export async function getStaticProps() {
   const posts = await client.fetch(
     `*[${postFiltering}
-      ${category ? ` && "${category}" in categories[]->title` : ''}
-      ][0...${batchNumber}]{
+      ][]{
        ${postQuery}
       } ${ordering}
       `
   )
 
-  const categories = await client.fetch(`*[_type == "category"]{
-    ...
-  }`)
+  const categories = await client.fetch(`*[_type == "category"]`)
 
   return {
-    posts,
-    categories,
+    props: {
+      posts,
+      categories,
+    },
+    revalidate: 30,
   }
 }
 

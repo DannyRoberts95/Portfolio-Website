@@ -1,5 +1,6 @@
 import {useTheme} from '@emotion/react'
-import {Box, useMediaQuery} from '@mui/material'
+import {Clear} from '@mui/icons-material'
+import {Box, Chip, useMediaQuery} from '@mui/material'
 import {useRouter} from 'next/router'
 import CategoryChip from './CategoryChip'
 
@@ -8,7 +9,13 @@ const CategoryList = (props) => {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const {categories, selectedCategory, scrollable = true, handleSelection = () => {}} = props
+  const {
+    categories,
+    selectedCategories,
+    scrollable = true,
+    clearSelection = null,
+    handleSelection = () => {},
+  } = props
 
   const gradient = (
     <Box
@@ -45,6 +52,9 @@ const CategoryList = (props) => {
           },
         ]}
       >
+        {clearSelection && selectedCategories.length > 0 && (
+          <Chip icon={<Clear />} label={'Clear'} size="small" onClick={clearSelection} />
+        )}
         {categories
           .sort((a) =>
             router.asPath
@@ -58,8 +68,8 @@ const CategoryList = (props) => {
               key={cat.title}
               label={cat.title}
               color="primary"
-              variant={selectedCategory === cat.title ? 'contained' : 'outlined'}
-              onClick={() => handleSelection(cat.title)}
+              selected={selectedCategories.includes(cat.title)}
+              handleClicked={() => handleSelection(cat.title)}
             />
           ))}
       </Box>

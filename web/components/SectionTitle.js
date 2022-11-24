@@ -2,6 +2,7 @@ import {useTheme} from '@emotion/react'
 import {Box, Paper, Typography} from '@mui/material'
 import PropTypes from 'prop-types'
 import Marquee from 'react-fast-marquee'
+import techtext from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
@@ -13,7 +14,7 @@ function SectionTitle(props) {
 
   const component = (
     <Typography variant={small ? 'h5' : 'h3'} component={'h2'} fontWeight="700" sx={{px: 1}}>
-      {heading}
+      {techtext(heading)}
     </Typography>
   )
 
