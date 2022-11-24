@@ -39,7 +39,7 @@ class App extends BaseApp {
 
     if (!isServer) {
       console.groupCollapsed(
-        '%c🔮 Designed and Developed by Dan Howard 🔮 \n– https://www.danhowarddesign.com/contact',
+        '%c🔮 Designed and Developed by Dan Howard 🔮 \n– https://www.danhowarddesign.com',
         'display:block;padding:0.125em 1em;font-family:courier;font-size:14px;font-weight:bold;line-height:2;text-transform:uppercase;background:black;color:white;'
       )
       console.groupEnd()

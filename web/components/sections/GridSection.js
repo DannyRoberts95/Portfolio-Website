@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Box, Grid, Typography, useMediaQuery} from '@mui/material'
+import {Box, Grid, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
 import {useEffect, useRef, useState} from 'react'
 import useOnScreen from '../../hooks/useOnScreen'
@@ -98,10 +98,7 @@ function GridSection(props) {
                 }}
               >
                 <Box sx={{p: 2}}>
-                  <Typography variant="h4" gutterBottom>
-                    {tile.heading}
-                  </Typography>
-                  {tile.tileContent && <StyledBlockContent blocks={tile.tileContent} />}
+                  <StyledBlockContent blocks={tile.tileContent} />
                 </Box>
               </Grid>
             )
