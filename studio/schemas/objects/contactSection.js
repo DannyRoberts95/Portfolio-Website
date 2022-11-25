@@ -2,12 +2,7 @@ export default {
   type: 'object',
   name: 'contactSection',
   title: 'Contact Section',
-  fields: [
-    {
-      name: 'sectionTitle',
-      type: 'sectionTitle'
-    }
-  ],
+  fields: [],
   preview: {
     select: {
       heading: 'sectionTitle.heading'

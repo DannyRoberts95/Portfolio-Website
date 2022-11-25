@@ -4,11 +4,6 @@ export default {
   title: 'Image with text',
   fields: [
     {
-      name: 'sectionTitle',
-      title: 'Section Title',
-      type: 'sectionTitle'
-    },
-    {
       name: 'body',
       type: 'portableText',
       title: 'Text'

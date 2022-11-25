@@ -4,12 +4,6 @@ export default {
   title: 'Text',
   fields: [
     {
-      name: 'sectionTitle',
-      type: 'sectionTitle',
-      title: 'Section Title'
-    },
-
-    {
       name: 'sections',
       title: 'Sections',
       type: 'array',
@@ -19,11 +13,6 @@ export default {
           title: 'textSection',
           type: 'object',
           fields: [
-            {
-              name: 'sectionTitle',
-              title: 'Section title',
-              type: 'string'
-            },
             {
               name: 'sectionSummary',
               type: 'portableText',
@@ -47,12 +36,11 @@ export default {
   ],
   preview: {
     select: {
-      heading: 'sectionTitle.heading',
       sections: 'sections'
     },
-    prepare({ heading, sections }) {
+    prepare({ sections }) {
       return {
-        title: `${heading || 'Text Section - No Header'}`,
+        title: `Text Section`,
         subtitle: `${sections.length} - ${sections.map(sec => `${sec.sectionTitle}`).join(', ')}`
       }
     }

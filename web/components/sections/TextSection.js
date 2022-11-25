@@ -57,7 +57,6 @@ function TextSection(props) {
 }
 
 TextSection.propTypes = {
-  sectionTitle: PropTypes.object,
   text: PropTypes.arrayOf(PropTypes.object),
 }
 

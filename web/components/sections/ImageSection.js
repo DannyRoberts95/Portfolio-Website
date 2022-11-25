@@ -15,7 +15,7 @@ function ImageSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const {sectionTitle, reversed, body, image, ctas} = props
+  const {reversed, body, image, ctas} = props
   const {aspectRatio} = image
 
   const mediaHeight = isSm ? '50vh' : `calc(100vh-${theme.shape.headerHeight})`

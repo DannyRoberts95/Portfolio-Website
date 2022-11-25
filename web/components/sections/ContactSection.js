@@ -18,7 +18,7 @@ const validationSchema = yup.object({
 export default function ContactSection(props) {
   if (typeof window === undefined) return null
 
-  const {sectionTitle, sections} = props
+  const {sections} = props
 
   const [isSending, setIsSending] = useState(false)
   const [feedback, setFeedback] = useState('')

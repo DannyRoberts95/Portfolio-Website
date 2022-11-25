@@ -22,7 +22,7 @@ export default {
     prepare({ heading, reverseDirection }) {
       return {
         title: `${heading}`,
-        subtitle: `Text section - ${reverseDirection}`
+        subtitle: `Section Heading - ${reverseDirection}`
       }
     }
   }

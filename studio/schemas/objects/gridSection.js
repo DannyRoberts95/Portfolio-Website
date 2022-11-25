@@ -4,12 +4,6 @@ export default {
   title: 'Grid Section',
   fields: [
     {
-      name: 'sectionTitle',
-      type: 'sectionTitle',
-      title: 'Section Title'
-    },
-
-    {
       title: 'Size',
       name: 'size',
       type: 'string',
