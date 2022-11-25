@@ -10,7 +10,6 @@ import {useTheme} from '@emotion/react'
 import PostBlockContent from 'components/PostBlockContent'
 import ShareButton from 'components/ShareButton'
 
-import {useEffect, useState} from 'react'
 import formatDate from '../utils/helpers/formatDate'
 import CategoryChip from './CategoryChip'
 import Link from './CustomLink'
@@ -22,26 +21,18 @@ function urlFor(source) {
 const Post = (props) => {
   const {post, ...others} = props
 
-  const {
-    title = 'Missing title',
-    author = null,
-    publishedAt,
-    categories,
-    readTime,
-    body = [],
-    _id,
-  } = post
+  const {title = 'Missing title', author = null, publishedAt, categories, body = [], _id} = post
 
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const [contentSections, setContentSections] = useState([])
+  // const [contentSections, setContentSections] = useState([])
 
-  useEffect(() => {
-    const postContainer = document.getElementById(_id)
-    const headers = postContainer.getElementsByClassName('linked-header')
-    setContentSections(headers)
-  }, [])
+  // useEffect(() => {
+  //   const postContainer = document.getElementById(_id)
+  //   const headers = postContainer.getElementsByClassName('linked-header')
+  //   setContentSections(headers)
+  // }, [])
 
   return (
     <Box id={_id} {...others}>

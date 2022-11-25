@@ -1,14 +1,13 @@
 import {Fade, Grid, Typography} from '@mui/material'
+import client from 'client'
 import CategoryList from 'components/CategoryList'
 import Layout from 'components/layouts/Layout'
 import PostCard from 'components/PostCard'
 import SectionContainer from 'components/SectionContainer'
-import SectionTitle from 'components/SectionTitle'
+import SectionTitle from 'components/sections/SectionTitle'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
-import PropTypes from 'prop-types'
 import {useEffect, useState} from 'react'
-import client from '../../client'
 
 const Posts = (props) => {
   const router = useRouter()
@@ -47,9 +46,9 @@ const Posts = (props) => {
 
   return (
     <Layout config={config} navigation={navigation} transparentHeader>
-      <NextSeo title={config.title} titleTemplate={`%s | ${config.title}`} />
+      <NextSeo title={'PROJECTS'} titleTemplate={`%s | ${config.title}`} />
 
-      <SectionTitle block={{heading: 'Projects', label: router.query?.category || 'Assorted'}} />
+      <SectionTitle heading={`Projects`} />
 
       <SectionContainer>
         <CategoryList
@@ -128,17 +127,3 @@ const postQuery = `
         },
         illustration,
         slug,`
-
-Posts.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object),
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      author: PropTypes.object,
-      publishedAt: PropTypes.string,
-      categories: PropTypes.array,
-      body: PropTypes.array,
-      readTime: PropTypes.number,
-    })
-  ),
-}

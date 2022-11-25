@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import {useState} from 'react'
 import * as yup from 'yup'
 import SectionContainer from '../SectionContainer'
-import SectionTitle from './SectionTitle'
 
 const validationSchema = yup.object({
   name: yup.string('Enter your name').required('Name silly...'),
@@ -72,7 +71,6 @@ export default function ContactSection(props) {
 
   return (
     <SectionContainer maxWidth={false}>
-      {sectionTitle && <SectionTitle block={sectionTitle} />}
       {/* {sections.map((item) => ( */}
       <Grid
         container
