@@ -16,8 +16,6 @@ function urlFor(source) {
 }
 
 function Hero(props) {
-  console.log('Hero Props:', props)
-
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down('md'))
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))

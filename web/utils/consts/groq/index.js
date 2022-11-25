@@ -16,7 +16,7 @@ export const linkSnippet = groq`
   linkType == "external" => {
     title,
     url,
-    linkType,
+  "itemType":linkType,
     _key
   },
 
