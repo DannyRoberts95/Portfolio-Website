@@ -17,19 +17,9 @@ class App extends BaseApp {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    console.time('SiteQuery')
-
     await client.fetch(siteQuery).then((res) => {
-      console.log('*********************')
-      console.log('Site Query Res')
-      console.log(res)
-      console.log('*********************')
       pageProps = {...pageProps, ...res}
     })
-
-    console.log('*********************')
-    console.timeEnd('SiteQuery')
-    console.log('*********************')
 
     return {pageProps}
   }
@@ -40,7 +30,7 @@ class App extends BaseApp {
     if (!isServer) {
       console.groupCollapsed(
         '%c🔮 Designed and Developed by Dan Howard 🔮 \n– https://www.danhowarddesign.com',
-        'display:block;padding:0.125em 1em;font-family:courier;font-size:14px;font-weight:bold;line-height:2;text-transform:uppercase;background:black;color:white;'
+        'display:block;padding:0.125em 1em;font-family:courier;font-size:10px;font-weight:bold;line-height:2;text-transform:uppercase;background:black;color:white;'
       )
       console.groupEnd()
     }

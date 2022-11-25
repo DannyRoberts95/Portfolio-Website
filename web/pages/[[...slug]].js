@@ -21,9 +21,12 @@ export async function getStaticPaths() {
     .fetch(
       `{
     "slugs": *[
-      _type == "route" &&
-      includeInSitemap != false &&
-      disallowRobots != true
+      _type == "route"
+     ${
+       process.env.NODE_ENV !== 'development'
+         ? ` && includeInSitemap != false && disallowRobots != true`
+         : ''
+     }
     ].slug.current,
   }`
     )
@@ -32,7 +35,6 @@ export async function getStaticPaths() {
     })
 
   const paths = slugs.map((slug) => {
-    console.log(slug)
     return {
       params: {slug: [slug]},
     }
@@ -61,7 +63,6 @@ export const getStaticProps = async ({params}) => {
       `
       )
       .then((res) => {
-        console.log('Frontpage Response:\n'.res)
         return res?.frontpage ? {...res.frontpage, slug} : undefined
       })
   } else {
@@ -77,13 +78,11 @@ export const getStaticProps = async ({params}) => {
         {possibleSlugs: getSlugVariations(slug)}
       )
       .then((res) => {
-        console.log('Regular Res:\n', res)
         return res?.page ? {...res.page, slug} : undefined
       })
   }
 
   if (!data || !data._type === 'page') {
-    console.log('⚠️ Error Getting Page Data ⚠️:\n', data)
     return {
       notFound: true,
     }

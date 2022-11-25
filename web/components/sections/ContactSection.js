@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {useState} from 'react'
 import * as yup from 'yup'
 import SectionContainer from '../SectionContainer'
-import SectionTitle from '../SectionTitle'
+import SectionTitle from './SectionTitle'
 
 const validationSchema = yup.object({
   name: yup.string('Enter your name').required('Name silly...'),
@@ -37,7 +37,6 @@ export default function ContactSection(props) {
     })
       .then(async (res) => {
         const data = await res.json()
-        console.log(data)
         if (res.status == 200) {
           setFeedback(`Message sent. We'll be in touch`)
           setTimeout(() => {
@@ -51,7 +50,6 @@ export default function ContactSection(props) {
       })
       .catch((err) => {
         setIsSending(false)
-        console.log(err)
       })
   }
 
@@ -69,7 +67,6 @@ export default function ContactSection(props) {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
 
-  console.log('Conatct form excluded')
   //'Not working, fix nodemailer in API ROUTE'
   return null
 
@@ -103,7 +100,6 @@ export default function ContactSection(props) {
         >
           <form
             onSubmit={(e) => {
-              console.log(e)
               e.preventDefault()
               formik.handleSubmit()
             }}

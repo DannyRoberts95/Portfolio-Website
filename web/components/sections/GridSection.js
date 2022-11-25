@@ -1,27 +1,17 @@
 import {useTheme} from '@emotion/react'
-import {Box, Grid, useMediaQuery} from '@mui/material'
+import {Grid, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
-import {useEffect, useRef, useState} from 'react'
-import useOnScreen from '../../hooks/useOnScreen'
+import {useRef} from 'react'
 import StyledBlockContent from '../StyledBlockContent'
 
+import Marquee from 'react-fast-marquee'
 import SectionContainer from '../SectionContainer'
-import SectionTitle from '../SectionTitle'
 function GridSection(props) {
   const theme = useTheme()
   const ref = useRef()
-  const isVisible = useOnScreen(ref)
   const isXs = useMediaQuery(theme.breakpoints.down('xs'))
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
-  const {sectionTitle, tiles, size, disableTransition, centered} = props
-
-  const [enter, setEnter] = useState(false)
-
-  useEffect(() => {
-    if (isVisible) {
-      setEnter(true)
-    }
-  }, [isVisible])
+  const {tiles, size, carousel, reverseCarousel, centered} = props
 
   const getTileSize = () => {
     const s = size.toLowerCase()
@@ -44,70 +34,58 @@ function GridSection(props) {
     return 6
   }
 
-  const getTileSpacing = () => {
-    const s = size.toLowerCase()
-
-    if (isXs) {
-      if (s === 'tiny') return 0
-      if (s === 'small') return 0
-      if (s === 'medium') return 1
-      if (s === 'large') return 1
-    } else if (isSm) {
-      if (s === 'tiny') return 1
-      if (s === 'small') return 1
-      if (s === 'medium') return 2
-      if (s === 'large') return 2
-    } else {
-      if (s === 'tiny') return 2
-      if (s === 'small') return 2
-      if (s === 'medium') return 2
-      if (s === 'large') return 3
-    }
-    return 2
-  }
-
-  return (
-    <SectionContainer ref={ref} maxWidth={false}>
-      {sectionTitle && <SectionTitle block={sectionTitle} />}
-
-      {tiles && (
-        <Grid
-          container
-          justifyContent={centered ? 'center' : 'flex-start'}
-          sx={{
+  const content = (
+    <SectionContainer
+      ref={ref}
+      maxWidth={false}
+      sx={{
+        maxWidth: '100vw',
+      }}
+    >
+      <Grid
+        container
+        justifyContent={centered ? 'center' : 'flex-start'}
+        sx={[
+          {
+            maxWidth: '100%',
             '>*': {
-              border: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderLeft: (theme) => `1px solid ${theme.palette.primary.main}`,
+              borderRight: (theme) => `1px solid ${theme.palette.primary.main}`,
             },
+          },
+          !carousel && {
             '>:last-of-type': {
               borderRight: 'none',
             },
             '>:first-of-type': {
               borderLeft: 'none',
             },
-          }}
-        >
-          {tiles.map((tile, i) => {
-            const tileContent = (
-              <Grid
-                item
-                xs={getTileSize()}
-                key={tile._key}
-                sx={{
-                  // border: (theme) => `1px solid ${theme.palette.primary.main}`,
-                  boxSizing: 'border-box',
-                }}
-              >
-                <Box sx={{p: 2}}>
-                  <StyledBlockContent blocks={tile.tileContent} />
-                </Box>
-              </Grid>
-            )
-
-            return tileContent
-          })}
-        </Grid>
-      )}
+          },
+        ]}
+      >
+        {tiles.map((tile) => (
+          <Grid
+            item
+            xs={getTileSize()}
+            key={tile._key}
+            sx={{
+              boxSizing: 'border-box',
+              p: 2,
+            }}
+          >
+            <StyledBlockContent blocks={tile.tileContent} />
+          </Grid>
+        ))}
+      </Grid>
     </SectionContainer>
+  )
+
+  if (!carousel) return content
+
+  return (
+    <Marquee gradient={false} pauseOnHover direction={reverseCarousel ? 'right' : 'left'}>
+      {content}
+    </Marquee>
   )
 }
 

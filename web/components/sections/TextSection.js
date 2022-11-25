@@ -3,18 +3,16 @@ import {Grid, Typography, useMediaQuery} from '@mui/material'
 import PropTypes from 'prop-types'
 import techtext from 'utils/helpers/techText'
 import SectionContainer from '../SectionContainer'
-import SectionTitle from '../SectionTitle'
 import StyledBlockContent from '../StyledBlockContent'
 
 function TextSection(props) {
-  const {sectionTitle, sections} = props
+  const {sections} = props
 
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <SectionContainer maxWidth={false}>
-      {sectionTitle && <SectionTitle block={sectionTitle} />}
       {sections.map((item) => (
         <Grid
           key={item._key}

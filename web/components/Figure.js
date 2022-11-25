@@ -11,7 +11,6 @@ const builder = imageUrlBuilder(client)
 
 function Figure(props) {
   const {value, hideCaption, lightBox = false} = props
-  console.log(props)
   const [lightBoxOpen, setLightBoxOpen] = useState(false)
 
   const handleOpen = () => {

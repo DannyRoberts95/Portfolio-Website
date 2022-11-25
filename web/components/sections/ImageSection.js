@@ -1,16 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import imageUrlBuilder from '@sanity/image-url'
-import client from '../../client'
-import StyledBlockContent from '../StyledBlockContent'
-import Cta from '../Cta'
-import Image from 'next/image'
-import {Box} from '@mui/system'
-import {Stack, Container, useMediaQuery, Grow, Grid, Typography} from '@mui/material'
 import {useTheme} from '@emotion/react'
-import SectionTitle from '../SectionTitle'
+import {Container, Grid, useMediaQuery} from '@mui/material'
+import {Box} from '@mui/system'
+import imageUrlBuilder from '@sanity/image-url'
+import Image from 'next/image'
+import PropTypes from 'prop-types'
+import client from '../../client'
+import Cta from '../Cta'
 import SectionContainer from '../SectionContainer'
-import techtext from 'utils/helpers/techText'
+import StyledBlockContent from '../StyledBlockContent'
 
 const builder = imageUrlBuilder(client)
 
@@ -61,7 +58,6 @@ function ImageSection(props) {
             },
           ]}
         >
-          {sectionTitle && <SectionTitle block={sectionTitle} />}
           <Container sx={{py: 2}}>
             <StyledBlockContent blocks={body} />
 

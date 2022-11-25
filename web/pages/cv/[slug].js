@@ -87,7 +87,6 @@ const CVPage = (props) => {
             <Grid item xs={12} md={8}>
               {mainSections.map((section) => (
                 <Grid item container>
-                  {console.log(section)}
                   <Box sx={{border: `1px solid ${theme.palette.primary.main}`, width: '100%'}}>
                     <Box sx={{p: 2}}>
                       <Typography variant="h2">{section.mainSectionTitle.heading}</Typography>

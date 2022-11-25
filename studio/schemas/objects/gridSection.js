@@ -20,6 +20,16 @@ export default {
     },
 
     {
+      name: 'carousel',
+      type: 'boolean',
+      title: 'Carousel'
+    },
+    {
+      name: 'reverseCarousel',
+      type: 'boolean',
+      title: 'Reverse Carousel'
+    },
+    {
       name: 'tiles',
       title: 'Tiles',
       type: 'array',
@@ -29,12 +39,16 @@ export default {
   preview: {
     select: {
       title: 'sectionTitle.heading',
-      size: 'size'
+      size: 'size',
+      reverseCarousel: 'reverseCarousel',
+      carousel: 'carousel'
     },
-    prepare({ title, size }) {
+    prepare({ title, carousel, reverseCarousel, size }) {
       return {
         title,
-        subtitle: `Grid : ${size} `
+        subtitle: `${reverseCarousel ? 'Reversed' : ''}
+        ${carousel ? 'Carousel' : ''}
+         : ${size} `
       }
     }
   }

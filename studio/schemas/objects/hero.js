@@ -19,9 +19,9 @@ export default {
       title: 'Heading'
     },
     {
-      name: 'tagline',
-      type: 'string',
-      title: 'Tagline'
+      name: 'content',
+      type: 'portableText',
+      title: 'Content'
     },
     {
       name: 'backgroundImage',

@@ -10,7 +10,6 @@ const FigureList = ({value}) => {
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
   const {figures = [], variant = 'standard', cols = 3} = value
-  console.log(value)
 
   return (
     <Box sx={{position: 'relative', width: '100%', my: 2}}>

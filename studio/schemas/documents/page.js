@@ -23,6 +23,7 @@ export default {
       title: 'Page sections',
 
       of: [
+        { type: 'sectionTitle' },
         {
           title: 'Hero Section',
           description: 'A hero section with a background image/video, subtext and a CTA.',
@@ -34,8 +35,7 @@ export default {
           type: 'imageSection'
         },
         { type: 'gridSection' },
-        { type: 'textSection' },
-        { type: 'contactSection' }
+        { type: 'textSection' }
       ]
     },
     {

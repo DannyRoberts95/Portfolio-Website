@@ -5,16 +5,17 @@ import Marquee from 'react-fast-marquee'
 import techtext from 'utils/helpers/techText'
 
 function SectionTitle(props) {
+  console.log(props)
+
   const theme = useTheme()
 
-  const {block, small, sx, ...others} = props
-  const {heading = '', reverseDirection} = block
+  const {heading: text = '', reverseDirection, sx, ...others} = props
 
-  if (!block || !heading) return null
+  if (!text) return null
 
   const component = (
-    <Typography variant={small ? 'h5' : 'h3'} component={'h2'} fontWeight="700" sx={{px: 1}}>
-      {techtext(heading)}
+    <Typography variant={'h3'} component={'h2'} fontWeight="700" sx={{px: 1}}>
+      {techtext(text)}
     </Typography>
   )
 

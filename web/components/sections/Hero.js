@@ -2,6 +2,7 @@ import {useTheme} from '@emotion/react'
 import {Container, Fade, Typography, useMediaQuery} from '@mui/material'
 import {Box} from '@mui/system'
 import imageUrlBuilder from '@sanity/image-url'
+import StyledBlockContent from 'components/StyledBlockContent'
 import useOnScreen from 'hooks/useOnScreen'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
@@ -15,6 +16,8 @@ function urlFor(source) {
 }
 
 function Hero(props) {
+  console.log('Hero Props:', props)
+
   const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.down('md'))
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
@@ -29,7 +32,7 @@ function Hero(props) {
     heading,
     backgroundImage,
     backgroundVideo,
-    tagline,
+    content,
     ctas,
     blendText,
     dark,
@@ -150,17 +153,19 @@ function Hero(props) {
             {heading}
           </Typography>
 
-          <Typography
-            align="center"
-            gutterBottom
-            variant={'h4'}
+          <Box
             sx={{
               ...((backgroundImage || backgroundVideo) && {textShadow: `2px 2px 3px #000`}),
               ...((backgroundImage || backgroundVideo) && blendText && {mixBlendMode: 'exclusion'}),
+              textAlign: 'center !important',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            {tagline}
-          </Typography>
+            <StyledBlockContent blocks={content}></StyledBlockContent>
+          </Box>
 
           {ctas && (
             <Box

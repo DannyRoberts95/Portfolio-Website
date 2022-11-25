@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
-import * as SectionComponents from './sections'
+import {Fragment} from 'react'
 import capitalizeString from '../utils/capitalizeString'
+import * as SectionComponents from './sections'
 
 function resolveSections(section) {
   // eslint-disable-next-line import/namespace
@@ -11,7 +11,6 @@ function resolveSections(section) {
     return Section
   }
 
-  console.log('Cant find section', section) // eslint-disable-line no-console
   return null
 }
 
