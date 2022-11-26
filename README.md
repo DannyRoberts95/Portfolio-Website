@@ -8,7 +8,7 @@ Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-i
 
 - A dynamic frontend with [Next.js](https://nextjs.org)
 - Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+- Global deployment on [Vercel](https://vercel.com)
 
 ## Quick start
 
