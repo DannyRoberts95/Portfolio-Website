@@ -1,14 +1,11 @@
 import {useTheme} from '@emotion/react'
-import {Add} from '@mui/icons-material'
-import {Box, Stack, Typography, useMediaQuery} from '@mui/material'
+import {Typography, useMediaQuery} from '@mui/material'
 import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import {useRef, useState} from 'react'
 import techtext from 'utils/helpers/techText'
 import isServer from '../utils/isServer'
 import {slugParamToPath} from '../utils/urls'
 import Link from './CustomLink'
-import DropdownMenu from './DropdownMenu'
 
 const TypographyLink = (props) => {
   return (
@@ -135,73 +132,6 @@ const PathLink = (props) => {
   )
 }
 
-// Component to dropdown menus of internal links and external ones
-const NavDropdownMenu = ({navItem, darkText, ...others}) => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const anchorRef = useRef(null)
-  const theme = useTheme()
-
-  const textColor = darkText ? theme.palette.text.secondary : '#fff'
-
-  if (!navItem) return null
-  const {baseLink, childLinks} = navItem
-
-  const handleHover = () => {
-    setMenuOpen(true)
-  }
-
-  const handleClose = () => {
-    setMenuOpen(false)
-  }
-
-  return (
-    <Box component={'span'} onMouseEnter={handleHover}>
-      <Stack ref={anchorRef} direction="row" alignItems={'center'}>
-        <NavItem navItem={baseLink} darkText={darkText} {...others} />
-        <Add
-          fontSize="small"
-          htmlColor={textColor}
-          sx={{
-            opacity: 0.5,
-            transition: 'transform 0.25s',
-            transform: menuOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-          }}
-        />
-      </Stack>
-
-      <DropdownMenu
-        anchorElement={anchorRef}
-        open={menuOpen}
-        handleClose={handleClose}
-        sx={{my: 1}}
-      >
-        <Stack m={1} gap={0.5}>
-          {childLinks.map((navItem) => (
-            <NavItem key={navItem._key} navItem={navItem} darkText onClick={handleClose} />
-          ))}
-        </Stack>
-      </DropdownMenu>
-    </Box>
-  )
-}
-
-// Component to dropdown menus of internal links and external ones
-const NavDropdownMenuMobile = ({navItem, darkText, ...others}) => {
-  if (!navItem) return null
-  const {baseLink, childLinks} = navItem
-
-  return (
-    <Box component={'span'}>
-      <NavItem navItem={baseLink} darkText {...others} />
-      <Stack p={1} gap={1}>
-        {childLinks.map((navItem) => (
-          <NavItem key={navItem._key} navItem={navItem} darkText sx={{color: 'text.disabled'}} />
-        ))}
-      </Stack>
-    </Box>
-  )
-}
-
 export default function NavItem(props) {
   const {navItem} = props
   const theme = useTheme()
@@ -212,15 +142,13 @@ export default function NavItem(props) {
   }
 
   // check the tpye of nav item and render the correct component
-  switch (navItem.itemType) {
+  switch (navItem.linkType) {
     case 'internal':
       return <InternalLink {...props} />
     case 'external':
       return <ExternalLink {...props} />
     case 'path':
       return <PathLink {...props} />
-    case 'navLinkDropdown':
-      return isMd ? <NavDropdownMenuMobile {...props} /> : <NavDropdownMenu {...props} />
     default:
       return null
   }

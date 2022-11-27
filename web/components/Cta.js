@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Link from './CustomLink.js'
 
 const buildLinkSrc = (navLink) => {
-  const {itemType} = navLink
-  console.log(navLink)
-  switch (itemType) {
+  const {linkType} = navLink
+  // console.log(navLink)
+  switch (linkType) {
     case 'external':
       return navLink.url
     case 'path':

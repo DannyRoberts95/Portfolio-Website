@@ -123,7 +123,7 @@ function StyledBlockContent(props) {
           embedVideo: EmbedVideo,
           figure: Figure,
           accordian: CustomAccordian,
-          cta: ({value}) => <Cta sx={{my: 2}} {...value} />,
+          cta: ({value}) => <Cta {...value} />,
         },
       }}
     />

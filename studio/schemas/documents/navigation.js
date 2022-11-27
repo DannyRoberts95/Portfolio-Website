@@ -20,9 +20,6 @@ export default {
       of: [
         {
           type: 'navLink'
-        },
-        {
-          type: 'navLinkDropdown'
         }
       ]
     },

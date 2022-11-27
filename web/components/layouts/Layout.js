@@ -75,6 +75,10 @@ function Layout(props) {
 
   const logoUrl = logos && logos.primary && logos.primary.url
 
+  console.log('mainNavigation', mainNavigation)
+  console.log('navigationCTAs', navigationCTAs)
+  console.log('footerNavigation', footerNavigation)
+
   return (
     <>
       <Head>

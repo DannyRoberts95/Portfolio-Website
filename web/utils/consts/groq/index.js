@@ -16,21 +16,21 @@ export const linkSnippet = groq`
   linkType == "external" => {
     title,
     url,
-  "itemType":linkType,
+    linkType,
     _key
   },
 
 linkType == "internal" => {
   _key,
+  linkType,
   "title":internal->page->title,
-  "itemType":linkType,
   "slug":internal->slug,
 
 },
 linkType == "path" => {
   path,
+  linkType,
   title,
-  "itemType":linkType,
   _key
   },
 `
@@ -39,20 +39,9 @@ export const navigationQuery = groq`
 *[_id == "site-navigation" ]{
   "mainNavigation":mainNavigation[]{
     ${linkSnippet}
-    _type=="navLinkDropdown"=>{
-      "itemType":"navLinkDropdown",
-      "baseLink":baseLink{
-        ${linkSnippet}
-      },
-      "childLinks":childLinks[]{
-        ${linkSnippet}
-      },
-      _key,
-    },
   },
 
   "footerNavigation":footerNavigation[]{
-    ...,
     "links":links[]{${linkSnippet}}
   },
   "navigationCTAs":navigationCTAs[]{
