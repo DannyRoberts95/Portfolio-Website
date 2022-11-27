@@ -23,7 +23,7 @@ function SectionTitle(props) {
       sx={[
         {
           py: 1,
-          pt: 1.5,
+          mt: 1.5,
           color: theme.palette.primary.contrastText,
           backgroundColor: theme.palette.primary.main,
           borderBottom: `2px solid ${theme.palette.primary.main}`,

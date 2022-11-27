@@ -42,21 +42,7 @@ const CVPage = (props) => {
               {/* Personal info */}
               <Stack sx={{p: 2}} gap={1}>
                 <StyledBlockContent blocks={personalSectionContent} />
-                {/* <Typography variant="h2" gutterBottom>
-                  {name}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <b>Nationality: </b>
-                  {nationality}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <b>DOB: </b>
-                  {formatDate(new Date(dob).toDateString())}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <b>Bio:</b>
-                  <StyledBlockContent blocks={bio} />
-                </Typography> */}
+                <Divider />
               </Stack>
               {/* Skills */}
               <Stack sx={{p: 2}} gap={1}>
