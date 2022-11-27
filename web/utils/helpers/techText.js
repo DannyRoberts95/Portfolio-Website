@@ -1,7 +1,7 @@
 const legend = [
   {target: 'A', char: `/-\\`},
   {target: 'E', char: `3`},
-  {target: 'I', char: `|`},
+  {target: 'I', char: `1`},
   {target: 'O', char: `0`},
   {target: 'U', char: `|_|`},
   {target: 'D', char: `|)`},

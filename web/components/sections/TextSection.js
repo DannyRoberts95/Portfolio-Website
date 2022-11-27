@@ -15,7 +15,7 @@ function TextSection(props) {
     <SectionContainer maxWidth={false}>
       {sections.map((item, i) => (
         <Grid
-          spacing={2}
+          spacing={isSm ? 2 : 4}
           key={item._key}
           container
           sx={{
@@ -38,7 +38,7 @@ function TextSection(props) {
               },
             ]}
           >
-            <Typography variant="h6" align={item.reversed ? 'right' : 'left'}>
+            <Typography variant="subtitle1" align={item.reversed ? 'right' : 'left'}>
               {techtext(`${i}_${item.sectionTitle}`)}
             </Typography>
             <StyledBlockContent blocks={item.sectionSummary} />

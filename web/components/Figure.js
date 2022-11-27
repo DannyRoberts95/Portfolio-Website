@@ -24,7 +24,7 @@ function Figure(props) {
 
   if (!value) return null
 
-  const {aspectRatio, alt, caption, asset} = value
+  const {aspectRatio, alt, caption, asset, figureWidth, figureHeight} = value
 
   if (!asset) {
     return null
@@ -40,13 +40,24 @@ function Figure(props) {
     case '1/1':
       dimensiosns = {width: 1080, height: 1080}
       break
+    case 'custom':
+      console.log(value)
+      dimensiosns = {width: figureWidth, height: figureHeight}
+      break
     default:
       dimensiosns = {width: 1920, height: 1080}
       break
   }
 
+  console.log(dimensiosns)
+
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Box
         component={'figure'}
         sx={[
@@ -60,13 +71,13 @@ function Figure(props) {
         ]}
       >
         <Image
-          objectFit="cover"
-          layout={!dimensiosns ? 'fill' : 'responsive'}
+          // objectFit="cover"
+          layout={aspectRatio === 'custom' ? 'intrinsic' : 'responsive'}
           width={dimensiosns?.width || null}
           height={dimensiosns?.height || null}
-          loading="lazy"
-          blurDataURL={builder.image(asset)}
           placeholder="blur"
+          loading="lazy"
+          blurDataURL={builder.image(asset).url()}
           src={builder.image(asset).url()}
           alt={alt}
           onClick={handleOpen}
