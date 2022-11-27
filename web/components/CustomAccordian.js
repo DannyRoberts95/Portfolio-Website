@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 
 import {Add, ExpandLess} from '@mui/icons-material'
-import {Typography} from '@mui/material'
+import {Divider, Typography} from '@mui/material'
 import {Box} from '@mui/system'
 import StyledBlockContent from './StyledBlockContent'
 
@@ -26,8 +26,8 @@ function CustomAccordian({value}) {
       }}
     >
       <AccordionSummary
-        aria-controls="panel1a-content"
-        id="panel1a-header"
+        aria-controls={`${title}-summary`}
+        id={`${title}-summary`}
         expandIcon={open ? <ExpandLess /> : <Add />}
       >
         <Box>
@@ -36,6 +36,7 @@ function CustomAccordian({value}) {
         </Box>
       </AccordionSummary>
       <AccordionDetails>
+        <Divider sx={{mb: 1}} />
         <StyledBlockContent blocks={content} />
       </AccordionDetails>
     </Accordion>

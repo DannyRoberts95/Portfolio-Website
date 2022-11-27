@@ -85,8 +85,34 @@ const CVPage = (props) => {
   )
 }
 
-CVPage.getInitialProps = async function (context) {
-  const {slug = ''} = context.query
+export async function getStaticPaths() {
+  let slugs = []
+  await client
+    .fetch(
+      `{
+    "slugs": *[
+      _type == "cv"
+    ].slug.current,
+  }`
+    )
+    .then((res) => {
+      slugs = res.slugs
+    })
+
+  const paths = slugs.map((slug) => {
+    return {
+      params: {slug: [slug]},
+    }
+  })
+
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  }
+}
+
+export const getStaticProps = async ({params}) => {
+  const slug = params?.slug
 
   const cv = await client.fetch(
     groq`*[_type == "cv" && slug.current == $slug ][0]{
@@ -106,7 +132,8 @@ CVPage.getInitialProps = async function (context) {
   )
 
   return {
-    cv,
+    props: {cv} || {},
+    revalidate: 5,
   }
 }
 

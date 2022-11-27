@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Box, Paper, Typography} from '@mui/material'
+import {Box, Typography} from '@mui/material'
 import PropTypes from 'prop-types'
 import Marquee from 'react-fast-marquee'
 import techtext from 'utils/helpers/techText'
@@ -23,15 +23,13 @@ function SectionTitle(props) {
       sx={[
         {
           py: 1,
-          mt: 1.5,
           color: theme.palette.primary.contrastText,
           backgroundColor: theme.palette.primary.main,
           borderBottom: `2px solid ${theme.palette.primary.main}`,
+          height: 'auto',
           ...sx,
         },
       ]}
-      component={Paper}
-      elevation={0}
       {...others}
     >
       <Marquee gradient={false} direction={reverseDirection ? 'right' : 'left'}>
