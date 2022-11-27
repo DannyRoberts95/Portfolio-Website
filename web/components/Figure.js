@@ -71,7 +71,7 @@ function Figure(props) {
         ]}
       >
         <Image
-          // objectFit="cover"
+          objectFit="cover"
           layout={aspectRatio === 'custom' ? 'intrinsic' : 'responsive'}
           width={dimensiosns?.width || null}
           height={dimensiosns?.height || null}
