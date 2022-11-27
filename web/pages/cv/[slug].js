@@ -101,7 +101,7 @@ export async function getStaticPaths() {
 
   const paths = slugs.map((slug) => {
     return {
-      params: {slug: [slug]},
+      params: {slug: slug},
     }
   })
 
