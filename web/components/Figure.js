@@ -41,15 +41,12 @@ function Figure(props) {
       dimensiosns = {width: 1080, height: 1080}
       break
     case 'custom':
-      console.log(value)
       dimensiosns = {width: figureWidth, height: figureHeight}
       break
     default:
       dimensiosns = {width: 1920, height: 1080}
       break
   }
-
-  console.log(dimensiosns)
 
   return (
     <Box

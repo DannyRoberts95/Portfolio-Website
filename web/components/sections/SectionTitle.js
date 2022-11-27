@@ -5,8 +5,6 @@ import Marquee from 'react-fast-marquee'
 import techtext from 'utils/helpers/techText'
 
 function SectionTitle(props) {
-  console.log(props)
-
   const theme = useTheme()
 
   const {heading: text = '', reverseDirection, sx, ...others} = props

@@ -3,7 +3,7 @@
 import groq from 'groq'
 import client from '../../client'
 
-import {Chip, Grid, Stack, Typography} from '@mui/material'
+import {Chip, Divider, Grid, Stack, Typography} from '@mui/material'
 import Layout from 'components/layouts/Layout'
 import SectionContainer from 'components/SectionContainer'
 import {NextSeo} from 'next-seo'
@@ -12,9 +12,7 @@ import {useEffect} from 'react'
 import HeroImage from '../../components/HeroImage'
 
 import {useTheme} from '@emotion/react'
-import {Box} from '@mui/system'
 import StyledBlockContent from 'components/StyledBlockContent'
-import formatDate from '../../utils/helpers/formatDate'
 
 const CVPage = (props) => {
   const router = useRouter()
@@ -28,7 +26,7 @@ const CVPage = (props) => {
   }, [])
 
   if (!cv) return null
-  const {illustration, mainSections = []} = cv
+  const {illustration, mainSections = [], personalSectionContent} = cv
   const {caption, alt} = illustration
   const {name, nationality, dob, bio, experienced, familiar} = cv.person
 
@@ -40,10 +38,11 @@ const CVPage = (props) => {
         <SectionContainer>
           <Grid container spacing={0}>
             {/* SideBar */}
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{border: `1px solid ${theme.palette.primary.main}`}}>
               {/* Personal info */}
-              <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
-                <Typography variant="h2" gutterBottom>
+              <Stack sx={{p: 2}} gap={1}>
+                <StyledBlockContent blocks={personalSectionContent} />
+                {/* <Typography variant="h2" gutterBottom>
                   {name}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
@@ -57,10 +56,10 @@ const CVPage = (props) => {
                 <Typography variant="body1" gutterBottom>
                   <b>Bio:</b>
                   <StyledBlockContent blocks={bio} />
-                </Typography>
+                </Typography> */}
               </Stack>
               {/* Skills */}
-              <Stack sx={{border: `1px solid ${theme.palette.primary.main}`, p: 2}} gap={1}>
+              <Stack sx={{p: 2}} gap={1}>
                 <Typography variant="h2" gutterBottom>
                   Skills
                 </Typography>
@@ -84,15 +83,12 @@ const CVPage = (props) => {
             </Grid>
 
             {/* Main Section */}
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={8} sx={{border: `1px solid ${theme.palette.primary.main}`}}>
               {mainSections.map((section) => (
-                <Grid item container>
-                  <Box sx={{border: `1px solid ${theme.palette.primary.main}`, width: '100%'}}>
-                    <Box sx={{p: 2}}>
-                      <Typography variant="h2">{section.mainSectionTitle.heading}</Typography>
-                      <StyledBlockContent blocks={section.mainSectionContent} />
-                    </Box>
-                  </Box>
+                <Grid item container sx={{p: 2}} flexDirection="column">
+                  <Typography variant="h2">{section.mainSectionTitle.heading}</Typography>
+                  <StyledBlockContent blocks={section.mainSectionContent} />
+                  <Divider />
                 </Grid>
               ))}
             </Grid>

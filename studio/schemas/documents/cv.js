@@ -43,6 +43,11 @@ export default {
     },
     //Person
     {
+      title: 'Personal Info',
+      name: 'personalSectionContent',
+      type: 'portableText'
+    },
+    {
       name: 'person',
       title: 'Person',
       type: 'reference',

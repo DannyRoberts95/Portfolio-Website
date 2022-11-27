@@ -10,7 +10,7 @@ import {Box} from '@mui/system'
 import StyledBlockContent from './StyledBlockContent'
 
 function CustomAccordian({value}) {
-  const {content, summary, title, expanded = true} = value
+  const {content, summary, title, expanded = false} = value
 
   const [open, setOpen] = useState(expanded)
 

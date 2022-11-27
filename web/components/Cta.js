@@ -4,7 +4,6 @@ import Link from './CustomLink.js'
 
 const buildLinkSrc = (navLink) => {
   const {linkType} = navLink
-  // console.log(navLink)
   switch (linkType) {
     case 'external':
       return navLink.url
