@@ -73,15 +73,16 @@ let theme = createTheme({
       textTransform: 'uppercase',
     },
     h5: {
-      fontWeight: 700,
       fontFamily: headerFont,
       fontSize: '2rem',
       textTransform: 'uppercase',
+      lineHeight: 1.5,
     },
     h6: {
       fontFamily: headerFont,
       fontSize: '1.25rem',
       textTransform: 'uppercase',
+      lineHeight: 1.5,
     },
     subtitle1: {
       fontFamily: headerFont,

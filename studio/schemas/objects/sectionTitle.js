@@ -21,7 +21,7 @@ export default {
     },
     prepare({ heading, reverseDirection }) {
       return {
-        title: `${heading}`,
+        title: `Section Title: ${heading}`,
         subtitle: `Section Heading - ${reverseDirection}`
       }
     }

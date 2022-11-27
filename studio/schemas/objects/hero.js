@@ -14,6 +14,11 @@ export default {
       title: 'Blend Text'
     },
     {
+      name: 'disbaleFade',
+      type: 'boolean',
+      title: 'Disbale Fade'
+    },
+    {
       name: 'heading',
       type: 'string',
       title: 'Heading'

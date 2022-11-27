@@ -34,6 +34,7 @@ function Hero(props) {
     ctas,
     blendText,
     dark,
+    disbaleFade,
     firstComponent,
   } = props
 
@@ -66,6 +67,34 @@ function Hero(props) {
         <Box
           id="heroImageContainer"
           sx={{
+            zIndex: -4,
+            overflow: 'hidden',
+            position: 'absolute',
+            backgroundColor: theme.palette.primary.main,
+            minWidth: '100%',
+            height: '100%',
+            top: 0,
+          }}
+        >
+          <Image
+            id="heroImage"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            loading={firstComponent ? 'eager' : 'lazy'}
+            priority={firstComponent}
+            alt="hero_banner_illustartion"
+            blurDataURL={urlFor(backgroundImage).width(480).url().toString()}
+            src={urlFor(backgroundImage).auto('format').url()}
+            srcSet={urlFor(backgroundImage).auto('format').url()}
+          />
+        </Box>
+      )}
+
+      {/* {backgroundImage && (
+        <Box
+          id="heroImageContainer"
+          sx={{
             overflow: 'hidden',
             position: 'absolute',
             top: 0,
@@ -80,7 +109,7 @@ function Hero(props) {
             loading={firstComponent ? 'eager' : 'lazy'}
             priority={firstComponent}
             objectFit="cover"
-            quality={85}
+            quality={100}
             alt="hero_banner_illustartion"
             placeholder="blur"
             blurDataURL={urlFor(backgroundImage).auto('format').width(480).url()}
@@ -88,7 +117,7 @@ function Hero(props) {
             srcSet={urlFor(backgroundImage).auto('format').url()}
           />
         </Box>
-      )}
+      )} */}
 
       {/* VIDEO  */}
       {backgroundVideo && (
@@ -132,7 +161,7 @@ function Hero(props) {
         </Box>
       )}
 
-      <Fade in={isVisible} timeout={1000}>
+      <Fade in={isVisible} timeout={disbaleFade ? 0 : 1000}>
         <Container maxWidth={'md'} ref={textRef}>
           <Typography
             align="center"

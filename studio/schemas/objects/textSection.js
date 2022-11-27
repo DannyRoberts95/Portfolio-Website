@@ -14,20 +14,24 @@ export default {
           type: 'object',
           fields: [
             {
-              name: 'sectionSummary',
-              type: 'portableText',
-              title: 'Section Summary '
+              name: 'sectionTitle',
+              type: 'string',
+              title: 'Section Title'
             },
             {
-              type: 'boolean',
-              name: 'reversed',
-              title: 'Reverse Layout',
-              initalValue: false
+              name: 'sectionSummary',
+              type: 'portableText',
+              title: 'Section Summary'
             },
             {
               name: 'sectionText',
               type: 'portableText',
               title: 'Section Text '
+            },
+            {
+              name: 'postText',
+              type: 'portableText',
+              title: 'Post Text '
             }
           ]
         }
@@ -36,11 +40,12 @@ export default {
   ],
   preview: {
     select: {
+      title: 'title',
       sections: 'sections'
     },
-    prepare({ sections }) {
+    prepare({ sections, title }) {
       return {
-        title: `Text Section`,
+        title: `Text Section: ${title}`,
         subtitle: `${sections.length} - ${sections.map(sec => `${sec.sectionTitle}`).join(', ')}`
       }
     }

@@ -39,10 +39,8 @@ export default {
     },
     prepare({ title, carousel, reverseCarousel, size }) {
       return {
-        title,
-        subtitle: `${reverseCarousel ? 'Reversed' : ''}
-        ${carousel ? 'Carousel' : ''}
-         : ${size} `
+        title: `Grid Section: ${title || ''}`,
+        subtitle: `${reverseCarousel ? 'Reversed' : ''} ${carousel ? 'Carousel' : ''} ${size || ''}`
       }
     }
   }
