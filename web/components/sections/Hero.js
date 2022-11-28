@@ -59,7 +59,6 @@ function Hero(props) {
             borderBottom: `1px solid ${theme.palette.secondary.main}`,
           }),
           py: isSm ? 8 : 16,
-          maxHeight: '80vh',
         },
       ]}
     >
@@ -90,34 +89,6 @@ function Hero(props) {
           />
         </Box>
       )}
-
-      {/* {backgroundImage && (
-        <Box
-          id="heroImageContainer"
-          sx={{
-            overflow: 'hidden',
-            position: 'absolute',
-            top: 0,
-            minWidth: '100%',
-            height: '100%',
-            zIndex: -1,
-          }}
-        >
-          <Image
-            id="heroImage"
-            layout="fill"
-            loading={firstComponent ? 'eager' : 'lazy'}
-            priority={firstComponent}
-            objectFit="cover"
-            quality={100}
-            alt="hero_banner_illustartion"
-            placeholder="blur"
-            blurDataURL={urlFor(backgroundImage).auto('format').width(480).url()}
-            src={urlFor(backgroundImage).auto('format').url()}
-            srcSet={urlFor(backgroundImage).auto('format').url()}
-          />
-        </Box>
-      )} */}
 
       {/* VIDEO  */}
       {backgroundVideo && (

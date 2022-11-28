@@ -12,7 +12,12 @@ function SectionTitle(props) {
   if (!text) return null
 
   const component = (
-    <Typography variant={'h3'} component={'h2'} fontWeight="700" sx={{px: 1}}>
+    <Typography
+      variant={'h3'}
+      component={'h2'}
+      fontWeight="700"
+      sx={{px: 1, pt: 0.5, lineHeight: 1}}
+    >
       {techtext(text)}
     </Typography>
   )
@@ -22,18 +27,19 @@ function SectionTitle(props) {
       width="100%"
       sx={[
         {
+          position: 'relative',
           py: 1,
           color: theme.palette.primary.contrastText,
           backgroundColor: theme.palette.primary.main,
           borderBottom: `2px solid ${theme.palette.primary.main}`,
-          height: 'auto',
+        },
+        sx && {
           ...sx,
         },
       ]}
       {...others}
     >
       <Marquee gradient={false} direction={reverseDirection ? 'right' : 'left'}>
-        {component}
         {component}
         {component}
         {component}

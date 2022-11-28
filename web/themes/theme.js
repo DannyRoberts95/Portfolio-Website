@@ -51,7 +51,6 @@ let theme = createTheme({
       fontSize: '8.5rem',
       lineHeight: 1.25,
       textTransform: 'uppercase',
-
       marginBottom: 0,
     },
     h2: {
@@ -75,27 +74,24 @@ let theme = createTheme({
     h5: {
       fontFamily: headerFont,
       fontSize: '2rem',
-      textTransform: 'uppercase',
+
       lineHeight: 1.5,
     },
     h6: {
       fontFamily: headerFont,
       fontSize: '1.25rem',
-      textTransform: 'uppercase',
+
       lineHeight: 1.5,
     },
     subtitle1: {
       fontFamily: headerFont,
-      textTransform: 'uppercase',
     },
     subtitle2: {
       fontFamily: headerFont,
-      textTransform: 'uppercase',
     },
     button: {
       fontFamily: headerFont,
       letterSpacing: 2,
-      textTransform: 'uppercase',
     },
     body1: {fontFamily: bodyFont},
     body2: {
