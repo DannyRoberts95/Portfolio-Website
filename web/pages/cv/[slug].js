@@ -80,13 +80,13 @@ const CVPage = (props) => {
             <Stack
               sx={{mb: 2, border: (theme) => `solid 2px ${theme.palette.primary.main} `, p: 2}}
             >
-              <Typography variant="h6">EXPERIENCED</Typography>
+              <Typography variant="h6">EXPERIENCED WITH:</Typography>
               <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
                 {experienced.map((item) => (
                   <Chip key={item} label={item} variant="outlined" />
                 ))}
               </Stack>
-              <Typography variant="h6">FAMILIAR</Typography>
+              <Typography variant="h6">FAMILIAR WITH:</Typography>
               <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
                 {familiar.map((item) => (
                   <Chip key={item} label={item} variant="outlined" />
