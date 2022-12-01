@@ -108,7 +108,7 @@ export default Posts
 
 const postFiltering = ` _type == "post" && publishedAt < now() && draft != true `
 
-const ordering = `| order(_createdAt asc)`
+const ordering = `| order(publishedAt desc)`
 
 const postQuery = `
         draft,

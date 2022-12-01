@@ -3,15 +3,16 @@
 import groq from 'groq'
 import client from '../../client'
 
-import {Chip, Divider, Grid, Stack, Typography} from '@mui/material'
+import {Box, Chip, Container, Divider, Stack, Typography} from '@mui/material'
 import Layout from 'components/layouts/Layout'
 import SectionContainer from 'components/SectionContainer'
+import {Hero, SectionTitle} from 'components/sections'
 import {NextSeo} from 'next-seo'
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
-import HeroImage from '../../components/HeroImage'
 
 import {useTheme} from '@emotion/react'
+import Link from 'components/CustomLink'
 import StyledBlockContent from 'components/StyledBlockContent'
 
 const CVPage = (props) => {
@@ -27,58 +28,79 @@ const CVPage = (props) => {
 
   if (!cv) return null
   const {illustration, mainSections = [], personalSectionContent} = cv
-  const {caption, alt} = illustration
-  const {name, nationality, dob, bio, experienced, familiar} = cv.person
+  const {alt} = illustration
+  const {name, nationality, dob, bio, experienced, image, email, phone, familiar} = cv.person
 
+  console.log(cv)
   return (
     <>
       <Layout config={config} navigation={navigation} transparentHeader>
         <NextSeo title={'CV'} titleTemplate={`%s | ${config.title}`} description={'summary'} />
-        {illustration && <HeroImage image={illustration} caption={caption} alt={alt} />}
-        <SectionContainer>
-          <Grid container spacing={0}>
-            {/* SideBar */}
-            <Grid item xs={12} md={4} sx={{border: `1px solid ${theme.palette.primary.main}`}}>
-              {/* Personal info */}
-              <Stack sx={{p: 2}} gap={1}>
-                <StyledBlockContent blocks={personalSectionContent} />
-                <Divider />
-              </Stack>
-              {/* Skills */}
-              <Stack sx={{p: 2}} gap={1}>
-                <Typography variant="h2" gutterBottom>
-                  Skills
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Experienced
-                </Typography>
-                <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
-                  {experienced.map((item) => (
-                    <Chip key={item} label={item} variant="outlined" />
-                  ))}
-                </Stack>
-                <Typography variant="h6" gutterBottom>
-                  Familiar
-                </Typography>
-                <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
-                  {familiar.map((item) => (
-                    <Chip key={item} label={item} variant="outlined" />
-                  ))}
-                </Stack>
-              </Stack>
-            </Grid>
+        {illustration && <Hero heading={name} backgroundImage={illustration} heroAlt={alt} dark />}
+        <SectionContainer contentMaxWidth={false}>
+          {/* SideBar */}
+          {/* Personal info */}
+          <SectionTitle heading="PERSONAL INFO" />
+          <Container maxWidth={'md'} sx={{py: 2}}>
+            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+              <Typography variant="body1" fontWeight={700}>
+                NATIONALITY:
+              </Typography>
+              <Typography variant="body1">{nationality}</Typography>
+            </Stack>
+            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+              <Typography variant="body1" fontWeight={700}>
+                BORN:
+              </Typography>
+              <Typography variant="body1">{dob}</Typography>
+            </Stack>
+            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+              <Typography variant="body1" fontWeight={700}>
+                EMAIL:
+              </Typography>
+              <Typography variant="body1">
+                <Link href={`mailto:${email}`}>{email}</Link>
+              </Typography>
+            </Stack>
+            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+              <Typography variant="body1" fontWeight={700}>
+                PHONE:
+              </Typography>
+              <Typography variant="body1">
+                <Link href={`tel:${phone}`}>{phone}</Link>
+              </Typography>
+            </Stack>
 
-            {/* Main Section */}
-            <Grid item xs={12} md={8} sx={{border: `1px solid ${theme.palette.primary.main}`}}>
-              {mainSections.map((section) => (
-                <Grid item container sx={{p: 2}} flexDirection="column">
-                  <Typography variant="h2">{section.mainSectionTitle.heading}</Typography>
-                  <StyledBlockContent blocks={section.mainSectionContent} />
-                  <Divider />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
+            <Divider />
+
+            <StyledBlockContent blocks={bio} />
+
+            <Divider />
+
+            <Stack gap={1} sx={{my: 2}}>
+              <Typography variant="h6">EXPERIENCED</Typography>
+              <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
+                {experienced.map((item) => (
+                  <Chip key={item} label={item} variant="outlined" />
+                ))}
+              </Stack>
+              <Typography variant="h6">FAMILIAR</Typography>
+              <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
+                {familiar.map((item) => (
+                  <Chip key={item} label={item} variant="outlined" />
+                ))}
+              </Stack>
+            </Stack>
+          </Container>
+
+          {mainSections.map((section) => (
+            <Box sx={{my: 2}}>
+              <SectionTitle heading={section.mainSectionTitle.heading} sx={{mb: 2}} />
+              <Container maxWidth={'md'} sx={{py: 2}}>
+                <StyledBlockContent blocks={section.mainSectionContent} />
+              </Container>
+            </Box>
+          ))}
         </SectionContainer>
       </Layout>
     </>
@@ -120,6 +142,8 @@ export const getStaticProps = async ({params}) => {
       "person":{
         "name":person->name,
         "dob": person->dob,
+        "email":person->email,
+        "phone":person->phone,
         "nationality": person->nationality,
         "image": person->image.asset,
         "bio":person->bio,

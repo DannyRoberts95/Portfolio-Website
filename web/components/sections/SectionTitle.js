@@ -1,11 +1,17 @@
 import {useTheme} from '@emotion/react'
 import {Box, Typography} from '@mui/material'
 import PropTypes from 'prop-types'
+import {useState} from 'react'
 import Marquee from 'react-fast-marquee'
 import techtext from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
+
+  const [hovered, sethovered] = useState(false)
+
+  const handleEnter = () => sethovered(true)
+  const handleExit = () => sethovered(false)
 
   const {heading: text = '', reverseDirection, sx, ...others} = props
 
@@ -25,6 +31,8 @@ function SectionTitle(props) {
   return (
     <Box
       width="100%"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleExit}
       sx={[
         {
           position: 'relative',
@@ -39,7 +47,11 @@ function SectionTitle(props) {
       ]}
       {...others}
     >
-      <Marquee gradient={false} direction={reverseDirection ? 'right' : 'left'}>
+      <Marquee
+        gradient={false}
+        direction={reverseDirection ? 'right' : 'left'}
+        style={{overflowY: 'hidden'}}
+      >
         {component}
         {component}
         {component}

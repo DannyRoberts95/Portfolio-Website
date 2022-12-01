@@ -31,9 +31,21 @@ function StyledBlockContent(props) {
     //Centered Text Content
 
     //Normal Text Content
-    normal: ({children}) => <Typography variant="body1">{children}</Typography>,
-    body1: ({children}) => <Typography variant="body1">{children}</Typography>,
-    body2: ({children}) => <Typography variant="body2">{children}</Typography>,
+    normal: ({children}) => (
+      <Typography variant="body1" sx={{mt: 1, mb: 2}}>
+        {children}
+      </Typography>
+    ),
+    body1: ({children}) => (
+      <Typography variant="body1" sx={{mt: 1, mb: 2}}>
+        {children}
+      </Typography>
+    ),
+    body2: ({children}) => (
+      <Typography variant="body2" sx={{mt: 1, mb: 2}}>
+        {children}
+      </Typography>
+    ),
     h6: ({children}) => (
       <Typography variant="h6" gutterBottom>
         {children}

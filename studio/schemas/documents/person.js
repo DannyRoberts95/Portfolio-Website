@@ -31,6 +31,16 @@ export default {
       fieldset: 'personal'
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      fieldset: 'personal',
+      options: {
+        source: 'name',
+        maxLength: 96
+      }
+    },
+    {
       name: 'nationality',
       title: 'Nationality',
       type: 'string',
@@ -43,14 +53,16 @@ export default {
       fieldset: 'personal'
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      fieldset: 'personal',
-      options: {
-        source: 'name',
-        maxLength: 96
-      }
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      fieldset: 'personal'
+    },
+    {
+      name: 'phone',
+      title: 'phone',
+      type: 'string',
+      fieldset: 'personal'
     },
     {
       name: 'image',
