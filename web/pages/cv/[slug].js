@@ -3,7 +3,7 @@
 import groq from 'groq'
 import client from '../../client'
 
-import {Box, Chip, Container, Divider, Stack, Typography} from '@mui/material'
+import {Box, Chip, Container, Stack, Typography} from '@mui/material'
 import Layout from 'components/layouts/Layout'
 import SectionContainer from 'components/SectionContainer'
 import {Hero, SectionTitle} from 'components/sections'
@@ -42,42 +42,44 @@ const CVPage = (props) => {
           {/* Personal info */}
           <SectionTitle heading="PERSONAL INFO" />
           <Container maxWidth={'md'} sx={{py: 2}}>
-            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
-              <Typography variant="body1" fontWeight={700}>
-                NATIONALITY:
-              </Typography>
-              <Typography variant="body1">{nationality}</Typography>
+            <Stack
+              sx={{mb: 2, border: (theme) => `solid 2px ${theme.palette.primary.main} `, p: 2}}
+            >
+              <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                <Typography variant="body1" fontWeight={700}>
+                  NATIONALITY:
+                </Typography>
+                <Typography variant="body1">{nationality}</Typography>
+              </Stack>
+              <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                <Typography variant="body1" fontWeight={700}>
+                  BORN:
+                </Typography>
+                <Typography variant="body1">{dob}</Typography>
+              </Stack>
+              <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                <Typography variant="body1" fontWeight={700}>
+                  EMAIL:
+                </Typography>
+                <Typography variant="body1">
+                  <Link href={`mailto:${email}`}>{email}</Link>
+                </Typography>
+              </Stack>
+              <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+                <Typography variant="body1" fontWeight={700}>
+                  PHONE:
+                </Typography>
+                <Typography variant="body1">
+                  <Link href={`tel:${phone}`}>{phone}</Link>
+                </Typography>
+              </Stack>
             </Stack>
-            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
-              <Typography variant="body1" fontWeight={700}>
-                BORN:
-              </Typography>
-              <Typography variant="body1">{dob}</Typography>
-            </Stack>
-            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
-              <Typography variant="body1" fontWeight={700}>
-                EMAIL:
-              </Typography>
-              <Typography variant="body1">
-                <Link href={`mailto:${email}`}>{email}</Link>
-              </Typography>
-            </Stack>
-            <Stack sx={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
-              <Typography variant="body1" fontWeight={700}>
-                PHONE:
-              </Typography>
-              <Typography variant="body1">
-                <Link href={`tel:${phone}`}>{phone}</Link>
-              </Typography>
-            </Stack>
-
-            <Divider />
 
             <StyledBlockContent blocks={bio} />
 
-            <Divider />
-
-            <Stack gap={1} sx={{my: 2}}>
+            <Stack
+              sx={{mb: 2, border: (theme) => `solid 2px ${theme.palette.primary.main} `, p: 2}}
+            >
               <Typography variant="h6">EXPERIENCED</Typography>
               <Stack direction={'row'} flexWrap="wrap" gap={0.5}>
                 {experienced.map((item) => (
