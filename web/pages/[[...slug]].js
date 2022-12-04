@@ -51,6 +51,13 @@ export const getStaticProps = async ({params}) => {
 
   let data
 
+  console.time('fetch')
+  console.log('------------------------------------------')
+  console.log('Fetching Page Data...')
+  console.log('------------------------------------------')
+
+  console.log('SLUG: ' + slug)
+
   if (slug === '/') {
     data = await client
       .fetch(
@@ -63,6 +70,8 @@ export const getStaticProps = async ({params}) => {
       `
       )
       .then((res) => {
+        console.log('Page data returned!')
+        console.timeEnd('fetch')
         return res?.frontpage ? {...res.frontpage, slug} : undefined
       })
   } else {
@@ -78,16 +87,24 @@ export const getStaticProps = async ({params}) => {
         {possibleSlugs: getSlugVariations(slug)}
       )
       .then((res) => {
+        console.timeEnd('fetch')
+        console.log('Page data returned!')
+        console.log('************************************************************')
+        console.log(res)
+        console.log('************************************************************')
         return res?.page ? {...res.page, slug} : undefined
       })
   }
 
   if (!data || !data._type === 'page') {
+    console.log('PROBLEM!!! Page data contained no page!')
+    console.log('PAGE DATA:', data)
     return {
       notFound: true,
     }
   }
 
+  console.log('PAGE DATA PASSED:', data)
   return {
     props: data || {},
     revalidate: 5,
