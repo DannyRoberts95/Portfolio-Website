@@ -159,7 +159,7 @@ export const getStaticProps = async ({params}) => {
 
   return {
     props: {cv} || {},
-    revalidate: 5,
+    revalidate: 30,
   }
 }
 

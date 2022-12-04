@@ -107,7 +107,7 @@ export const getStaticProps = async ({params}) => {
   console.log('PAGE DATA PASSED:', data)
   return {
     props: data || {},
-    revalidate: 5,
+    revalidate: 30,
   }
 }
 
