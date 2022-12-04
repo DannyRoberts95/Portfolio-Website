@@ -70,8 +70,11 @@ export const getStaticProps = async ({params}) => {
       `
       )
       .then((res) => {
-        console.log('Page data returned!')
         console.timeEnd('fetch')
+        console.log('Page data returned!')
+        console.log('************************************************************')
+        console.log(res)
+        console.log('************************************************************')
         return res?.frontpage ? {...res.frontpage, slug} : undefined
       })
   } else {
