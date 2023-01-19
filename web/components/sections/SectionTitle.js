@@ -7,15 +7,13 @@ import techtext from 'utils/helpers/techText'
 
 function SectionTitle(props) {
   const theme = useTheme()
+  const {heading: text = '', reverseDirection, sx, ...others} = props
 
   const [hovered, sethovered] = useState(false)
+  const [parsedText] = useState(techtext(text))
 
   const handleEnter = () => sethovered(true)
   const handleExit = () => sethovered(false)
-
-  const {heading: text = '', reverseDirection, sx, ...others} = props
-
-  if (!text) return null
 
   const component = (
     <Typography
@@ -24,7 +22,7 @@ function SectionTitle(props) {
       fontWeight="700"
       sx={{px: 1, pt: 0.5, lineHeight: 1}}
     >
-      {techtext(text)}
+      {parsedText}
     </Typography>
   )
 

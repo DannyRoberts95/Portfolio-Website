@@ -29,7 +29,7 @@ function RenderSections(props) {
         if (!SectionComponent) {
           return null
         }
-        return <SectionComponent {...section} firstComponent={i === 0} key={section._key} />
+        return <SectionComponent {...section} key={section._key} />
       })}
     </Fragment>
   )
