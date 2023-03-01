@@ -1,7 +1,7 @@
 import S from '@sanity/desk-tool/structure-builder'
 
 // Anything listed explicitly is filtered so that it is not displayed twice
-const hiddenDocTypes = listItem =>
+const hiddenDocTypes = (listItem) =>
   ![
     'route',
     'post',
@@ -10,8 +10,7 @@ const hiddenDocTypes = listItem =>
     'term',
     'site-config',
     'page',
-    'cv',
-    'site-navigation'
+    'site-navigation',
   ].includes(listItem.getId())
 
 const siteSettingsStructure = S.listItem()
@@ -25,23 +24,15 @@ const siteSettingsStructure = S.listItem()
         S.listItem()
           .title('Site Config')
           .schemaType('site-config')
-          .child(
-            S.document()
-              .id('global-config')
-              .schemaType('site-config')
-              .title('Site config')
-          ),
+          .child(S.document().id('global-config').schemaType('site-config').title('Site config')),
         S.documentTypeListItem('route').title('Routes'),
         S.listItem()
           .title('Site Navigation')
           .schemaType('site-navigation')
           .child(
-            S.document()
-              .id('site-navigation')
-              .schemaType('site-navigation')
-              .title('Navigation')
+            S.document().id('site-navigation').schemaType('site-navigation').title('Navigation')
           ),
-        S.documentTypeListItem('page').title('Website Pages')
+        S.documentTypeListItem('page').title('Website Pages'),
       ])
   )
 const learnStructure = S.listItem()
@@ -53,9 +44,8 @@ const learnStructure = S.listItem()
       // Each will pull one of our new singletons
       .items([
         S.documentTypeListItem('post').title('Posts'),
-        S.documentTypeListItem('cv').title('CVs'),
         S.documentTypeListItem('person').title('People'),
-        S.documentTypeListItem('category').title('Content Categories')
+        S.documentTypeListItem('category').title('Content Categories'),
         // S.documentTypeListItem('term').title('Terms'),
       ])
   )
@@ -66,7 +56,5 @@ export default () =>
     .items([
       siteSettingsStructure,
       learnStructure,
-      ...S.documentTypeListItems()
-        .filter(hiddenDocTypes)
-        .sort()
+      ...S.documentTypeListItems().filter(hiddenDocTypes).sort(),
     ])
