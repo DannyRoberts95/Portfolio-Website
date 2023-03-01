@@ -6,16 +6,16 @@ export default {
   fieldsets: [
     {
       title: 'Dimensions',
-      name: 'dimensions'
+      name: 'dimensions',
     },
     {
       title: 'Details',
-      name: 'details'
-    }
+      name: 'details',
+    },
   ],
 
   options: {
-    hotspot: true
+    hotspot: true,
   },
 
   fields: [
@@ -23,7 +23,7 @@ export default {
       title: 'Figure Border',
       name: 'border',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     },
     {
       title: 'Aspect Ration',
@@ -32,10 +32,10 @@ export default {
       options: {
         isHighlighted: true,
         list: ['16/9', '1/1', '3/4', '4/3', 'custom'],
-        initialValue: '16/9'
+        initialValue: '16/9',
       },
-      validation: Rule => Rule.required(),
-      fieldset: 'dimensions'
+      validation: (Rule) => Rule.required(),
+      fieldset: 'dimensions',
     },
 
     {
@@ -45,10 +45,10 @@ export default {
       initialValue: 100,
       hidden: ({ parent }) => parent?.aspectRatio !== 'custom',
       options: {
-        isHighlighted: true
+        isHighlighted: true,
       },
       fieldset: 'dimensions',
-      validation: Rule => Rule.max(500).min(25)
+      validation: (Rule) => Rule.max(500).min(25),
     },
     {
       title: 'Height',
@@ -57,10 +57,10 @@ export default {
       initialValue: 100,
       hidden: ({ parent }) => parent?.aspectRatio !== 'custom',
       options: {
-        isHighlighted: true
+        isHighlighted: true,
       },
       fieldset: 'dimensions',
-      validation: Rule => Rule.max(500).min(25)
+      validation: (Rule) => Rule.max(500).min(25),
     },
 
     {
@@ -68,9 +68,9 @@ export default {
       name: 'caption',
       type: 'string',
       options: {
-        isHighlighted: true
+        isHighlighted: true,
       },
-      fieldset: 'details'
+      fieldset: 'details',
     },
 
     {
@@ -79,15 +79,22 @@ export default {
       title: 'Alternative text',
       description: 'Important for SEO and accessiblity.',
       options: {
-        isHighlighted: true
+        isHighlighted: true,
       },
-      fieldset: 'details'
-    }
+      fieldset: 'details',
+    },
   ],
   preview: {
     select: {
-      imageUrl: 'asset.url',
-      title: 'alt'
-    }
-  }
+      media: 'image',
+      alt: 'alt',
+      caption: 'caption',
+    },
+    prepare({ media, alt, caption = 'No Caption or Alt' }) {
+      return {
+        title: `${alt || caption}`,
+        media,
+      }
+    },
+  },
 }

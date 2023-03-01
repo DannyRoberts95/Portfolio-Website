@@ -13,34 +13,34 @@ export default {
       title: 'Columns',
       name: 'cols',
       type: 'number',
-      initialValue: 3
+      initialValue: 3,
     },
     {
       title: 'List Type',
       name: 'variant',
       type: 'string',
-      initialValue: 'standard',
+      initialValue: 'masonry',
       options: {
         isHighlighted: true,
-        list: ['standard', 'woven', 'quilted']
-      }
+        list: ['standard', 'woven', 'quilted', 'masonry'],
+      },
     },
     {
       title: 'Illustrations',
       name: 'figures',
       type: 'array',
-      of: [{ type: 'figure' }]
-    }
+      of: [{ type: 'figure' }],
+    },
   ],
   preview: {
     select: {
-      images: 'figures'
+      images: 'figures',
     },
     prepare({ images }) {
       return {
-        title: `figure List`,
-        subtitle: images.length
+        title: `Figure List`,
+        subtitle: images.length,
       }
-    }
-  }
+    },
+  },
 }

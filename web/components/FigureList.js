@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react'
-import {Box, ImageList, ImageListItem, useMediaQuery} from '@mui/material'
+import {ImageList, ImageListItem, useMediaQuery} from '@mui/material'
 import {useRouter} from 'next/router'
 
 import Figure from './Figure'
@@ -9,18 +9,16 @@ const FigureList = ({value}) => {
   const theme = useTheme()
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const {figures = [], variant = 'standard', cols = 3} = value
+  const {figures = [], sx, ...props} = value
 
   return (
-    <Box sx={{position: 'relative', width: '100%', my: 2}}>
-      <ImageList cols={cols} rowHeight={45} gap={theme.spacing(1)} variant={variant}>
-        {figures.map((item) => (
-          <ImageListItem key={item._key} sx={{overflow: 'hidden'}}>
-            <Figure value={item} lightBox />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </Box>
+    <ImageList cols={3} sx={[{width: '100%', my: 2}, sx]} {...props}>
+      {figures.map((item) => (
+        <ImageListItem key={item._key}>
+          <Figure hideCaption value={item} lightBox />
+        </ImageListItem>
+      ))}
+    </ImageList>
   )
 }
 
