@@ -14,21 +14,21 @@ export default {
       name: 'external',
       title: 'External',
       description: 'This type of link points to a URL outside of the application.',
-      hidden: ({ parent }) => parent?.linkType !== 'external'
+      hidden: ({ parent }) => parent?.linkType !== 'external',
     },
     {
       title: 'Internal',
       name: 'internal',
       description: 'This type of link points to a page inside of the application.',
-      hidden: ({ parent }) => parent?.linkType !== 'internal'
+      hidden: ({ parent }) => parent?.linkType !== 'internal',
     },
     {
       title: 'Path',
       name: 'path',
       description:
         'This type of link points directy to a page path from the root of the website. This is for specific internal pages that cannot be linked via routes.',
-      hidden: ({ parent }) => parent?.linkType !== 'path'
-    }
+      hidden: ({ parent }) => parent?.linkType !== 'path',
+    },
   ],
 
   fields: [
@@ -39,15 +39,15 @@ export default {
       initialValue: 'internal',
       options: {
         isHighlighted: true,
-        list: ['internal', 'path', 'external']
+        list: ['internal', 'path', 'external'],
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'title',
       type: 'string',
       title: 'Title',
-      hidden: ({ parent }) => parent?.linkType !== 'path' && parent?.linkType !== 'external'
+      hidden: ({ parent }) => parent?.linkType !== 'path' && parent?.linkType !== 'external',
     },
     //External
     {
@@ -55,31 +55,27 @@ export default {
       type: 'url',
       title: 'URL',
       fieldset: 'external',
-      validation: Rule =>
+      validation: (Rule) =>
         Rule.uri({
-          scheme: ['http', 'https', 'mailto', 'tel']
-        })
+          scheme: ['http', 'https', 'mailto', 'tel'],
+        }),
     },
     //Path
 
     {
       name: 'path',
       type: 'string',
-      description: (
-        <p>
-          Internal Routes should be used in place of paths where possible. <br />
-          Example: "/posts" to points to "wwww.yoursite.com/posts"
-        </p>
-      ),
-      fieldset: 'path'
+      description: `Internal Routes should be used in place of paths where possible.\n
+          Example: '/posts' to points to "wwww.yoursite.com/posts"`,
+      fieldset: 'path',
     },
     //Internal
     {
       name: 'internal',
       type: 'reference',
       to: [{ type: 'route' }, { type: 'post' }],
-      fieldset: 'internal'
-    }
+      fieldset: 'internal',
+    },
   ],
   preview: {
     select: {
@@ -87,7 +83,7 @@ export default {
       externalUrl: 'url',
       internal: 'internal.slug.current',
       internalPath: 'path',
-      type: 'linkType'
+      type: 'linkType',
     },
 
     prepare({ type, external = null, internal = null, externalUrl = null, internalPath = null }) {
@@ -107,8 +103,8 @@ export default {
       }
       return {
         title,
-        subtitle: subtitle()
+        subtitle: subtitle(),
       }
-    }
-  }
+    },
+  },
 }

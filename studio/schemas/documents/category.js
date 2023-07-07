@@ -10,29 +10,29 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'color',
       title: 'Color',
-      type: 'colorPicker'
+      type: 'simplerColor',
     },
     {
       name: 'description',
       title: 'Description',
-      type: 'text'
-    }
+      type: 'text',
+    },
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
       // color: 'color'
     },
     prepare(selection) {
       const { title, color = '#000' } = selection
       return {
-        title
+        title,
       }
-    }
-  }
+    },
+  },
 }

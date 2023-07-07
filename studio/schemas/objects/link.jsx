@@ -12,15 +12,15 @@ export default {
       name: 'href',
       description: 'Makes sure the URL is valid as broken links hurt SEO and make jesus cry.',
       type: 'url',
-      validation: Rule =>
+      validation: (Rule) =>
         Rule.uri({
           allowRelative: true,
-          scheme: ['https', 'http', 'mailto', 'tel']
-        })
-    }
+          scheme: ['https', 'http', 'mailto', 'tel'],
+        }),
+    },
   ],
   blockEditor: {
     icon: () => '🌍',
-    render: LinkRender
-  }
+    render: LinkRender,
+  },
 }
