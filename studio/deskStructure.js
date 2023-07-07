@@ -1,5 +1,3 @@
-import S from '@sanity/desk-tool/structure-builder'
-
 // Anything listed explicitly is filtered so that it is not displayed twice
 const hiddenDocTypes = (listItem) =>
   ![
@@ -50,7 +48,7 @@ const learnStructure = S.listItem()
       ])
   )
 
-export default () =>
+export default (S) =>
   S.list()
     .title('Site')
     .items([
