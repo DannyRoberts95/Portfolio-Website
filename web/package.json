@@ -20,6 +20,7 @@
     "@portabletext/react": "^1.0.2",
     "@sanity/client": "^3.0.3",
     "@sanity/image-url": "^1.0.1",
+    "@vercel/analytics": "^1.0.1",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
     "groq": "^2.15.0",

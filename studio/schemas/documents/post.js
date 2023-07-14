@@ -5,19 +5,29 @@ export default {
   fieldsets: [
     {
       title: 'Publishing',
-      name: 'publishing'
+      name: 'publishing',
     },
     {
       title: 'Post Details',
-      name: 'details'
-    }
+      name: 'details',
+    },
   ],
   fields: [
     {
       name: 'publishedAt',
       title: 'Publish Date',
       type: 'datetime',
-      fieldset: 'publishing'
+      fieldset: 'publishing',
+    },
+    {
+      name: 'contentType',
+      title: 'Content type',
+      type: 'string',
+      initalValue: 'post',
+      options: {
+        list: ['post', 'article', 'project'],
+      },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'draft',
@@ -26,7 +36,7 @@ export default {
       title: 'Draft',
       initalValue: false,
       type: 'boolean',
-      fieldset: 'publishing'
+      fieldset: 'publishing',
     },
 
     {
@@ -34,10 +44,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule =>
-        Rule.required()
-          .min(5)
-          .max(50)
+      validation: (Rule) => Rule.required().min(5).max(50),
     },
     {
       fieldset: 'details',
@@ -46,31 +53,28 @@ export default {
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       fieldset: 'details',
       name: 'illustration',
       title: 'Post Illustration',
-      type: 'illustration'
+      type: 'illustration',
     },
     {
       fieldset: 'details',
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: { type: 'person' }
+      to: { type: 'person' },
     },
     {
       fieldset: 'details',
       name: 'summary',
       title: 'summary',
       type: 'text',
-      validation: Rule =>
-        Rule.required()
-          .min(50)
-          .max(150)
+      validation: (Rule) => Rule.required().min(50).max(150),
     },
     {
       fieldset: 'details',
@@ -78,11 +82,18 @@ export default {
       title: 'Categories',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'category' } }],
-      validation: Rule =>
-        Rule.required()
-          .min(1)
-          .max(3)
-          .unique()
+      validation: (Rule) => Rule.required().min(1).max(3).unique(),
+    },
+
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      validation: (Rule) => Rule.unique(),
+      options: {
+        layout: 'tags',
+      },
     },
 
     {
@@ -90,8 +101,8 @@ export default {
       description:
         'This is the rich text body of the post where the content for this post will live.',
       title: 'Body',
-      type: 'portableText'
-    }
+      type: 'portableText',
+    },
   ],
 
   preview: {
@@ -99,14 +110,14 @@ export default {
       title: 'title',
       author: 'author.name',
       media: 'illustraion.image',
-      draft: 'draft'
+      draft: 'draft',
     },
     prepare(selection) {
       const { author, media, draft } = selection
       return Object.assign({}, selection, {
         subtitle: author && `by ${author}` + `${draft ? ' (Draft)' : ''}`,
-        media
+        media,
       })
-    }
-  }
+    },
+  },
 }

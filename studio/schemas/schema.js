@@ -3,7 +3,6 @@
 // Then import schema types from any plugins that might expose them
 
 // Document types
-import cv from './documents/cv'
 import navigation from './documents/navigation'
 
 import page from './documents/page'
@@ -83,5 +82,4 @@ export default [
   category,
   person,
   post,
-  cv,
 ]

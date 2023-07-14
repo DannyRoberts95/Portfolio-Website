@@ -1,4 +1,5 @@
 import {ThemeProvider} from '@mui/material/styles'
+import {Analytics} from '@vercel/analytics/react'
 import BaseApp from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
@@ -68,6 +69,7 @@ class App extends BaseApp {
 
         {/* App render */}
         <ThemeProvider theme={theme}>
+          <Analytics />
           <Component {...pageProps} />
         </ThemeProvider>
       </>

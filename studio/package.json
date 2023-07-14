@@ -5,9 +5,9 @@
   "main": "package.json",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
-    "dev": "sanity dev",
+    "start": "sanity start",
     "build": "sanity build",
-    "test": "sanity check"
+    "dev": "sanity dev"
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
